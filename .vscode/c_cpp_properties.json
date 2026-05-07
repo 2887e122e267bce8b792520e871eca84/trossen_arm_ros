@@ -1,0 +1,24 @@
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "${default}",
+        "limitSymbolsToIncludedHeaders": false
+      },
+      "includePath": [
+        "/opt/ros/jazzy/include/**",
+        "/home/mailroom/armor_ws/src/trossen_arm/include/**",
+        "/home/mailroom/armor_ws/src/trossen_arm_ros/trossen_arm_controllers/include/**",
+        "/home/mailroom/armor_ws/src/trossen_arm_ros/trossen_arm_hardware/include/**",
+        "/usr/include/**",
+        "/home/mailroom/armor_ws/install/armor_interfaces/include/**"
+      ],
+      "name": "ROS",
+      "intelliSenseMode": "gcc-x64",
+      "compilerPath": "/usr/bin/gcc",
+      "cStandard": "gnu11",
+      "cppStandard": "c++17"
+    }
+  ],
+  "version": 4
+}
