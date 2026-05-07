@@ -122,7 +122,7 @@ ROBOTS = [
         arm_variant='base',
         arm_side='none',
         ip_address='192.168.1.4',
-        ros2_control_hardware_type='mock_components',
+        ros2_control_hardware_type='real',
         ros2_controllers_config_parameter_filename='dual_arm_controllers.yaml',
         x=0.0,
         y=-0.25,
@@ -143,9 +143,9 @@ ROBOTS = [
         ip_address='192.168.1.5',
         ros2_control_hardware_type='mock_components',
         ros2_controllers_config_parameter_filename='dual_arm_controllers.yaml',
-        x=0.405,
-        y=-0.384,
-        z=0.97,
+        x=0.405, # x=0.405,
+        y=-0.384, # y=-0.384,
+        z=0.97, # z=0.97,
         roll=0.0,
         pitch=0.0,
         yaw=1.57,
@@ -193,6 +193,7 @@ def generate_launch_description_for_robot(
                 'prefix': f'{robot.robot_name}/',
                 'variant': robot.arm_variant,
                 'use_downdraft': 'true' if robot.use_downdraft else 'false',
+                'use_suction_cup': 'true' if robot.use_suction_cup else 'false',
             },
         )
         .planning_scene_monitor(
@@ -366,7 +367,6 @@ def launch_setup(context, *args, **kwargs):
     for i, robot in enumerate(ROBOTS):
         robot_actions = generate_launch_description_for_robot(context, robot, include_rviz=(i == 0))
         actions.extend(robot_actions)
-
     return actions
 
 
