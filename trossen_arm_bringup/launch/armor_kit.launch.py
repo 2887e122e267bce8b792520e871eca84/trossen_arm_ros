@@ -143,16 +143,16 @@ ROBOTS = [
         ip_address='192.168.1.5',
         ros2_control_hardware_type='mock_components',
         ros2_controllers_config_parameter_filename='dual_arm_controllers.yaml',
-        x=0.405, # x=0.405,
-        y=-0.384, # y=-0.384,
-        z=0.97, # z=0.97,
+        x=0.0, # x=0.405,
+        y=-0.25, # y=-0.384,
+        z=0.0, # z=0.97,
         roll=0.0,
         pitch=0.0,
-        yaw=1.57,
-        xyz="0.405 -0.384 0.97", # 0.405 -0.134 0.97
+        yaw=0.0,
+        xyz="0.405 -0.134 0.97", # 0.405 -0.134 0.97
         rpy="0 0 1.57",
         use_suction_cup=False,
-        use_downdraft=False,
+        use_downdraft=True,
     ),
 ]
 
