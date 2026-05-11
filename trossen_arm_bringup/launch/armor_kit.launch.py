@@ -333,6 +333,17 @@ def generate_launch_description_for_robot(
         ],
         output={'both': 'screen'},
     )
+    main_controller_node = Node(
+        package='main_controller',
+        executable='main_controller',
+        name='main_controller',
+        parameters=[
+            moveit_configs.robot_description,  
+            moveit_configs.robot_description_semantic,
+            moveit_configs.robot_description_kinematics,
+        ],
+        output={'both': 'screen'},
+    )
 
     last_spawner = controller_spawner_nodes[-1]
 
@@ -354,7 +365,7 @@ def generate_launch_description_for_robot(
                     *([moveit_rviz_node] if moveit_rviz_node is not None else []),
                     TimerAction(
                         period=3.0,
-                        actions=[commander_server_node],
+                        actions=[commander_server_node, main_controller_node],
                     ),
                 ],
             )
