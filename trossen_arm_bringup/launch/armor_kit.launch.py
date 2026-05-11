@@ -33,10 +33,14 @@ from launch import Action, LaunchDescription
 from launch.actions import (
     DeclareLaunchArgument,
     RegisterEventHandler,
+    OpaqueFunction, # Moveit
+    TimerAction,
+    ExecuteProcess
 )
 from launch.conditions import IfCondition
 from launch.event_handlers import (
     OnProcessStart,
+    OnProcessExit
 )
 from launch.substitutions import (
     Command,
@@ -50,6 +54,9 @@ from launch_ros.parameter_descriptions import (
 )
 from launch_ros.parameter_descriptions import ParameterValue
 from launch_ros.substitutions import FindPackageShare
+
+# Moveit Configs
+from moveit_configs_utils import MoveItConfigsBuilder
 
 
 @dataclass
@@ -95,6 +102,18 @@ class ArmLaunchConfig:
     yaw: float
     """Yaw angle of the robot base frame in radians measured in the world frame"""
 
+    xyz: str
+    """Where the robot arm is located in the urdf"""
+
+    rpy: str
+    """The rotation of the robot arm in the urdf"""
+
+    use_downdraft: bool
+    """If the robot arm will use the dowdraft"""
+
+    use_suction_cup: bool
+    """If there is a suction cup"""
+
 
 ROBOTS = [
     ArmLaunchConfig(
@@ -102,7 +121,7 @@ ROBOTS = [
         robot_name='trossen_arm_1',
         arm_variant='base',
         arm_side='none',
-        ip_address='192.168.1.2',
+        ip_address='192.168.1.4',
         ros2_control_hardware_type='mock_components',
         ros2_controllers_config_parameter_filename='dual_arm_controllers.yaml',
         x=0.0,
@@ -111,40 +130,126 @@ ROBOTS = [
         roll=0.0,
         pitch=0.0,
         yaw=0.0,
+        xyz="0.75 -0.134 0.99",
+        rpy="0 0 1.57",
+        use_suction_cup=True,
+        use_downdraft=True,
     ),
     ArmLaunchConfig(
         robot_model='wxai',
         robot_name='trossen_arm_2',
         arm_variant='base',
         arm_side='none',
-        ip_address='192.168.1.3',
+        ip_address='192.168.1.5',
         ros2_control_hardware_type='mock_components',
         ros2_controllers_config_parameter_filename='dual_arm_controllers.yaml',
-        x=0.0,
-        y=0.25,
-        z=0.0,
+        x=0.0, # x=0.405,
+        y=-0.25, # y=-0.384,
+        z=0.0, # z=0.97,
         roll=0.0,
         pitch=0.0,
         yaw=0.0,
+        xyz="0.405 -0.134 0.97", # 0.405 -0.134 0.97
+        rpy="0 0 1.57",
+        use_suction_cup=False,
+        use_downdraft=True,
     ),
 ]
 
 
-def generate_launch_description_for_robot(robot: ArmLaunchConfig) -> list[Action]:
-    robot_description = Command([
-        FindExecutable(name='xacro'), ' ',
-        PathJoinSubstitution([
-            FindPackageShare('trossen_arm_description'),
-            'urdf',
-            robot.robot_model,
-        ]), '.urdf.xacro ',
-        'prefix:=', robot.robot_name + '/', ' ',
-        'use_world_frame:=false ',
-        'arm_variant:=', robot.arm_variant, ' ',
-        'arm_side:=', robot.arm_side, ' ',
-        'ros2_control_hardware_type:=', robot.ros2_control_hardware_type, ' ',
-        'ip_address:=', robot.ip_address,
-    ])
+def generate_launch_description_for_robot(
+    context, robot: ArmLaunchConfig, include_rviz: bool = False
+) -> list[Action]:
+    rviz_config_file_launch_arg = LaunchConfiguration('rviz_config_file')
+    use_moveit_rviz_launch_arg = LaunchConfiguration('use_moveit_rviz')
+
+    moveit_configs = (
+        MoveItConfigsBuilder(
+            robot_name='wxai',
+            package_name='trossen_arm_moveit',
+        )
+        .robot_description(
+            file_path=PathJoinSubstitution([
+                FindPackageShare('trossen_arm_description'),
+                'urdf',
+                'wxai.urdf.xacro',
+            ]).perform(context),
+            mappings={
+                'prefix': f'{robot.robot_name}/',
+                'arm_variant': robot.arm_variant,
+                'arm_side': robot.arm_side,
+                'ip_address': robot.ip_address,
+                'ros2_control_hardware_type': robot.ros2_control_hardware_type,
+                'xyz': robot.xyz,
+                'rpy': robot.rpy,
+                'use_suction_cup': 'true' if robot.use_suction_cup else 'false',
+                'use_downdraft': 'true' if robot.use_downdraft else 'false',
+                'use_world_frame': 'false',
+            }
+        )
+        .robot_description_semantic(
+            file_path='config/wxai.srdf.xacro',
+            mappings={
+                'prefix': f'{robot.robot_name}/',
+                'variant': robot.arm_variant,
+                'use_downdraft': 'true' if robot.use_downdraft else 'false',
+                'use_suction_cup': 'true' if robot.use_suction_cup else 'false',
+            },
+        )
+        .planning_scene_monitor(
+            publish_geometry_updates=True,
+            publish_state_updates=True,
+            publish_transforms_updates=True,
+            publish_planning_scene=True,
+        )
+        .trajectory_execution(
+            file_path=f'config/{robot.robot_name}_moveit_controllers.yaml',
+            moveit_manage_controllers=True,
+        )
+        .planning_pipelines(
+            default_planning_pipeline='ompl',
+            pipelines=[
+                'ompl',
+            ],
+        )
+        .robot_description_kinematics(
+            file_path='config/kinematics.yaml',
+        )
+        .joint_limits(
+            file_path=f'config/{robot.robot_name}_joint_limits.yaml',
+        )
+        .sensors_3d(
+            file_path=f'config/sensors_3d.yaml',
+        )
+        .to_moveit_configs()
+    )
+
+    move_group_node = Node(
+        package='moveit_ros_move_group',
+        namespace=robot.robot_name,
+        executable='move_group',
+        parameters=[
+            moveit_configs.to_dict(),
+        ],
+        remappings=[
+            ('~/robot_description', f'/{robot.robot_name}/robot_description'),
+        ],
+        output={'both': 'screen'},
+    )
+
+    moveit_rviz_node = Node(
+        condition=IfCondition(use_moveit_rviz_launch_arg),
+        package='rviz2',
+        executable='rviz2',
+        name='rviz2_dual',
+        arguments=[
+            '-d', rviz_config_file_launch_arg,
+        ],
+        parameters=[
+            moveit_configs.to_dict(),
+        ],
+        output={'both': 'screen'},
+    ) if include_rviz else None
 
     static_transform_node = Node(
         package='tf2_ros',
@@ -158,7 +263,7 @@ def generate_launch_description_for_robot(robot: ArmLaunchConfig) -> list[Action
             '--pitch', str(robot.pitch),
             '--yaw', str(robot.yaw),
             '--frame-id', 'world',
-            '--child-frame-id', f'{robot.robot_name}/base_link',
+            '--child-frame-id', f'/{robot.robot_name}/Bottom_Box' if robot.use_downdraft else f'/{robot.robot_name}/base_link',
         ],
         output={'both': 'screen'},
     )
@@ -180,7 +285,7 @@ def generate_launch_description_for_robot(robot: ArmLaunchConfig) -> list[Action
             ros2_control_controllers_config_parameter_file,
         ],
         remappings=[
-            ('~/robot_description', '/robot_description'),
+            ('~/robot_description', f'/{robot.robot_name}/robot_description'),
         ],
         output={'both': 'screen'},
     )
@@ -194,8 +299,8 @@ def generate_launch_description_for_robot(robot: ArmLaunchConfig) -> list[Action
         controller_spawner_nodes.append(
             Node(
                 name=f'{controller_name}_spawner',
-                namespace=robot.robot_name,
                 package='controller_manager',
+                namespace=robot.robot_name,
                 executable='spawner',
                 arguments=[
                     controller_name,
@@ -209,11 +314,38 @@ def generate_launch_description_for_robot(robot: ArmLaunchConfig) -> list[Action
         package='robot_state_publisher',
         executable='robot_state_publisher',
         namespace=robot.robot_name,
-        parameters=[{
-            'robot_description': ParameterValue(robot_description, value_type=str),
-        }],
+        parameters=[
+            moveit_configs.robot_description,
+            moveit_configs.robot_description_semantic,
+        ],
         output={'both': 'screen'},
     )
+
+    commander_server_node = Node(
+        package='armor_commander_cpp',
+        executable='commander_server',
+        name='commander_server',
+        namespace=robot.robot_name,
+        parameters=[
+            moveit_configs.robot_description,  
+            moveit_configs.robot_description_semantic,
+            moveit_configs.robot_description_kinematics,
+        ],
+        output={'both': 'screen'},
+    )
+    main_controller_node = Node(
+        package='main_controller',
+        executable='main_controller',
+        name='main_controller',
+        parameters=[
+            moveit_configs.robot_description,  
+            moveit_configs.robot_description_semantic,
+            moveit_configs.robot_description_kinematics,
+        ],
+        output={'both': 'screen'},
+    )
+
+    last_spawner = controller_spawner_nodes[-1]
 
     return [
         static_transform_node,
@@ -225,48 +357,51 @@ def generate_launch_description_for_robot(robot: ArmLaunchConfig) -> list[Action
                 on_start=controller_spawner_nodes,
             )
         ),
+        RegisterEventHandler(
+            OnProcessExit(
+                target_action=last_spawner,
+                on_exit=[
+                    move_group_node,
+                    *([moveit_rviz_node] if moveit_rviz_node is not None else []),
+                    TimerAction(
+                        period=3.0,
+                        actions=[commander_server_node, main_controller_node],
+                    ),
+                ],
+            )
+        ),
     ]
 
 
+def launch_setup(context, *args, **kwargs):
+    actions = []
+    for i, robot in enumerate(ROBOTS):
+        robot_actions = generate_launch_description_for_robot(context, robot, include_rviz=(i == 0))
+        actions.extend(robot_actions)
+    return actions
+
+
 def generate_launch_description() -> LaunchDescription:
-    robot_actions: list[Action] = []
-
-    for robot in ROBOTS:
-        robot_actions.extend(generate_launch_description_for_robot(robot))
-
     use_rviz_launch_arg = DeclareLaunchArgument(
-        'use_rviz',
+        'use_moveit_rviz',
         default_value='true',
         choices=('true', 'false'),
-        description='Use rviz.'
+        description="Launches RViz with MoveIt's RViz configuration.",
     )
+
     rvizconfig_launch_arg = DeclareLaunchArgument(
-        'rvizconfig',
+        'rviz_config_file',
         default_value=PathJoinSubstitution([
             FindPackageShare('trossen_arm_bringup'),
             'rviz',
-            'dual_arm.rviz',
+            'armor_kit.rviz',
         ]),
-        description='file path to the config file RViz should load.',
-    )
-
-    rviz2_node = Node(
-        condition=IfCondition(LaunchConfiguration('use_rviz')),
-        package='rviz2',
-        executable='rviz2',
-        name='rviz2',
-        arguments=[
-            '-d', LaunchConfiguration('rvizconfig'),
-        ],
-        output={'both': 'screen'},
+        description='Full path to the RVIZ config file to use.',
     )
 
     ld = LaunchDescription()
     ld.add_action(use_rviz_launch_arg)
     ld.add_action(rvizconfig_launch_arg)
-    ld.add_action(rviz2_node)
-
-    for robot_action in robot_actions:
-        ld.add_action(robot_action)
+    ld.add_action(OpaqueFunction(function=launch_setup))
 
     return ld

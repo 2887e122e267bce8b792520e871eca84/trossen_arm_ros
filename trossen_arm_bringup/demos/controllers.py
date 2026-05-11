@@ -35,7 +35,7 @@ These modules demonstrate how to control the Trossen Arm's arm and gripper using
 interfaces provided by the arm_controller and gripper_controller.
 """
 
-from control_msgs.action import FollowJointTrajectory, GripperCommand
+from control_msgs.action import FollowJointTrajectory, ParallelGripperCommand
 from rclpy.action import ActionClient
 from rclpy.constants import S_TO_NS
 from rclpy.node import Node
@@ -150,7 +150,7 @@ class ArmDemoNode(Node):
 
 
 class GripperDemoNode(Node):
-    """Demo node for sending gripper commands to the Trossen Arm's gripper_controller."""
+    """Demo node for sending gripper commands to the parallel_gripper_action_controller."""
 
     def __init__(
         self,
@@ -161,7 +161,7 @@ class GripperDemoNode(Node):
         Initialize the GripperDemo node and connect to the gripper_controller action server.
 
         :param namespace: Optional namespace to prepend to the action name.
-        :param action_name: Optional name of the GripperCommand action server.
+        :param action_name: Optional name of the ParallelGripperCommand action server.
         """
         super().__init__('gripper_demo')
 
@@ -170,7 +170,7 @@ class GripperDemoNode(Node):
 
         self._action_client = ActionClient(
             self,
-            GripperCommand,
+            ParallelGripperCommand,
             action_name,
         )
         while not self._action_client.wait_for_server(timeout_sec=1.0):
@@ -180,7 +180,7 @@ class GripperDemoNode(Node):
         self._is_running = False
         self.get_logger().info(f'GripperDemo initialized with action server: {action_name}')
 
-    def _feedback_callback(self, feedback_msg: GripperCommand.Impl.FeedbackMessage):
+    def _feedback_callback(self, feedback_msg: ParallelGripperCommand.Impl.FeedbackMessage):
         """
         Log the current gripper position and effort from the action server's feedback.
 
@@ -195,7 +195,7 @@ class GripperDemoNode(Node):
 
         :param future: Future object containing the result from the action server.
         """
-        result: GripperCommand.Result = future.result().result
+        result: ParallelGripperCommand.Result = future.result().result
         self.get_logger().info(f'Gripper action completed with result: {result}')
         self._is_running = False
 
@@ -216,14 +216,14 @@ class GripperDemoNode(Node):
         self._get_result_future = goal_handle.get_result_async()
         self._get_result_future.add_done_callback(self._get_result_callback)
 
-    def send_goal(self, position: float):
+    def send_goal(self, position: list[float]):
         """
         Send a gripper command goal to the gripper_controller.
 
         :param position: Target gripper position (meters).
         :return: Future object for the goal request.
         """
-        goal_msg = GripperCommand.Goal()
+        goal_msg = ParallelGripperCommand.Goal()
         goal_msg.command.position = position
         future = self._action_client.send_goal_async(
             goal_msg,
