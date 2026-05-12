@@ -89,11 +89,15 @@ GravityCompensationController::update(
   const rclcpp::Duration & /*period*/)
 {
   // Set all command interfaces to zero external effort
+  // for (auto & command_interface : command_interfaces_) {
+  //   if (!command_interface.set_value(0.0)) {
+  //     RCLCPP_ERROR(get_node()->get_logger(), "Failed to set command interface value");
+  //     return return_type::ERROR;
+  //   }
+  // }
+  // return return_type::OK;
   for (auto & command_interface : command_interfaces_) {
-    if (!command_interface.set_value(0.0)) {
-      RCLCPP_ERROR(get_node()->get_logger(), "Failed to set command interface value");
-      return return_type::ERROR;
-    }
+    command_interface.set_value(0.0);
   }
   return return_type::OK;
 }
