@@ -337,11 +337,13 @@ def generate_launch_description_for_robot(
         package='main_controller',
         executable='main_controller',
         name='main_controller',
-        parameters=[
-            moveit_configs.robot_description,  
-            moveit_configs.robot_description_semantic,
-            moveit_configs.robot_description_kinematics,
-        ],
+        output={'both': 'screen'},
+    )
+
+    pick_and_place_node = Node(
+        package='armor_control_py',
+        executable='pickup_action_server',
+        name='pick_up',
         output={'both': 'screen'},
     )
 
@@ -365,7 +367,11 @@ def generate_launch_description_for_robot(
                     *([moveit_rviz_node] if moveit_rviz_node is not None else []),
                     TimerAction(
                         period=3.0,
-                        actions=[commander_server_node, main_controller_node],
+                        actions=[
+                            commander_server_node,
+                            main_controller_node,
+                            pick_and_place_node
+                        ],
                     ),
                 ],
             )
@@ -376,7 +382,7 @@ def generate_launch_description_for_robot(
 def launch_setup(context, *args, **kwargs):
     actions = []
     for i, robot in enumerate(ROBOTS):
-        robot_actions = generate_launch_description_for_robot(context, robot, include_rviz=(i == 0))
+        robot_actions = generate_launch_description_for_robot(context, robot, include_rviz=(i == 1))
         actions.extend(robot_actions)
     return actions
 
