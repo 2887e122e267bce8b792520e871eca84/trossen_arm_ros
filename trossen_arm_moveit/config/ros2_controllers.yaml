@@ -42,5 +42,7 @@ arm_controller:
 
 gripper_controller:
   ros__parameters:
-    joint: left_carriage_joint
+    joint: 
+      - left_carriage_joint
+      - suction_cup_and_suction_mount
     allow_stalling: true

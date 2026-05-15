@@ -32,3 +32,4 @@ moveit_simple_controller_manager:
     max_effort: 100.0
     joints:
       - left_carriage_joint
+      - suction_cup_and_suction_mount
