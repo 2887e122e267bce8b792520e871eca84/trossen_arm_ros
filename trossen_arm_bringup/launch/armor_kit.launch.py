@@ -130,7 +130,7 @@ ROBOTS = [
         roll=0.0,
         pitch=0.0,
         yaw=0.0,
-        xyz="0.75 -0.134 0.99",
+        xyz="0.75 -0.234 0.99",
         rpy="0 0 1.57",
         use_suction_cup=True,
         use_downdraft=True,
@@ -149,7 +149,7 @@ ROBOTS = [
         roll=0.0,
         pitch=0.0,
         yaw=0.0,
-        xyz="0.405 -0.134 0.97", # 0.405 -0.134 0.97
+        xyz="0.405 -0.234 0.99", # 0.405 -0.134 0.97
         rpy="0 0 1.57",
         use_suction_cup=False,
         use_downdraft=True,
@@ -376,7 +376,7 @@ def generate_launch_description_for_robot(
 def launch_setup(context, *args, **kwargs):
     actions = []
     for i, robot in enumerate(ROBOTS):
-        robot_actions = generate_launch_description_for_robot(context, robot, include_rviz=(i == 0))
+        robot_actions = generate_launch_description_for_robot(context, robot, include_rviz=(i == 1))
         actions.extend(robot_actions)
     return actions
 
