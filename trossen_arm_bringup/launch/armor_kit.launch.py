@@ -319,6 +319,7 @@ def generate_launch_description_for_robot(
             moveit_configs.robot_description_semantic,
         ],
         output={'both': 'screen'},
+        arguments=['--ros-args', '--log-level', 'WARN'],
     )
 
     commander_server_node = Node(
@@ -331,19 +332,6 @@ def generate_launch_description_for_robot(
             moveit_configs.robot_description_semantic,
             moveit_configs.robot_description_kinematics,
         ],
-        output={'both': 'screen'},
-    )
-    main_controller_node = Node(
-        package='main_controller',
-        executable='main_controller',
-        name='main_controller',
-        output={'both': 'screen'},
-    )
-
-    pick_and_place_node = Node(
-        package='armor_control_py',
-        executable='pickup_action_server',
-        name='pick_up',
         output={'both': 'screen'},
     )
 
@@ -369,12 +357,10 @@ def generate_launch_description_for_robot(
                         period=3.0,
                         actions=[
                             commander_server_node,
-                            main_controller_node,
-                            pick_and_place_node
                         ],
                     ),
                 ],
-            )
+            ),
         ),
     ]
 
@@ -382,8 +368,39 @@ def generate_launch_description_for_robot(
 def launch_setup(context, *args, **kwargs):
     actions = []
     for i, robot in enumerate(ROBOTS):
-        robot_actions = generate_launch_description_for_robot(context, robot, include_rviz=(i == 1))
+        robot_actions = generate_launch_description_for_robot(context, robot, include_rviz=(i == 0))
         actions.extend(robot_actions)
+    
+    shared_nodes = TimerAction(
+        period=5.0,  # Give both arms time to finish spawning
+        actions=[
+            Node(
+                package='main_controller',
+                executable='main_controller',
+                name='main_controller',
+                output={'both': 'screen'},
+            ),
+            Node(
+                package='armor_control_py',
+                executable='pickup_action_server',
+                name='pick_up',
+                output={'both': 'screen'},
+            ),
+            Node(
+                package='armor_control_py',
+                executable='start_button',
+                name='start_button',
+                output={'both': 'screen'},
+            ),
+            Node(
+                package='armor_control_py',
+                executable='estop_button',
+                name='estop_button',
+                output={'both': 'screen'},
+            ),
+        ]
+    )
+    actions.append(shared_nodes)
     return actions
 
 

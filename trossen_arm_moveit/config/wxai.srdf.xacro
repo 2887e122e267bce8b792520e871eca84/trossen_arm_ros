@@ -74,13 +74,15 @@
     <end_effector name="gripper" parent_link="${tf_prefix}ee_gripper_link" group="gripper" parent_group="arm"/>
     <!--DISABLE COLLISIONS: By default it is assumed that any link of the robot could potentially come into collision with any other link in the robot. This tag disables collision checking between a specified pair of links. -->
     <disable_collisions link1="${tf_prefix}base_link" link2="${tf_prefix}link_1" reason="Adjacent"/>
-    <disable_collisions link1="{tf_prefix}base_link" link2="${tf_prefix}link_2" reason="Never"/>
+    <disable_collisions link1="${tf_prefix}base_link" link2="${tf_prefix}link_2" reason="Never"/>
     <disable_collisions link1="${tf_prefix}Custom_Mount" link2="${tf_prefix}link_1" reason="Default"/>
     <disable_collisions link1="${tf_prefix}Custom_Mount" link2="${tf_prefix}link_2" reason="Default"/>
     <disable_collisions link1="${tf_prefix}Custom_Mount" link2="${tf_prefix}link_5" reason="Default"/>
     <disable_collisions link1="${tf_prefix}Custom_Mount" link2="${tf_prefix}link_6" reason="Adjacent"/>
     <disable_collisions link1="${tf_prefix}Custom_Mount" link2="${tf_prefix}base_link" reason="Default"/>
+    <xacro:if value="${srdf_use_suction_cup}">
     <disable_collisions link1="${tf_prefix}Custom_Mount" link2="${tf_prefix}base_mount" reason="Never"/>
+    </xacro:if>
     <disable_collisions link1="${tf_prefix}Custom_Mount" link2="${tf_prefix}carriage_left" reason="Never"/>
     <disable_collisions link1="${tf_prefix}Custom_Mount" link2="${tf_prefix}carriage_right" reason="Never"/>
     <disable_collisions link1="${tf_prefix}Custom_Mount" link2="${tf_prefix}gripper_left" reason="Never"/>
@@ -281,7 +283,9 @@
         <disable_collisions link1="${tf_prefix}Back_Plate_Exhaust" link2="${tf_prefix}Vibration_Rack_Base" reason="Never"/>
         <disable_collisions link1="${tf_prefix}Back_Plate_Exhaust" link2="${tf_prefix}Vibration_Rack_Baseplate" reason="Never"/>
         <disable_collisions link1="${tf_prefix}Back_Plate_Exhaust" link2="${tf_prefix}base_link" reason="Never"/>
+        <xacro:if value="${srdf_use_suction_cup}">
         <disable_collisions link1="${tf_prefix}Back_Plate_Exhaust" link2="${tf_prefix}base_mount" reason="Never"/>
+        </xacro:if>
         <disable_collisions link1="${tf_prefix}Back_Plate_Exhaust" link2="${tf_prefix}carriage_left" reason="Never"/>
         <disable_collisions link1="${tf_prefix}Back_Plate_Exhaust" link2="${tf_prefix}carriage_right" reason="Never"/>
         <disable_collisions link1="${tf_prefix}Back_Plate_Exhaust" link2="${tf_prefix}gripper_left" reason="Never"/>
@@ -426,7 +430,9 @@
         <disable_collisions link1="${tf_prefix}Mail_Spreader_Housing" link2="${tf_prefix}Vibration_Rack_Base" reason="Never"/>
         <disable_collisions link1="${tf_prefix}Mail_Spreader_Housing" link2="${tf_prefix}Vibration_Rack_Baseplate" reason="Never"/>
         <disable_collisions link1="${tf_prefix}Mail_Spreader_Housing" link2="${tf_prefix}base_link" reason="Never"/>
+        <xacro:if value="${srdf_use_suction_cup}">
         <disable_collisions link1="${tf_prefix}Mail_Spreader_Housing" link2="${tf_prefix}base_mount" reason="Default"/>
+        </xacro:if>
         <disable_collisions link1="${tf_prefix}Mail_Spreader_Housing" link2="${tf_prefix}carriage_left" reason="Default"/>
         <disable_collisions link1="${tf_prefix}Mail_Spreader_Housing" link2="${tf_prefix}gripper_left" reason="Default"/>
         <disable_collisions link1="${tf_prefix}Mail_Spreader_Housing" link2="${tf_prefix}light_1" reason="Never"/>
@@ -475,7 +481,9 @@
         <disable_collisions link1="${tf_prefix}Rear_Panel" link2="${tf_prefix}Vibration_Rack_Base" reason="Never"/>
         <disable_collisions link1="${tf_prefix}Rear_Panel" link2="${tf_prefix}Vibration_Rack_Baseplate" reason="Never"/>
         <disable_collisions link1="${tf_prefix}Rear_Panel" link2="${tf_prefix}base_link" reason="Never"/>
+        <xacro:if value="${srdf_use_suction_cup}">
         <disable_collisions link1="${tf_prefix}Rear_Panel" link2="${tf_prefix}base_mount" reason="Never"/>
+        </xacro:if>
         <disable_collisions link1="${tf_prefix}Rear_Panel" link2="${tf_prefix}light_1" reason="Never"/>
         <disable_collisions link1="${tf_prefix}Rear_Panel" link2="${tf_prefix}light_2" reason="Never"/>
         <disable_collisions link1="${tf_prefix}Rear_Panel" link2="${tf_prefix}link_1" reason="Never"/>
@@ -502,7 +510,9 @@
         <disable_collisions link1="${tf_prefix}Side_Plates_Right" link2="${tf_prefix}Vibration_Rack_Base" reason="Never"/>
         <disable_collisions link1="${tf_prefix}Side_Plates_Right" link2="${tf_prefix}Vibration_Rack_Baseplate" reason="Never"/>
         <disable_collisions link1="${tf_prefix}Side_Plates_Right" link2="${tf_prefix}base_link" reason="Never"/>
+        <xacro:if value="${srdf_use_suction_cup}">
         <disable_collisions link1="${tf_prefix}Side_Plates_Right" link2="${tf_prefix}base_mount" reason="Never"/>
+        </xacro:if>
         <disable_collisions link1="${tf_prefix}Side_Plates_Right" link2="${tf_prefix}carriage_left" reason="Never"/>
         <disable_collisions link1="${tf_prefix}Side_Plates_Right" link2="${tf_prefix}carriage_right" reason="Never"/>
         <disable_collisions link1="${tf_prefix}Side_Plates_Right" link2="${tf_prefix}gripper_left" reason="Never"/>
@@ -562,7 +572,9 @@
         <disable_collisions link1="${tf_prefix}base_link" link2="${tf_prefix}light_2" reason="Never"/>
         <disable_collisions link1="${tf_prefix}base_link" link2="${tf_prefix}link_1" reason="Adjacent"/>
         <disable_collisions link1="${tf_prefix}base_link" link2="${tf_prefix}link_2" reason="Never"/>
+        <xacro:if value="${srdf_use_suction_cup}">
         <disable_collisions link1="${tf_prefix}base_mount" link2="${tf_prefix}light_1" reason="Never"/>
+        </xacro:if>
         <disable_collisions link1="${tf_prefix}carriage_left" link2="${tf_prefix}light_1" reason="Never"/>
         <disable_collisions link1="${tf_prefix}carriage_right" link2="${tf_prefix}light_1" reason="Never"/>
         <disable_collisions link1="${tf_prefix}gripper_left" link2="${tf_prefix}light_1" reason="Never"/>
