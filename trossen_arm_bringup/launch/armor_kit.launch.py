@@ -129,7 +129,7 @@ ROBOTS = [
         z=0.0,
         roll=0.0,
         pitch=0.0,
-        yaw=0.0,
+        yaw=0.0,    
         xyz="0.75 -0.234 0.99",
         rpy="0 0 1.57",
         use_suction_cup=True,
@@ -149,7 +149,7 @@ ROBOTS = [
         roll=0.0,
         pitch=0.0,
         yaw=0.0,
-        xyz="0.405 -0.234 0.99", # 0.405 -0.134 0.97
+        xyz="0.405 -0.234 0.97", # 0.405 -0.134 0.97
         rpy="0 0 1.57",
         use_suction_cup=False,
         use_downdraft=True,
@@ -319,6 +319,7 @@ def generate_launch_description_for_robot(
             moveit_configs.robot_description_semantic,
         ],
         output={'both': 'screen'},
+        arguments=['--ros-args', '--log-level', 'WARN'],
     )
 
     commander_server_node = Node(
@@ -326,17 +327,6 @@ def generate_launch_description_for_robot(
         executable='commander_server',
         name='commander_server',
         namespace=robot.robot_name,
-        parameters=[
-            moveit_configs.robot_description,  
-            moveit_configs.robot_description_semantic,
-            moveit_configs.robot_description_kinematics,
-        ],
-        output={'both': 'screen'},
-    )
-    main_controller_node = Node(
-        package='main_controller',
-        executable='main_controller',
-        name='main_controller',
         parameters=[
             moveit_configs.robot_description,  
             moveit_configs.robot_description_semantic,
@@ -365,10 +355,12 @@ def generate_launch_description_for_robot(
                     *([moveit_rviz_node] if moveit_rviz_node is not None else []),
                     TimerAction(
                         period=3.0,
-                        actions=[commander_server_node, main_controller_node],
+                        actions=[
+                            commander_server_node,
+                        ],
                     ),
                 ],
-            )
+            ),
         ),
     ]
 
@@ -376,8 +368,39 @@ def generate_launch_description_for_robot(
 def launch_setup(context, *args, **kwargs):
     actions = []
     for i, robot in enumerate(ROBOTS):
-        robot_actions = generate_launch_description_for_robot(context, robot, include_rviz=(i == 1))
+        robot_actions = generate_launch_description_for_robot(context, robot, include_rviz=(i == 0))
         actions.extend(robot_actions)
+    
+    shared_nodes = TimerAction(
+        period=5.0,  # Give both arms time to finish spawning
+        actions=[
+            Node(
+                package='main_controller',
+                executable='main_controller',
+                name='main_controller',
+                output={'both': 'screen'},
+            ),
+            # Node(
+            #     package='armor_control_py',
+            #     executable='pickup_action_server',
+            #     name='pick_up',
+            #     output={'both': 'screen'},
+            # ),
+            # Node(
+            #     package='armor_control_py',
+            #     executable='start_button',
+            #     name='start_button',
+            #     output={'both': 'screen'},
+            # ),
+            # Node(
+            #     package='armor_control_py',
+            #     executable='estop_button',
+            #     name='estop_button',
+            #     output={'both': 'screen'},
+            # ),
+        ]
+    )
+    actions.append(shared_nodes)
     return actions
 
 
