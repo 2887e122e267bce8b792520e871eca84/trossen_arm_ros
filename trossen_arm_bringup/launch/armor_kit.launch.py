@@ -57,6 +57,10 @@ from launch_ros.substitutions import FindPackageShare
 
 # Moveit Configs
 from moveit_configs_utils import MoveItConfigsBuilder
+import Jetson.GPIO as GPIO
+
+GPIO.cleanup()
+# GPIO.setmode(GPIO.BOARD)
 
 
 @dataclass
