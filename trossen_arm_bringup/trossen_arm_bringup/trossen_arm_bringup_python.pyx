@@ -11,4 +11,4 @@ class CythonPackageMetaPathFinder(importlib.abc.MetaPathFinder):
            return importlib.machinery.ExtensionFileLoader(fullname, __file__)
 
 def libcalculatorpython_cython_submodule():
-    sys.meta_path.append(CythonPackageMetaPathFinder("trossen_arm_bringup."))
+    sys.meta_path.append(CythonPackageMetaPathFinder("trossen_arm_bringup_python."))

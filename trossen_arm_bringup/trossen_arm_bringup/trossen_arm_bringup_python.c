@@ -3,16 +3,16 @@
 /* BEGIN: Cython Metadata
 {
     "distutils": {
-        "name": "trossen_arm_bringup.armor_kit_impl",
+        "name": "trossen_arm_bringup.trossen_arm_bringup",
         "sources": [
-            "trossen_arm_bringup/bringup_launch_files.pyx",
+            "trossen_arm_bringup/trossen_arm_bringup_python.pyx",
             "trossen_arm_bringup/armor_kit.py",
             "trossen_arm_bringup/dual_trossen_arm.py",
             "trossen_arm_bringup/gravity_compensation.py",
             "trossen_arm_bringup/trossen_arm.py"
         ]
     },
-    "module_name": "trossen_arm_bringup.armor_kit_impl"
+    "module_name": "trossen_arm_bringup.trossen_arm_bringup"
 }
 END: Cython Metadata */
 
@@ -1130,8 +1130,8 @@ static int __Pyx_init_co_variables(void) {
   #endif
 #endif
 
-#define __PYX_HAVE__trossen_arm_bringup__bringup_launch_files
-#define __PYX_HAVE_API__trossen_arm_bringup__bringup_launch_files
+#define __PYX_HAVE__trossen_arm_bringup__trossen_arm_bringup_python
+#define __PYX_HAVE_API__trossen_arm_bringup__trossen_arm_bringup_python
 /* Early includes */
 #ifdef _OPENMP
 #include <omp.h>
@@ -1349,7 +1349,7 @@ static const char *__pyx_filename;
 /* #### Code section: filename_table ### */
 
 static const char* const __pyx_f[] = {
-  "trossen_arm_bringup/bringup_launch_files.pyx",
+  "trossen_arm_bringup/trossen_arm_bringup_python.pyx",
 };
 /* #### Code section: utility_code_proto_before_types ### */
 /* Atomics.proto (used by UnpackUnboundCMethod) */
@@ -2324,21 +2324,21 @@ static int __Pyx_State_RemoveModule(void*);
 #define __PYX_TYPE_MODULE_PREFIX __PYX_ABI_MODULE_NAME "."
 
 
-/* Module declarations from "trossen_arm_bringup.bringup_launch_files" */
+/* Module declarations from "trossen_arm_bringup.trossen_arm_bringup_python" */
 /* #### Code section: typeinfo ### */
 /* #### Code section: before_global_var ### */
-#define __Pyx_MODULE_NAME "trossen_arm_bringup.bringup_launch_files"
-extern int __pyx_module_is_main_trossen_arm_bringup__bringup_launch_files;
-int __pyx_module_is_main_trossen_arm_bringup__bringup_launch_files = 0;
+#define __Pyx_MODULE_NAME "trossen_arm_bringup.trossen_arm_bringup_python"
+extern int __pyx_module_is_main_trossen_arm_bringup__trossen_arm_bringup_python;
+int __pyx_module_is_main_trossen_arm_bringup__trossen_arm_bringup_python = 0;
 
-/* Implementation of "trossen_arm_bringup.bringup_launch_files" */
+/* Implementation of "trossen_arm_bringup.trossen_arm_bringup_python" */
 /* #### Code section: global_var ### */
 static PyObject *__pyx_builtin_super;
 /* #### Code section: string_decls ### */
 /* #### Code section: decls ### */
-static PyObject *__pyx_pf_19trossen_arm_bringup_20bringup_launch_files_27CythonPackageMetaPathFinder___init__(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_name_filter); /* proto */
-static PyObject *__pyx_pf_19trossen_arm_bringup_20bringup_launch_files_27CythonPackageMetaPathFinder_2find_module(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_fullname, CYTHON_UNUSED PyObject *__pyx_v_path); /* proto */
-static PyObject *__pyx_pf_19trossen_arm_bringup_20bringup_launch_files_libcalculatorpython_cython_submodule(CYTHON_UNUSED PyObject *__pyx_self); /* proto */
+static PyObject *__pyx_pf_19trossen_arm_bringup_26trossen_arm_bringup_python_27CythonPackageMetaPathFinder___init__(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_name_filter); /* proto */
+static PyObject *__pyx_pf_19trossen_arm_bringup_26trossen_arm_bringup_python_27CythonPackageMetaPathFinder_2find_module(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_fullname, CYTHON_UNUSED PyObject *__pyx_v_path); /* proto */
+static PyObject *__pyx_pf_19trossen_arm_bringup_26trossen_arm_bringup_python_libcalculatorpython_cython_submodule(CYTHON_UNUSED PyObject *__pyx_self); /* proto */
 /* #### Code section: late_includes ### */
 /* #### Code section: module_state ### */
 /* SmallCodeConfig */
@@ -2405,8 +2405,8 @@ static __pyx_mstatetype * const __pyx_mstate_global = &__pyx_mstate_global_stati
 #endif
 /* #### Code section: constant_name_defines ### */
 #define __pyx_kp_u_ __pyx_string_tab[0]
-#define __pyx_kp_u_trossen_arm_bringup __pyx_string_tab[1]
-#define __pyx_kp_u_trossen_arm_bringup_bringup_laun_2 __pyx_string_tab[2]
+#define __pyx_kp_u_trossen_arm_bringup_python __pyx_string_tab[1]
+#define __pyx_kp_u_trossen_arm_bringup_trossen_arm_2 __pyx_string_tab[2]
 #define __pyx_n_u_CythonPackageMetaPathFinder __pyx_string_tab[3]
 #define __pyx_n_u_CythonPackageMetaPathFinder___in __pyx_string_tab[4]
 #define __pyx_n_u_CythonPackageMetaPathFinder_find __pyx_string_tab[5]
@@ -2446,7 +2446,7 @@ static __pyx_mstatetype * const __pyx_mstate_global = &__pyx_mstate_global_stati
 #define __pyx_n_u_super __pyx_string_tab[39]
 #define __pyx_n_u_sys __pyx_string_tab[40]
 #define __pyx_n_u_test __pyx_string_tab[41]
-#define __pyx_n_u_trossen_arm_bringup_bringup_laun __pyx_string_tab[42]
+#define __pyx_n_u_trossen_arm_bringup_trossen_arm __pyx_string_tab[42]
 #define __pyx_n_u_values __pyx_string_tab[43]
 #define __pyx_kp_b_iso88591_A_8_at1_9_A __pyx_string_tab[44]
 #define __pyx_kp_b_iso88591_A_Q_5_O1 __pyx_string_tab[45]
@@ -2504,7 +2504,7 @@ return 0;
 #endif
 /* #### Code section: module_code ### */
 
-/* "trossen_arm_bringup/bringup_launch_files.pyx":5
+/* "trossen_arm_bringup/trossen_arm_bringup_python.pyx":5
  * 
  * class CythonPackageMetaPathFinder(importlib.abc.MetaPathFinder):
  *     def __init__(self, name_filter):             # <<<<<<<<<<<<<<
@@ -2513,15 +2513,15 @@ return 0;
 */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_19trossen_arm_bringup_20bringup_launch_files_27CythonPackageMetaPathFinder_1__init__(PyObject *__pyx_self, 
+static PyObject *__pyx_pw_19trossen_arm_bringup_26trossen_arm_bringup_python_27CythonPackageMetaPathFinder_1__init__(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_19trossen_arm_bringup_20bringup_launch_files_27CythonPackageMetaPathFinder_1__init__ = {"__init__", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_19trossen_arm_bringup_20bringup_launch_files_27CythonPackageMetaPathFinder_1__init__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_19trossen_arm_bringup_20bringup_launch_files_27CythonPackageMetaPathFinder_1__init__(PyObject *__pyx_self, 
+static PyMethodDef __pyx_mdef_19trossen_arm_bringup_26trossen_arm_bringup_python_27CythonPackageMetaPathFinder_1__init__ = {"__init__", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_19trossen_arm_bringup_26trossen_arm_bringup_python_27CythonPackageMetaPathFinder_1__init__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_19trossen_arm_bringup_26trossen_arm_bringup_python_27CythonPackageMetaPathFinder_1__init__(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -2591,11 +2591,11 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
     Py_XDECREF(values[__pyx_temp]);
   }
-  __Pyx_AddTraceback("trossen_arm_bringup.bringup_launch_files.CythonPackageMetaPathFinder.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("trossen_arm_bringup.trossen_arm_bringup_python.CythonPackageMetaPathFinder.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_19trossen_arm_bringup_20bringup_launch_files_27CythonPackageMetaPathFinder___init__(__pyx_self, __pyx_v_self, __pyx_v_name_filter);
+  __pyx_r = __pyx_pf_19trossen_arm_bringup_26trossen_arm_bringup_python_27CythonPackageMetaPathFinder___init__(__pyx_self, __pyx_v_self, __pyx_v_name_filter);
 
   /* function exit code */
   for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
@@ -2605,7 +2605,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_19trossen_arm_bringup_20bringup_launch_files_27CythonPackageMetaPathFinder___init__(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_name_filter) {
+static PyObject *__pyx_pf_19trossen_arm_bringup_26trossen_arm_bringup_python_27CythonPackageMetaPathFinder___init__(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_name_filter) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -2619,7 +2619,7 @@ static PyObject *__pyx_pf_19trossen_arm_bringup_20bringup_launch_files_27CythonP
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__init__", 0);
 
-  /* "trossen_arm_bringup/bringup_launch_files.pyx":6
+  /* "trossen_arm_bringup/trossen_arm_bringup_python.pyx":6
  * class CythonPackageMetaPathFinder(importlib.abc.MetaPathFinder):
  *     def __init__(self, name_filter):
  *         super(CythonPackageMetaPathFinder, self).__init__()             # <<<<<<<<<<<<<<
@@ -2651,7 +2651,7 @@ static PyObject *__pyx_pf_19trossen_arm_bringup_20bringup_launch_files_27CythonP
   }
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "trossen_arm_bringup/bringup_launch_files.pyx":7
+  /* "trossen_arm_bringup/trossen_arm_bringup_python.pyx":7
  *     def __init__(self, name_filter):
  *         super(CythonPackageMetaPathFinder, self).__init__()
  *         self.name_filter = name_filter             # <<<<<<<<<<<<<<
@@ -2660,7 +2660,7 @@ static PyObject *__pyx_pf_19trossen_arm_bringup_20bringup_launch_files_27CythonP
 */
   if (__Pyx_PyObject_SetAttrStr(__pyx_v_self, __pyx_mstate_global->__pyx_n_u_name_filter, __pyx_v_name_filter) < (0)) __PYX_ERR(0, 7, __pyx_L1_error)
 
-  /* "trossen_arm_bringup/bringup_launch_files.pyx":5
+  /* "trossen_arm_bringup/trossen_arm_bringup_python.pyx":5
  * 
  * class CythonPackageMetaPathFinder(importlib.abc.MetaPathFinder):
  *     def __init__(self, name_filter):             # <<<<<<<<<<<<<<
@@ -2677,7 +2677,7 @@ static PyObject *__pyx_pf_19trossen_arm_bringup_20bringup_launch_files_27CythonP
   __Pyx_XDECREF(__pyx_t_3);
   __Pyx_XDECREF(__pyx_t_4);
   __Pyx_XDECREF(__pyx_t_5);
-  __Pyx_AddTraceback("trossen_arm_bringup.bringup_launch_files.CythonPackageMetaPathFinder.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("trossen_arm_bringup.trossen_arm_bringup_python.CythonPackageMetaPathFinder.__init__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -2685,7 +2685,7 @@ static PyObject *__pyx_pf_19trossen_arm_bringup_20bringup_launch_files_27CythonP
   return __pyx_r;
 }
 
-/* "trossen_arm_bringup/bringup_launch_files.pyx":9
+/* "trossen_arm_bringup/trossen_arm_bringup_python.pyx":9
  *         self.name_filter = name_filter
  * 
  *     def find_module(self, fullname, path):             # <<<<<<<<<<<<<<
@@ -2694,15 +2694,15 @@ static PyObject *__pyx_pf_19trossen_arm_bringup_20bringup_launch_files_27CythonP
 */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_19trossen_arm_bringup_20bringup_launch_files_27CythonPackageMetaPathFinder_3find_module(PyObject *__pyx_self, 
+static PyObject *__pyx_pw_19trossen_arm_bringup_26trossen_arm_bringup_python_27CythonPackageMetaPathFinder_3find_module(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_19trossen_arm_bringup_20bringup_launch_files_27CythonPackageMetaPathFinder_3find_module = {"find_module", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_19trossen_arm_bringup_20bringup_launch_files_27CythonPackageMetaPathFinder_3find_module, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_19trossen_arm_bringup_20bringup_launch_files_27CythonPackageMetaPathFinder_3find_module(PyObject *__pyx_self, 
+static PyMethodDef __pyx_mdef_19trossen_arm_bringup_26trossen_arm_bringup_python_27CythonPackageMetaPathFinder_3find_module = {"find_module", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_19trossen_arm_bringup_26trossen_arm_bringup_python_27CythonPackageMetaPathFinder_3find_module, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_19trossen_arm_bringup_26trossen_arm_bringup_python_27CythonPackageMetaPathFinder_3find_module(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -2780,11 +2780,11 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
     Py_XDECREF(values[__pyx_temp]);
   }
-  __Pyx_AddTraceback("trossen_arm_bringup.bringup_launch_files.CythonPackageMetaPathFinder.find_module", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("trossen_arm_bringup.trossen_arm_bringup_python.CythonPackageMetaPathFinder.find_module", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_19trossen_arm_bringup_20bringup_launch_files_27CythonPackageMetaPathFinder_2find_module(__pyx_self, __pyx_v_self, __pyx_v_fullname, __pyx_v_path);
+  __pyx_r = __pyx_pf_19trossen_arm_bringup_26trossen_arm_bringup_python_27CythonPackageMetaPathFinder_2find_module(__pyx_self, __pyx_v_self, __pyx_v_fullname, __pyx_v_path);
 
   /* function exit code */
   for (Py_ssize_t __pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
@@ -2794,7 +2794,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_19trossen_arm_bringup_20bringup_launch_files_27CythonPackageMetaPathFinder_2find_module(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_fullname, CYTHON_UNUSED PyObject *__pyx_v_path) {
+static PyObject *__pyx_pf_19trossen_arm_bringup_26trossen_arm_bringup_python_27CythonPackageMetaPathFinder_2find_module(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_self, PyObject *__pyx_v_fullname, CYTHON_UNUSED PyObject *__pyx_v_path) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -2808,7 +2808,7 @@ static PyObject *__pyx_pf_19trossen_arm_bringup_20bringup_launch_files_27CythonP
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("find_module", 0);
 
-  /* "trossen_arm_bringup/bringup_launch_files.pyx":10
+  /* "trossen_arm_bringup/trossen_arm_bringup_python.pyx":10
  * 
  *     def find_module(self, fullname, path):
  *         if fullname.startswith(self.name_filter):             # <<<<<<<<<<<<<<
@@ -2832,7 +2832,7 @@ static PyObject *__pyx_pf_19trossen_arm_bringup_20bringup_launch_files_27CythonP
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   if (__pyx_t_5) {
 
-    /* "trossen_arm_bringup/bringup_launch_files.pyx":11
+    /* "trossen_arm_bringup/trossen_arm_bringup_python.pyx":11
  *     def find_module(self, fullname, path):
  *         if fullname.startswith(self.name_filter):
  *            return importlib.machinery.ExtensionFileLoader(fullname, __file__)             # <<<<<<<<<<<<<<
@@ -2863,7 +2863,7 @@ static PyObject *__pyx_pf_19trossen_arm_bringup_20bringup_launch_files_27CythonP
     __pyx_t_1 = 0;
     goto __pyx_L0;
 
-    /* "trossen_arm_bringup/bringup_launch_files.pyx":10
+    /* "trossen_arm_bringup/trossen_arm_bringup_python.pyx":10
  * 
  *     def find_module(self, fullname, path):
  *         if fullname.startswith(self.name_filter):             # <<<<<<<<<<<<<<
@@ -2872,7 +2872,7 @@ static PyObject *__pyx_pf_19trossen_arm_bringup_20bringup_launch_files_27CythonP
 */
   }
 
-  /* "trossen_arm_bringup/bringup_launch_files.pyx":9
+  /* "trossen_arm_bringup/trossen_arm_bringup_python.pyx":9
  *         self.name_filter = name_filter
  * 
  *     def find_module(self, fullname, path):             # <<<<<<<<<<<<<<
@@ -2888,7 +2888,7 @@ static PyObject *__pyx_pf_19trossen_arm_bringup_20bringup_launch_files_27CythonP
   __Pyx_XDECREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3);
   __Pyx_XDECREF(__pyx_t_6);
-  __Pyx_AddTraceback("trossen_arm_bringup.bringup_launch_files.CythonPackageMetaPathFinder.find_module", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("trossen_arm_bringup.trossen_arm_bringup_python.CythonPackageMetaPathFinder.find_module", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -2896,30 +2896,30 @@ static PyObject *__pyx_pf_19trossen_arm_bringup_20bringup_launch_files_27CythonP
   return __pyx_r;
 }
 
-/* "trossen_arm_bringup/bringup_launch_files.pyx":13
+/* "trossen_arm_bringup/trossen_arm_bringup_python.pyx":13
  *            return importlib.machinery.ExtensionFileLoader(fullname, __file__)
  * 
  * def libcalculatorpython_cython_submodule():             # <<<<<<<<<<<<<<
- *     sys.meta_path.append(CythonPackageMetaPathFinder("trossen_arm_bringup."))
+ *     sys.meta_path.append(CythonPackageMetaPathFinder("trossen_arm_bringup_python."))
 */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_19trossen_arm_bringup_20bringup_launch_files_1libcalculatorpython_cython_submodule(PyObject *__pyx_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static PyMethodDef __pyx_mdef_19trossen_arm_bringup_20bringup_launch_files_1libcalculatorpython_cython_submodule = {"libcalculatorpython_cython_submodule", (PyCFunction)__pyx_pw_19trossen_arm_bringup_20bringup_launch_files_1libcalculatorpython_cython_submodule, METH_NOARGS, 0};
-static PyObject *__pyx_pw_19trossen_arm_bringup_20bringup_launch_files_1libcalculatorpython_cython_submodule(PyObject *__pyx_self, CYTHON_UNUSED PyObject *unused) {
+static PyObject *__pyx_pw_19trossen_arm_bringup_26trossen_arm_bringup_python_1libcalculatorpython_cython_submodule(PyObject *__pyx_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static PyMethodDef __pyx_mdef_19trossen_arm_bringup_26trossen_arm_bringup_python_1libcalculatorpython_cython_submodule = {"libcalculatorpython_cython_submodule", (PyCFunction)__pyx_pw_19trossen_arm_bringup_26trossen_arm_bringup_python_1libcalculatorpython_cython_submodule, METH_NOARGS, 0};
+static PyObject *__pyx_pw_19trossen_arm_bringup_26trossen_arm_bringup_python_1libcalculatorpython_cython_submodule(PyObject *__pyx_self, CYTHON_UNUSED PyObject *unused) {
   CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("libcalculatorpython_cython_submodule (wrapper)", 0);
   __pyx_kwvalues = __Pyx_KwValues_VARARGS(__pyx_args, __pyx_nargs);
-  __pyx_r = __pyx_pf_19trossen_arm_bringup_20bringup_launch_files_libcalculatorpython_cython_submodule(__pyx_self);
+  __pyx_r = __pyx_pf_19trossen_arm_bringup_26trossen_arm_bringup_python_libcalculatorpython_cython_submodule(__pyx_self);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_19trossen_arm_bringup_20bringup_launch_files_libcalculatorpython_cython_submodule(CYTHON_UNUSED PyObject *__pyx_self) {
+static PyObject *__pyx_pf_19trossen_arm_bringup_26trossen_arm_bringup_python_libcalculatorpython_cython_submodule(CYTHON_UNUSED PyObject *__pyx_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -2933,10 +2933,10 @@ static PyObject *__pyx_pf_19trossen_arm_bringup_20bringup_launch_files_libcalcul
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("libcalculatorpython_cython_submodule", 0);
 
-  /* "trossen_arm_bringup/bringup_launch_files.pyx":14
+  /* "trossen_arm_bringup/trossen_arm_bringup_python.pyx":14
  * 
  * def libcalculatorpython_cython_submodule():
- *     sys.meta_path.append(CythonPackageMetaPathFinder("trossen_arm_bringup."))             # <<<<<<<<<<<<<<
+ *     sys.meta_path.append(CythonPackageMetaPathFinder("trossen_arm_bringup_python."))             # <<<<<<<<<<<<<<
 */
   __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_sys); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 14, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
@@ -2959,7 +2959,7 @@ static PyObject *__pyx_pf_19trossen_arm_bringup_20bringup_launch_files_libcalcul
   }
   #endif
   {
-    PyObject *__pyx_callargs[2] = {__pyx_t_3, __pyx_mstate_global->__pyx_kp_u_trossen_arm_bringup};
+    PyObject *__pyx_callargs[2] = {__pyx_t_3, __pyx_mstate_global->__pyx_kp_u_trossen_arm_bringup_python};
     __pyx_t_1 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_4, __pyx_callargs+__pyx_t_5, (2-__pyx_t_5) | (__pyx_t_5*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
@@ -2970,11 +2970,11 @@ static PyObject *__pyx_pf_19trossen_arm_bringup_20bringup_launch_files_libcalcul
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "trossen_arm_bringup/bringup_launch_files.pyx":13
+  /* "trossen_arm_bringup/trossen_arm_bringup_python.pyx":13
  *            return importlib.machinery.ExtensionFileLoader(fullname, __file__)
  * 
  * def libcalculatorpython_cython_submodule():             # <<<<<<<<<<<<<<
- *     sys.meta_path.append(CythonPackageMetaPathFinder("trossen_arm_bringup."))
+ *     sys.meta_path.append(CythonPackageMetaPathFinder("trossen_arm_bringup_python."))
 */
 
   /* function exit code */
@@ -2985,7 +2985,7 @@ static PyObject *__pyx_pf_19trossen_arm_bringup_20bringup_launch_files_libcalcul
   __Pyx_XDECREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3);
   __Pyx_XDECREF(__pyx_t_4);
-  __Pyx_AddTraceback("trossen_arm_bringup.bringup_launch_files.libcalculatorpython_cython_submodule", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("trossen_arm_bringup.trossen_arm_bringup_python.libcalculatorpython_cython_submodule", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -3077,10 +3077,10 @@ static int __Pyx_modinit_function_import_code(__pyx_mstatetype *__pyx_mstate) {
 
 #if CYTHON_PEP489_MULTI_PHASE_INIT
 static PyObject* __pyx_pymod_create(PyObject *spec, PyModuleDef *def); /*proto*/
-static int __pyx_pymod_exec_bringup_launch_files(PyObject* module); /*proto*/
+static int __pyx_pymod_exec_trossen_arm_bringup_python(PyObject* module); /*proto*/
 static PyModuleDef_Slot __pyx_moduledef_slots[] = {
   {Py_mod_create, (void*)__pyx_pymod_create},
-  {Py_mod_exec, (void*)__pyx_pymod_exec_bringup_launch_files},
+  {Py_mod_exec, (void*)__pyx_pymod_exec_trossen_arm_bringup_python},
   #if CYTHON_COMPILING_IN_CPYTHON_FREETHREADING
   {Py_mod_gil, __Pyx_FREETHREADING_COMPATIBLE},
   #endif
@@ -3099,7 +3099,7 @@ namespace {
   #endif
   {
       PyModuleDef_HEAD_INIT,
-      "bringup_launch_files",
+      "trossen_arm_bringup_python",
       0, /* m_doc */
     #if CYTHON_USE_MODULE_STATE
       sizeof(__pyx_mstatetype), /* m_size */
@@ -3137,8 +3137,8 @@ namespace {
   #endif
 #endif
 
-__Pyx_PyMODINIT_FUNC PyInit_bringup_launch_files(void) CYTHON_SMALL_CODE; /*proto*/
-__Pyx_PyMODINIT_FUNC PyInit_bringup_launch_files(void)
+__Pyx_PyMODINIT_FUNC PyInit_trossen_arm_bringup_python(void) CYTHON_SMALL_CODE; /*proto*/
+__Pyx_PyMODINIT_FUNC PyInit_trossen_arm_bringup_python(void)
 #if CYTHON_PEP489_MULTI_PHASE_INIT
 {
   return PyModuleDef_Init(&__pyx_moduledef);
@@ -3245,7 +3245,7 @@ bad:
 }
 
 
-static CYTHON_SMALL_CODE int __pyx_pymod_exec_bringup_launch_files(PyObject *__pyx_pyinit_module)
+static CYTHON_SMALL_CODE int __pyx_pymod_exec_trossen_arm_bringup_python(PyObject *__pyx_pyinit_module)
 #endif
 {
   int stringtab_initialized = 0;
@@ -3265,7 +3265,7 @@ static CYTHON_SMALL_CODE int __pyx_pymod_exec_bringup_launch_files(PyObject *__p
   #if CYTHON_PEP489_MULTI_PHASE_INIT
   if (__pyx_m) {
     if (__pyx_m == __pyx_pyinit_module) return 0;
-    PyErr_SetString(PyExc_RuntimeError, "Module 'bringup_launch_files' has already been imported. Re-initialisation is not supported.");
+    PyErr_SetString(PyExc_RuntimeError, "Module 'trossen_arm_bringup_python' has already been imported. Re-initialisation is not supported.");
     return -1;
   }
   #else
@@ -3281,7 +3281,7 @@ static CYTHON_SMALL_CODE int __pyx_pymod_exec_bringup_launch_files(PyObject *__p
   #if CYTHON_USE_MODULE_STATE
   {
     int add_module_result = __Pyx_State_AddModule(__pyx_t_1, &__pyx_moduledef);
-    __pyx_t_1 = 0; /* transfer ownership from __pyx_t_1 to "bringup_launch_files" pseudovariable */
+    __pyx_t_1 = 0; /* transfer ownership from __pyx_t_1 to "trossen_arm_bringup_python" pseudovariable */
     if (unlikely((add_module_result < 0))) __PYX_ERR(0, 1, __pyx_L1_error)
     pystate_addmodule_run = 1;
   }
@@ -3309,7 +3309,7 @@ static CYTHON_SMALL_CODE int __pyx_pymod_exec_bringup_launch_files(PyObject *__p
   }
   #endif
   
-__Pyx_RefNannySetupContext("PyInit_bringup_launch_files", 0);
+__Pyx_RefNannySetupContext("PyInit_trossen_arm_bringup_python", 0);
   __Pyx_init_runtime_version();
   if (__Pyx_check_binary_version(__PYX_LIMITED_VERSION_HEX, __Pyx_get_runtime_version(), CYTHON_COMPILING_IN_LIMITED_API) < (0)) __PYX_ERR(0, 1, __pyx_L1_error)
   __pyx_mstate->__pyx_empty_tuple = PyTuple_New(0); if (unlikely(!__pyx_mstate->__pyx_empty_tuple)) __PYX_ERR(0, 1, __pyx_L1_error)
@@ -3320,13 +3320,13 @@ __Pyx_RefNannySetupContext("PyInit_bringup_launch_files", 0);
   if (__Pyx_InitConstants(__pyx_mstate) < (0)) __PYX_ERR(0, 1, __pyx_L1_error)
   stringtab_initialized = 1;
   if (__Pyx_InitGlobals() < (0)) __PYX_ERR(0, 1, __pyx_L1_error)
-  if (__pyx_module_is_main_trossen_arm_bringup__bringup_launch_files) {
+  if (__pyx_module_is_main_trossen_arm_bringup__trossen_arm_bringup_python) {
     if (PyObject_SetAttr(__pyx_m, __pyx_mstate_global->__pyx_n_u_name, __pyx_mstate_global->__pyx_n_u_main) < (0)) __PYX_ERR(0, 1, __pyx_L1_error)
   }
   {
     PyObject *modules = PyImport_GetModuleDict(); if (unlikely(!modules)) __PYX_ERR(0, 1, __pyx_L1_error)
-    if (!PyDict_GetItemString(modules, "trossen_arm_bringup.bringup_launch_files")) {
-      if (unlikely((PyDict_SetItemString(modules, "trossen_arm_bringup.bringup_launch_files", __pyx_m) < 0))) __PYX_ERR(0, 1, __pyx_L1_error)
+    if (!PyDict_GetItemString(modules, "trossen_arm_bringup.trossen_arm_bringup_python")) {
+      if (unlikely((PyDict_SetItemString(modules, "trossen_arm_bringup.trossen_arm_bringup_python", __pyx_m) < 0))) __PYX_ERR(0, 1, __pyx_L1_error)
     }
   }
   /*--- Builtin init code ---*/
@@ -3344,7 +3344,7 @@ __Pyx_RefNannySetupContext("PyInit_bringup_launch_files", 0);
   (void)__Pyx_modinit_function_import_code(__pyx_mstate);
   /*--- Execution code ---*/
 
-  /* "trossen_arm_bringup/bringup_launch_files.pyx":1
+  /* "trossen_arm_bringup/trossen_arm_bringup_python.pyx":1
  * import sys             # <<<<<<<<<<<<<<
  * import importlib
  * 
@@ -3355,7 +3355,7 @@ __Pyx_RefNannySetupContext("PyInit_bringup_launch_files", 0);
   if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_sys, __pyx_t_2) < (0)) __PYX_ERR(0, 1, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "trossen_arm_bringup/bringup_launch_files.pyx":2
+  /* "trossen_arm_bringup/trossen_arm_bringup_python.pyx":2
  * import sys
  * import importlib             # <<<<<<<<<<<<<<
  * 
@@ -3367,7 +3367,7 @@ __Pyx_RefNannySetupContext("PyInit_bringup_launch_files", 0);
   if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_importlib, __pyx_t_2) < (0)) __PYX_ERR(0, 2, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "trossen_arm_bringup/bringup_launch_files.pyx":4
+  /* "trossen_arm_bringup/trossen_arm_bringup_python.pyx":4
  * import importlib
  * 
  * class CythonPackageMetaPathFinder(importlib.abc.MetaPathFinder):             # <<<<<<<<<<<<<<
@@ -3389,21 +3389,21 @@ __Pyx_RefNannySetupContext("PyInit_bringup_launch_files", 0);
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_4 = __Pyx_CalculateMetaclass(NULL, __pyx_t_2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 4, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_5 = __Pyx_Py3MetaclassPrepare(__pyx_t_4, __pyx_t_2, __pyx_mstate_global->__pyx_n_u_CythonPackageMetaPathFinder, __pyx_mstate_global->__pyx_n_u_CythonPackageMetaPathFinder, (PyObject *) NULL, __pyx_mstate_global->__pyx_n_u_trossen_arm_bringup_bringup_laun, (PyObject *) NULL); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 4, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_Py3MetaclassPrepare(__pyx_t_4, __pyx_t_2, __pyx_mstate_global->__pyx_n_u_CythonPackageMetaPathFinder, __pyx_mstate_global->__pyx_n_u_CythonPackageMetaPathFinder, (PyObject *) NULL, __pyx_mstate_global->__pyx_n_u_trossen_arm_bringup_trossen_arm, (PyObject *) NULL); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 4, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   if (__pyx_t_2 != __pyx_t_3) {
     if (unlikely((PyDict_SetItemString(__pyx_t_5, "__orig_bases__", __pyx_t_3) < 0))) __PYX_ERR(0, 4, __pyx_L1_error)
   }
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "trossen_arm_bringup/bringup_launch_files.pyx":5
+  /* "trossen_arm_bringup/trossen_arm_bringup_python.pyx":5
  * 
  * class CythonPackageMetaPathFinder(importlib.abc.MetaPathFinder):
  *     def __init__(self, name_filter):             # <<<<<<<<<<<<<<
  *         super(CythonPackageMetaPathFinder, self).__init__()
  *         self.name_filter = name_filter
 */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_19trossen_arm_bringup_20bringup_launch_files_27CythonPackageMetaPathFinder_1__init__, 0, __pyx_mstate_global->__pyx_n_u_CythonPackageMetaPathFinder___in, NULL, __pyx_mstate_global->__pyx_n_u_trossen_arm_bringup_bringup_laun, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[0])); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 5, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_19trossen_arm_bringup_26trossen_arm_bringup_python_27CythonPackageMetaPathFinder_1__init__, 0, __pyx_mstate_global->__pyx_n_u_CythonPackageMetaPathFinder___in, NULL, __pyx_mstate_global->__pyx_n_u_trossen_arm_bringup_trossen_arm, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[0])); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 5, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_3);
@@ -3411,14 +3411,14 @@ __Pyx_RefNannySetupContext("PyInit_bringup_launch_files", 0);
   if (__Pyx_SetNameInClass(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_init, __pyx_t_3) < (0)) __PYX_ERR(0, 5, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "trossen_arm_bringup/bringup_launch_files.pyx":9
+  /* "trossen_arm_bringup/trossen_arm_bringup_python.pyx":9
  *         self.name_filter = name_filter
  * 
  *     def find_module(self, fullname, path):             # <<<<<<<<<<<<<<
  *         if fullname.startswith(self.name_filter):
  *            return importlib.machinery.ExtensionFileLoader(fullname, __file__)
 */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_19trossen_arm_bringup_20bringup_launch_files_27CythonPackageMetaPathFinder_3find_module, 0, __pyx_mstate_global->__pyx_n_u_CythonPackageMetaPathFinder_find, NULL, __pyx_mstate_global->__pyx_n_u_trossen_arm_bringup_bringup_laun, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[1])); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 9, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_19trossen_arm_bringup_26trossen_arm_bringup_python_27CythonPackageMetaPathFinder_3find_module, 0, __pyx_mstate_global->__pyx_n_u_CythonPackageMetaPathFinder_find, NULL, __pyx_mstate_global->__pyx_n_u_trossen_arm_bringup_trossen_arm, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[1])); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 9, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_3);
@@ -3426,7 +3426,7 @@ __Pyx_RefNannySetupContext("PyInit_bringup_launch_files", 0);
   if (__Pyx_SetNameInClass(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_find_module, __pyx_t_3) < (0)) __PYX_ERR(0, 9, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "trossen_arm_bringup/bringup_launch_files.pyx":4
+  /* "trossen_arm_bringup/trossen_arm_bringup_python.pyx":4
  * import importlib
  * 
  * class CythonPackageMetaPathFinder(importlib.abc.MetaPathFinder):             # <<<<<<<<<<<<<<
@@ -3444,13 +3444,13 @@ __Pyx_RefNannySetupContext("PyInit_bringup_launch_files", 0);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "trossen_arm_bringup/bringup_launch_files.pyx":13
+  /* "trossen_arm_bringup/trossen_arm_bringup_python.pyx":13
  *            return importlib.machinery.ExtensionFileLoader(fullname, __file__)
  * 
  * def libcalculatorpython_cython_submodule():             # <<<<<<<<<<<<<<
- *     sys.meta_path.append(CythonPackageMetaPathFinder("trossen_arm_bringup."))
+ *     sys.meta_path.append(CythonPackageMetaPathFinder("trossen_arm_bringup_python."))
 */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_19trossen_arm_bringup_20bringup_launch_files_1libcalculatorpython_cython_submodule, 0, __pyx_mstate_global->__pyx_n_u_libcalculatorpython_cython_submo, NULL, __pyx_mstate_global->__pyx_n_u_trossen_arm_bringup_bringup_laun, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[2])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 13, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_19trossen_arm_bringup_26trossen_arm_bringup_python_1libcalculatorpython_cython_submodule, 0, __pyx_mstate_global->__pyx_n_u_libcalculatorpython_cython_submo, NULL, __pyx_mstate_global->__pyx_n_u_trossen_arm_bringup_trossen_arm, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[2])); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 13, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_2);
@@ -3458,7 +3458,7 @@ __Pyx_RefNannySetupContext("PyInit_bringup_launch_files", 0);
   if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_libcalculatorpython_cython_submo, __pyx_t_2) < (0)) __PYX_ERR(0, 13, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "trossen_arm_bringup/bringup_launch_files.pyx":1
+  /* "trossen_arm_bringup/trossen_arm_bringup_python.pyx":1
  * import sys             # <<<<<<<<<<<<<<
  * import importlib
  * 
@@ -3478,7 +3478,7 @@ __Pyx_RefNannySetupContext("PyInit_bringup_launch_files", 0);
   __Pyx_XDECREF(__pyx_t_5);
   if (__pyx_m) {
     if (__pyx_mstate->__pyx_d && stringtab_initialized) {
-      __Pyx_AddTraceback("init trossen_arm_bringup.bringup_launch_files", __pyx_clineno, __pyx_lineno, __pyx_filename);
+      __Pyx_AddTraceback("init trossen_arm_bringup.trossen_arm_bringup_python", __pyx_clineno, __pyx_lineno, __pyx_filename);
     }
     #if !CYTHON_USE_MODULE_STATE
     Py_CLEAR(__pyx_m);
@@ -3492,7 +3492,7 @@ __Pyx_RefNannySetupContext("PyInit_bringup_launch_files", 0);
     }
     #endif
   } else if (!PyErr_Occurred()) {
-    PyErr_SetString(PyExc_ImportError, "init trossen_arm_bringup.bringup_launch_files");
+    PyErr_SetString(PyExc_ImportError, "init trossen_arm_bringup.trossen_arm_bringup_python");
   }
   __pyx_L0:;
   __Pyx_RefNannyFinishContext();
@@ -3534,25 +3534,25 @@ static int __Pyx_InitCachedConstants(__pyx_mstatetype *__pyx_mstate) {
 static int __Pyx_InitConstants(__pyx_mstatetype *__pyx_mstate) {
   CYTHON_UNUSED_VAR(__pyx_mstate);
   {
-    const struct { const unsigned int length: 6; } index[] = {{1},{20},{44},{27},{36},{39},{19},{14},{20},{3},{6},{18},{18},{7},{8},{11},{8},{8},{9},{8},{13},{5},{36},{9},{8},{9},{13},{10},{15},{8},{11},{4},{3},{11},{12},{4},{12},{10},{10},{5},{3},{8},{40},{6},{31},{23},{18}};
-    #if (CYTHON_COMPRESS_STRINGS) == 2 /* compression: bz2 (464 bytes) */
-const char* const cstring = "BZh91AY&SY\234\037b\241\000\000\025\177\376d\3570\240\0029\246x\257\007\360\000\277\357\377\360@@@@@@@@@\000@@0\001\213J\246\0215M= b4\323CM\000\000\000\000\r4\323Fz(4\020L\232\233S\023B\000\000\000\000\000\000\365\000\305\023CSi\021\351\251\221\3524\001\211\221\240d\310\304\r\r\001\214\301\014\tTM\030\3142P\013\306\240\n\214\372y\351\017\250\014\025d\"\301\326\340\226\233\005\351\222<\375\366\002\000\347T\322\360\001DY\366\240\216(\t\036\204<\361\304\315\277\010\031\277\350\371\3257\346\036\245\010Fu\226\261\373\317\0224\244^\021\367\017e(\tRM\"m\230W\324]=\005\326_\371\"\013<\005\013\360\310\006\205\231\215\013\355;j\244\272r\333\207\020z\0033!\221\356\204\225\305Y\223\315`\003E\344y\017\031\007]~6\262\244\222\025\311(\274\202\261\357\251\030\266C\350\t\303>\235\264:\253\232SU&\004@\212\n&Q\361F\272\200{\323\003@\216M\365!\007\010M)\022\375i\013Z0&#3\006\035\030=\262{\325)* \244\014\253<\327\253\252\001\254,\014|J0\363\302\341\"$\240\253}\325\266\004VH\253`P\311H\230\330B\234\014k(\215nvZ\340B\227E, \245\005)\007\031\233\020ZvaL\014#\027A\364\023\240\351\252\266k\253d\204\230Df\214\2724\020\250\201\266\321\025l\317\347\024\035\247\373S'\220\001\325\204B\331\201V\300A\220h\2570p#:\270\237$\n\227n^<\245\370\240L)s\014DT\021\031!\344$e\034\\\376.\344\212p\241!8>\305B";
-    PyObject *data = __Pyx_DecompressString(cstring, 464, 2);
+    const struct { const unsigned int length: 6; } index[] = {{1},{27},{50},{27},{36},{39},{19},{14},{20},{3},{6},{18},{18},{7},{8},{11},{8},{8},{9},{8},{13},{5},{36},{9},{8},{9},{13},{10},{15},{8},{11},{4},{3},{11},{12},{4},{12},{10},{10},{5},{3},{8},{46},{6},{31},{23},{18}};
+    #if (CYTHON_COMPRESS_STRINGS) == 2 /* compression: bz2 (461 bytes) */
+const char* const cstring = "BZh91AY&SYPQ\241b\000\000\025\177\376d\3570\240\0029\246x\257\007\360\000\277\357\377\360@@@@@@@@@\000@@0\001\214\240\201\242\232z\221\224\375\032\010A\246\206\200\000\000\r=&\236\246\215\341P\343&M4\302dd\014\010\304\321\2020\203F\230\000\020b@\23154d\322O\0214\003\010\000`\230\201\246\236(9Hi\272\022\0314\345(<N\325\003U_V\235\2438\241\333O~D_\224,\302'\304\347\333V\200\030\010\306\350\036\300\034(\375\256\005Q\201i1\037m\264J\035\354\037\353\374K-\331e\251w*\326$l!\315>\010\261H\037\320\223b\250Q\222I\344R\373n\3560\256\006\0305\313 \251\347!+iX\010\024\314\215\260\354\243X\205TV\020Dd0&\275\365\252B\244\312I\323\002\003q[\313A\021\307v\210>\346\253\021\213V\222!\317\225\311\327\331\260\014\201\266\327\021\355\273\024\345\211\251\025#\004\010\260w\341\263P\234\323\007\001\031xT\210\210\236V\264W\373\0023\344X\244\204)8\276\262\223\232\322,\265\304#z\327'CX.b\0304\336\242'\342\200\222$\241&\246\355z@\316 \201\327\230`\326\023QDm\310\370>\312_\023\025\246\371\221lh\330\020\342&\342*\"\222{gXfj\274\2044NV\021\031ddH\304\313Z\302\343\"3\212<3_!@\000\322\3012\221\207e\277\261M{y\354\216\235\2006\347<\244$\304\031\025c\003\270\030\203\030q\035\006\023\232\351\035\361\351\363l4j\272\032a\217\223S\235K\332\347\347|\016\362\036\317\370\273\222)\302\204\202\202\215\013\020";
+    PyObject *data = __Pyx_DecompressString(cstring, 461, 2);
     if (unlikely(!data)) __PYX_ERR(0, 1, __pyx_L1_error)
     const char* const bytes = __Pyx_PyBytes_AsString(data);
     #if !CYTHON_ASSUME_SAFE_MACROS
     if (likely(bytes)); else { Py_DECREF(data); __PYX_ERR(0, 1, __pyx_L1_error) }
     #endif
-    #elif (CYTHON_COMPRESS_STRINGS) != 0 /* compression: zlib (404 bytes) */
-const char* const cstring = "x\332}R\315\212\0241\020fApeUX/\342\003xPadA\301\237\203\014\352\236\374\231\365\005\212\352t\365v0\235\304TE\247\3674\3079\316\261\217\036=\316q\216>\302\034\347q\254\356\336]\020\206\r\244\252R_\245\352\373B\336I\n\314\344\001S\003E\262\376<\307\311\236\334\363K\017\016\26375T\326\021Ob;\177\337J\035\374\014\315w<\247\317$8C\251O\255/)\335\000M\000\254\267\002pSM\245\016\232PfG\037\347B\236m\360\247:\367S@\205\377/\006\230\265s\335\037\254\021\370Bs\371F\025\026\006c$_\"\267\336\33001!\205,\326\023\033\247V)\200$4T\350x\2002\030\320\325+\353\355\365\354*;\347\261\351\223*]\21171$q\266\270\322\000\226\341\272\265\025jXA\203\316d\207\022R\034$\202\031\035\347bl\333\240\251\265>\265\000\r*\023hT\020DU4\206\306!sOh,\037\242\024\200\274$K\0030\222\032\254\222\026J\375\345\030\"@L\0241\rw~d\274d\317\344\252\336\n\\\235\245\324G\312NX0\t\377\262Rs\216\224\270\325\366B\254\322\366\375\216}?\341'\272L\274\230\356\016\217\226\257Vo;\354\344\367\311\356\350\301\352I\367f\373\370\365\346x\363\364\357\264\207\357-\317\266\367\237\375y\271\276\2639\336\035\336]~\355N\026\007\273[\267\027\027\253\207\335\301\366\321\213\365t}\366\017QJ\n\005";
-    PyObject *data = __Pyx_DecompressString(cstring, 404, 1);
+    #elif (CYTHON_COMPRESS_STRINGS) != 0 /* compression: zlib (400 bytes) */
+const char* const cstring = "x\332}R\275n\0241\020V$$\202\002H\241A<\000\005 \035\212D\244\000\005:\001\251\370\271\360\002\243Y\357l\316\302k\033\317\030nS]y\345\225[RR^y%\217p\345=\016\263\273I\244H\341,yf\354\357\363\3147\266\337I\n\314\344\001S\rE\262\376<G\210\215L\203\037\335\002\275\334A\217\315\354}\037M\320|\307s\372L\202\023\224\351\251\365%\245\035\320\010\300z+\000\2738\225:\250C\231\035}\234\ty\266\301\237ZG\237\002*|\223\0140if:?X#\360\205f\362\215*,\014\306H\276Dn\274\261adB\nY\254'6N\255J\000Ih\250\320\362\000e0\240\243\322\n\235\275\256]e\347<\326\335f\366J\261u\014I\234-\256z\000\313p\235\332\n\325\254\240Ag\262C\ti\270+0\203\343\\\014ik4S\345\247\006\240FU\002\2656\004Q;\032B\343\220\271\0234\320\373(\005 /\311R\017\014\242z\253\242\205Rw8\206\010\020\023EL\375\231\037\031/\3253\271\252\263\002Wk)\365\222\262\023\026L\302\277\254L9GJ\334hz!\326\326ny\373\321\377\377\303Ot\231x>\336\356\037,N\226o[l\345\367\321\366\340\321\362Y\373f\363\364\365\372p\375\374\357\270\203\037,\3166\017_\3749^\335[\037n\367\357/\276\266G\363\275\355\235\273\363\213\345\343vo\363\344\325j\274:\373\007\321\351\022\210";
+    PyObject *data = __Pyx_DecompressString(cstring, 400, 1);
     if (unlikely(!data)) __PYX_ERR(0, 1, __pyx_L1_error)
     const char* const bytes = __Pyx_PyBytes_AsString(data);
     #if !CYTHON_ASSUME_SAFE_MACROS
     if (likely(bytes)); else { Py_DECREF(data); __PYX_ERR(0, 1, __pyx_L1_error) }
     #endif
-    #else /* compression: none (661 bytes) */
-const char* const bytes = "?trossen_arm_bringup.trossen_arm_bringup/bringup_launch_files.pyxCythonPackageMetaPathFinderCythonPackageMetaPathFinder.__init__CythonPackageMetaPathFinder.find_moduleExtensionFileLoaderMetaPathFinder__Pyx_PyDict_NextRefabcappendasyncio.coroutinescline_in_traceback__doc____file__find_modulefullname__func__importlib__init___is_coroutineitemslibcalculatorpython_cython_submodulemachinery__main__meta_path__metaclass____module____mro_entries____name__name_filterpathpop__prepare____qualname__self__set_name__setdefaultstartswithsupersys__test__trossen_arm_bringup.bringup_launch_filesvalues\200A\330\010\013\2108\220;\230a\230t\2401\330\013\022\220)\230:\320%9\270\021\270*\300A\200A\330\010\r\210Q\320\016+\2505\260\t\270\021\330\010\014\210O\2301\200\001\330\004\007\200z\220\027\230\001\320\0314\260A\260Q";
+    #else /* compression: none (680 bytes) */
+const char* const bytes = "?trossen_arm_bringup_python.trossen_arm_bringup/trossen_arm_bringup_python.pyxCythonPackageMetaPathFinderCythonPackageMetaPathFinder.__init__CythonPackageMetaPathFinder.find_moduleExtensionFileLoaderMetaPathFinder__Pyx_PyDict_NextRefabcappendasyncio.coroutinescline_in_traceback__doc____file__find_modulefullname__func__importlib__init___is_coroutineitemslibcalculatorpython_cython_submodulemachinery__main__meta_path__metaclass____module____mro_entries____name__name_filterpathpop__prepare____qualname__self__set_name__setdefaultstartswithsupersys__test__trossen_arm_bringup.trossen_arm_bringup_pythonvalues\200A\330\010\013\2108\220;\230a\230t\2401\330\013\022\220)\230:\320%9\270\021\270*\300A\200A\330\010\r\210Q\320\016+\2505\260\t\270\021\330\010\014\210O\2301\200\001\330\004\007\200z\220\027\230\001\320\0314\260A\260Q";
     PyObject *data = NULL;
     CYTHON_UNUSED_VAR(__Pyx_DecompressString);
     #endif
@@ -3635,17 +3635,17 @@ static int __Pyx_CreateCodeObjects(__pyx_mstatetype *__pyx_mstate) {
   {
     const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 5};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_name_filter};
-    __pyx_mstate_global->__pyx_codeobj_tab[0] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_trossen_arm_bringup_bringup_laun_2, __pyx_mstate->__pyx_n_u_init, __pyx_mstate->__pyx_kp_b_iso88591_A_Q_5_O1, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[0])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[0] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_trossen_arm_bringup_trossen_arm_2, __pyx_mstate->__pyx_n_u_init, __pyx_mstate->__pyx_kp_b_iso88591_A_Q_5_O1, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[0])) goto bad;
   }
   {
     const __Pyx_PyCode_New_function_description descr = {3, 0, 0, 3, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 9};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_self, __pyx_mstate->__pyx_n_u_fullname, __pyx_mstate->__pyx_n_u_path};
-    __pyx_mstate_global->__pyx_codeobj_tab[1] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_trossen_arm_bringup_bringup_laun_2, __pyx_mstate->__pyx_n_u_find_module, __pyx_mstate->__pyx_kp_b_iso88591_A_8_at1_9_A, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[1])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[1] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_trossen_arm_bringup_trossen_arm_2, __pyx_mstate->__pyx_n_u_find_module, __pyx_mstate->__pyx_kp_b_iso88591_A_8_at1_9_A, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[1])) goto bad;
   }
   {
     const __Pyx_PyCode_New_function_description descr = {0, 0, 0, 0, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 13};
     PyObject* const varnames[] = {0};
-    __pyx_mstate_global->__pyx_codeobj_tab[2] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_trossen_arm_bringup_bringup_laun_2, __pyx_mstate->__pyx_n_u_libcalculatorpython_cython_submo, __pyx_mstate->__pyx_kp_b_iso88591_z_4AQ, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[2])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[2] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_trossen_arm_bringup_trossen_arm_2, __pyx_mstate->__pyx_n_u_libcalculatorpython_cython_submo, __pyx_mstate->__pyx_kp_b_iso88591_z_4AQ, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[2])) goto bad;
   }
   Py_DECREF(tuple_dedup_map);
   return 0;

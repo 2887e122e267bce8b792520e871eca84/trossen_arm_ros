@@ -3,16 +3,16 @@
 /* BEGIN: Cython Metadata
 {
     "distutils": {
-        "name": "trossen_arm_bringup.armor_kit_impl",
+        "name": "trossen_arm_bringup.trossen_arm_bringup",
         "sources": [
-            "trossen_arm_bringup/bringup_launch_files.pyx",
+            "trossen_arm_bringup/trossen_arm_bringup_python.pyx",
             "trossen_arm_bringup/armor_kit.py",
             "trossen_arm_bringup/dual_trossen_arm.py",
             "trossen_arm_bringup/gravity_compensation.py",
             "trossen_arm_bringup/trossen_arm.py"
         ]
     },
-    "module_name": "trossen_arm_bringup.armor_kit_impl"
+    "module_name": "trossen_arm_bringup.trossen_arm_bringup"
 }
 END: Cython Metadata */
 
