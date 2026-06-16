@@ -74,7 +74,7 @@
     <end_effector name="gripper" parent_link="${tf_prefix}ee_gripper_link" group="gripper" parent_group="arm"/>
     <!--DISABLE COLLISIONS: By default it is assumed that any link of the robot could potentially come into collision with any other link in the robot. This tag disables collision checking between a specified pair of links. -->
     <disable_collisions link1="${tf_prefix}base_link" link2="${tf_prefix}link_1" reason="Adjacent"/>
-    <disable_collisions link1="{tf_prefix}base_link" link2="${tf_prefix}link_2" reason="Never"/>
+    <disable_collisions link1="${tf_prefix}{tf_prefix}base_link" link2="${tf_prefix}link_2" reason="Never"/>
     <disable_collisions link1="${tf_prefix}Custom_Mount" link2="${tf_prefix}link_1" reason="Default"/>
     <disable_collisions link1="${tf_prefix}Custom_Mount" link2="${tf_prefix}link_2" reason="Default"/>
     <disable_collisions link1="${tf_prefix}Custom_Mount" link2="${tf_prefix}link_5" reason="Default"/>
@@ -118,6 +118,35 @@
     <disable_collisions link1="${tf_prefix}Top_Camera_frame" link2="${tf_prefix}base_link" reason="Never"/>
     <disable_collisions link1="${tf_prefix}Top_Camera_frame" link2="${tf_prefix}link_1" reason="Never"/>
     <disable_collisions link1="${tf_prefix}Top_Camera_frame" link2="${tf_prefix}link_2" reason="Never"/>
+    <disable_collisions link1="${tf_prefix}Chute_01" link2="${tf_prefix}base_link" reason="Never"/>
+    <disable_collisions link1="${tf_prefix}Chute_01" link2="${tf_prefix}link_1" reason="Never"/>
+    <disable_collisions link1="${tf_prefix}Chute_01" link2="${tf_prefix}link_2" reason="Never"/>
+    <disable_collisions link1="${tf_prefix}Mail_trimmer_Housing" link2="${tf_prefix}base_link" reason="Never"/>
+    <disable_collisions link1="${tf_prefix}Mail_trimmer_Housing" link2="${tf_prefix}link_1" reason="Never"/>
+    <disable_collisions link1="${tf_prefix}Mail_Trim_Cover" link2="${tf_prefix}link_1" reason="Never"/>
+    <disable_collisions link1="${tf_prefix}Mail_Trim_Cover" link2="${tf_prefix}link_2" reason="Never"/>
+    <disable_collisions link1="${tf_prefix}RealSense_Holder_01" link2="${tf_prefix}base_link" reason="Never"/>
+    <disable_collisions link1="${tf_prefix}RealSense_Holder_01" link2="${tf_prefix}carriage_left" reason="Never"/>
+    <disable_collisions link1="${tf_prefix}RealSense_Holder_01" link2="${tf_prefix}carriage_right" reason="Never"/>
+    <disable_collisions link1="${tf_prefix}RealSense_Holder_01" link2="${tf_prefix}gripper_right" reason="Never"/>
+    <disable_collisions link1="${tf_prefix}RealSense_Holder_01" link2="${tf_prefix}link_1" reason="Never"/>
+    <disable_collisions link1="${tf_prefix}RealSense_Holder_01" link2="${tf_prefix}link_2" reason="Never"/>
+    <disable_collisions link1="${tf_prefix}RealSense_Holder_01" link2="${tf_prefix}link_3" reason="Never"/>
+    <disable_collisions link1="${tf_prefix}RealSense_Holder_01" link2="${tf_prefix}link_4" reason="Never"/>
+    <disable_collisions link1="${tf_prefix}RealSense_Holder_01" link2="${tf_prefix}link_5" reason="Never"/>
+    <disable_collisions link1="${tf_prefix}RealSense_Holder_01" link2="${tf_prefix}link_6" reason="Never"/>
+    <disable_collisions link1="${tf_prefix}Custom_Mount" link2="${tf_prefix}RealSense_Holder_02" reason="Never"/>
+    <disable_collisions link1="${tf_prefix}RealSense_Holder_02" link2="${tf_prefix}base_link" reason="Never"/>
+    <disable_collisions link1="${tf_prefix}RealSense_Holder_02" link2="${tf_prefix}carriage_left" reason="Never"/>
+    <disable_collisions link1="${tf_prefix}RealSense_Holder_02" link2="${tf_prefix}carriage_right" reason="Never"/>
+    <disable_collisions link1="${tf_prefix}RealSense_Holder_02" link2="${tf_prefix}gripper_left" reason="Never"/>
+    <disable_collisions link1="${tf_prefix}RealSense_Holder_02" link2="${tf_prefix}gripper_right" reason="Never"/>
+    <disable_collisions link1="${tf_prefix}RealSense_Holder_02" link2="${tf_prefix}link_1" reason="Never"/>
+    <disable_collisions link1="${tf_prefix}RealSense_Holder_02" link2="${tf_prefix}link_2" reason="Never"/>
+    <disable_collisions link1="${tf_prefix}RealSense_Holder_02" link2="${tf_prefix}link_3" reason="Never"/>
+    <disable_collisions link1="${tf_prefix}RealSense_Holder_02" link2="${tf_prefix}link_4" reason="Never"/>
+    <disable_collisions link1="${tf_prefix}RealSense_Holder_02" link2="${tf_prefix}link_5" reason="Never"/>
+    <disable_collisions link1="${tf_prefix}RealSense_Holder_02" link2="${tf_prefix}link_6" reason="Never"/>
 
     <!--DISABLE COLLISIONS: By default it is assumed that any link of the robot could potentially come into collision with any other link in the robot. This tag disables collision checking between a specified pair of links. -->
     <xacro:if value="${srdf_use_suction_cup and srdf_use_downdraft}">
@@ -138,10 +167,6 @@
         <disable_collisions link1="${tf_prefix}Front_Weld_Plate" link2="${tf_prefix}suction_cup" reason="Default"/>
         <disable_collisions link1="${tf_prefix}Front_Weld_Plate" link2="${tf_prefix}suction_mount" reason="Default"/>
         <disable_collisions link1="${tf_prefix}Front_Weld_Plate" link2="${tf_prefix}tube" reason="Default"/>
-        <disable_collisions link1="${tf_prefix}Mail_Spreader_Housing" link2="${tf_prefix}pillar_3" reason="Default"/>
-        <disable_collisions link1="${tf_prefix}Mail_Spreader_Housing" link2="${tf_prefix}suction_cup" reason="Default"/>
-        <disable_collisions link1="${tf_prefix}Mail_Spreader_Housing" link2="${tf_prefix}suction_mount" reason="Default"/>
-        <disable_collisions link1="${tf_prefix}Mail_Spreader_Housing" link2="${tf_prefix}tube" reason="Default"/>
         <disable_collisions link1="${tf_prefix}Rear_Panel" link2="${tf_prefix}pillar_2" reason="Never"/>
         <disable_collisions link1="${tf_prefix}Rear_Panel" link2="${tf_prefix}tube" reason="Never"/>
         <disable_collisions link1="${tf_prefix}Side_Plates_Right" link2="${tf_prefix}pillar_1" reason="Never"/>
@@ -166,6 +191,14 @@
     </xacro:if>
     
     <xacro:if value="${srdf_use_suction_cup}">
+        <disable_collisions link1="${tf_prefix}RealSense_Holder_01" link2="${tf_prefix}base_mount" reason="Never"/>
+        <disable_collisions link1="${tf_prefix}RealSense_Holder_01" link2="${tf_prefix}pillar_1" reason="Never"/>
+        <disable_collisions link1="${tf_prefix}RealSense_Holder_01" link2="${tf_prefix}pillar_2" reason="Never"/>
+        <disable_collisions link1="${tf_prefix}RealSense_Holder_01" link2="${tf_prefix}pillar_3" reason="Never"/>
+        <disable_collisions link1="${tf_prefix}RealSense_Holder_01" link2="${tf_prefix}pillar_4" reason="Never"/>
+        <disable_collisions link1="${tf_prefix}RealSense_Holder_01" link2="${tf_prefix}suction_cup" reason="Never"/>
+        <disable_collisions link1="${tf_prefix}RealSense_Holder_01" link2="${tf_prefix}suction_mount" reason="Never"/>
+        <disable_collisions link1="${tf_prefix}RealSense_Holder_01" link2="${tf_prefix}tube" reason="Never"/>
         <disable_collisions link1="${tf_prefix}base_mount" link2="${tf_prefix}carriage_left" reason="Never"/>
         <disable_collisions link1="${tf_prefix}base_mount" link2="${tf_prefix}carriage_right" reason="Never"/>
         <disable_collisions link1="${tf_prefix}base_mount" link2="${tf_prefix}gripper_left" reason="Never"/>
@@ -258,17 +291,35 @@
         <disable_collisions link1="${tf_prefix}suction_cup" link2="${tf_prefix}suction_mount" reason="Adjacent"/>
         <disable_collisions link1="${tf_prefix}suction_cup" link2="${tf_prefix}tube" reason="Adjacent"/>
         <disable_collisions link1="${tf_prefix}suction_mount" link2="${tf_prefix}tube" reason="Never"/>
+        <disable_collisions link1="${tf_prefix}RealSense_Holder_02" link2="${tf_prefix}base_mount" reason="Never"/>
+        <disable_collisions link1="${tf_prefix}RealSense_Holder_02" link2="${tf_prefix}pillar_1" reason="Never"/>
+        <disable_collisions link1="${tf_prefix}RealSense_Holder_02" link2="${tf_prefix}pillar_2" reason="Never"/>
+        <disable_collisions link1="${tf_prefix}RealSense_Holder_02" link2="${tf_prefix}pillar_3" reason="Never"/>
+        <disable_collisions link1="${tf_prefix}RealSense_Holder_02" link2="${tf_prefix}pillar_4" reason="Never"/>
+        <disable_collisions link1="${tf_prefix}RealSense_Holder_02" link2="${tf_prefix}suction_cup" reason="Never"/>
+        <disable_collisions link1="${tf_prefix}RealSense_Holder_02" link2="${tf_prefix}suction_mount" reason="Never"/>
+        <disable_collisions link1="${tf_prefix}RealSense_Holder_02" link2="${tf_prefix}tube" reason="Never"/>
     </xacro:if>
     
     <xacro:if value="${srdf_use_downdraft}">
-       <disable_collisions link1="${tf_prefix}Back_Plate_Exhaust" link2="${tf_prefix}Bottom_Box" reason="Never"/>
+        <disable_collisions link1="${tf_prefix}RealSense_Holder_02" link2="${tf_prefix}Rear_Panel" reason="Never"/>
+        <disable_collisions link1="${tf_prefix}RealSense_Holder_02" link2="${tf_prefix}Side_Plates_Left" reason="Never"/>
+        <disable_collisions link1="${tf_prefix}RealSense_Holder_02" link2="${tf_prefix}Side_Plates_Right" reason="Never"/>
+        <disable_collisions link1="${tf_prefix}RealSense_Holder_02" link2="${tf_prefix}Top_Panel" reason="Never"/>
+        <disable_collisions link1="${tf_prefix}RealSense_Holder_02" link2="${tf_prefix}Top_Weld_Plate" reason="Adjacent"/>
+        <disable_collisions link1="${tf_prefix}RealSense_Holder_02" link2="${tf_prefix}Vibration_Rack" reason="Never"/>
+        <disable_collisions link1="${tf_prefix}RealSense_Holder_02" link2="${tf_prefix}Vibration_Rack_Base" reason="Never"/>
+        <disable_collisions link1="${tf_prefix}RealSense_Holder_02" link2="${tf_prefix}Vibration_Rack_Baseplate" reason="Never"/>
+        <disable_collisions link1="${tf_prefix}RealSense_Holder_02" link2="${tf_prefix}light_1" reason="Never"/>
+        <disable_collisions link1="${tf_prefix}RealSense_Holder_02" link2="${tf_prefix}light_2" reason="Never"/>
+        <disable_collisions link1="${tf_prefix}Back_Plate_Exhaust" link2="${tf_prefix}RealSense_Holder_02" reason="Never"/>
+        <disable_collisions link1="${tf_prefix}Back_Plate_Exhaust" link2="${tf_prefix}Bottom_Box" reason="Never"/>
+        <disable_collisions link1="${tf_prefix}Back_Plate_Exhaust" link2="${tf_prefix}RealSense_Holder_01" reason="Never"/>
+        <disable_collisions link1="${tf_prefix}Back_Plate_Exhaust" link2="${tf_prefix}Mail_trimmer_Housing" reason="Never"/>
         <disable_collisions link1="${tf_prefix}Back_Plate_Exhaust" link2="${tf_prefix}Chute_01" reason="Never"/>
-        <disable_collisions link1="${tf_prefix}Back_Plate_Exhaust" link2="${tf_prefix}Chute_02" reason="Never"/>
-        <disable_collisions link1="${tf_prefix}Back_Plate_Exhaust" link2="${tf_prefix}Chute_03" reason="Never"/>
         <disable_collisions link1="${tf_prefix}Back_Plate_Exhaust" link2="${tf_prefix}Custom_Mount" reason="Never"/>
+        <disable_collisions link1="${tf_prefix}Back_Plate_Exhaust" link2="${tf_prefix}Mail_Trim_Cover" reason="Never"/>
         <disable_collisions link1="${tf_prefix}Back_Plate_Exhaust" link2="${tf_prefix}Front_Weld_Plate" reason="Never"/>
-        <disable_collisions link1="${tf_prefix}Back_Plate_Exhaust" link2="${tf_prefix}Letter_Trimmer_Holder" reason="Never"/>
-        <disable_collisions link1="${tf_prefix}Back_Plate_Exhaust" link2="${tf_prefix}Mail_Spreader_Housing" reason="Never"/>
         <disable_collisions link1="${tf_prefix}Back_Plate_Exhaust" link2="${tf_prefix}Mail_Top_Plate" reason="Never"/>
         <disable_collisions link1="${tf_prefix}Back_Plate_Exhaust" link2="${tf_prefix}Pedestal" reason="Never"/>
         <disable_collisions link1="${tf_prefix}Back_Plate_Exhaust" link2="${tf_prefix}Rear_Panel" reason="Never"/>
@@ -294,12 +345,26 @@
         <disable_collisions link1="${tf_prefix}Back_Plate_Exhaust" link2="${tf_prefix}link_4" reason="Never"/>
         <disable_collisions link1="${tf_prefix}Back_Plate_Exhaust" link2="${tf_prefix}link_5" reason="Never"/>
         <disable_collisions link1="${tf_prefix}Back_Plate_Exhaust" link2="${tf_prefix}link_6" reason="Never"/>
-        <disable_collisions link1="${tf_prefix}Bottom_Box" link2="${tf_prefix}Chute_01" reason="Never"/>
-        <disable_collisions link1="${tf_prefix}Bottom_Box" link2="${tf_prefix}Chute_02" reason="Never"/>
-        <disable_collisions link1="${tf_prefix}Bottom_Box" link2="${tf_prefix}Chute_03" reason="Never"/>
+        <disable_collisions link1="${tf_prefix}Mail_Trim_Cover" link2="${tf_prefix}Pedestal" reason="Never"/>
+        <disable_collisions link1="${tf_prefix}Mail_Trim_Cover" link2="${tf_prefix}RealSense_Holder_01" reason="Never"/>
+        <disable_collisions link1="${tf_prefix}Mail_Trim_Cover" link2="${tf_prefix}RealSense_Holder_02" reason="Never"/>
+        <disable_collisions link1="${tf_prefix}Mail_Trim_Cover" link2="${tf_prefix}Rear_Panel" reason="Never"/>
+        <disable_collisions link1="${tf_prefix}Mail_Trim_Cover" link2="${tf_prefix}Side_Plates_Left" reason="Never"/>
+        <disable_collisions link1="${tf_prefix}Mail_Trim_Cover" link2="${tf_prefix}Side_Plates_Right" reason="Never"/>
+        <disable_collisions link1="${tf_prefix}Mail_Trim_Cover" link2="${tf_prefix}Top_Panel" reason="Never"/>
+        <disable_collisions link1="${tf_prefix}Mail_Trim_Cover" link2="${tf_prefix}Top_Weld_Plate" reason="Never"/>
+        <disable_collisions link1="${tf_prefix}Mail_Trim_Cover" link2="${tf_prefix}Vibration_Rack" reason="Never"/>
+        <disable_collisions link1="${tf_prefix}Mail_Trim_Cover" link2="${tf_prefix}Vibration_Rack_Base" reason="Never"/>
+        <disable_collisions link1="${tf_prefix}Mail_Trim_Cover" link2="${tf_prefix}Vibration_Rack_Baseplate" reason="Never"/>
+        <disable_collisions link1="${tf_prefix}Mail_Trim_Cover" link2="${tf_prefix}base_link" reason="Never"/>
+        <disable_collisions link1="${tf_prefix}Mail_Trim_Cover" link2="${tf_prefix}light_1" reason="Never"/>
+        <disable_collisions link1="${tf_prefix}Mail_Trim_Cover" link2="${tf_prefix}light_2" reason="Never"/>
+        <disable_collisions link1="${tf_prefix}Bottom_Box" link2="${tf_prefix}Chute_01" reason="Default"/>
         <disable_collisions link1="${tf_prefix}Bottom_Box" link2="${tf_prefix}Front_Weld_Plate" reason="Never"/>
-        <disable_collisions link1="${tf_prefix}Bottom_Box" link2="${tf_prefix}Letter_Trimmer_Holder" reason="Never"/>
-        <disable_collisions link1="${tf_prefix}Bottom_Box" link2="${tf_prefix}Mail_Spreader_Housing" reason="Never"/>
+        <disable_collisions link1="${tf_prefix}Bottom_Box" link2="${tf_prefix}Mail_trimmer_Housing" reason="Default"/>
+        <disable_collisions link1="${tf_prefix}Bottom_Box" link2="${tf_prefix}RealSense_Holder_02" reason="Never"/>
+        <disable_collisions link1="${tf_prefix}Bottom_Box" link2="${tf_prefix}Mail_Trim_Cover" reason="Never"/>
+        <disable_collisions link1="${tf_prefix}Bottom_Box" link2="${tf_prefix}RealSense_Holder_01" reason="Never"/>
         <disable_collisions link1="${tf_prefix}Bottom_Box" link2="${tf_prefix}Mail_Top_Plate" reason="Never"/>
         <disable_collisions link1="${tf_prefix}Bottom_Box" link2="${tf_prefix}Pedestal" reason="Adjacent"/>
         <disable_collisions link1="${tf_prefix}Bottom_Box" link2="${tf_prefix}Rear_Panel" reason="Never"/>
@@ -316,73 +381,29 @@
         <disable_collisions link1="${tf_prefix}Bottom_Box" link2="${tf_prefix}light_2" reason="Never"/>
         <disable_collisions link1="${tf_prefix}Bottom_Box" link2="${tf_prefix}link_1" reason="Never"/>
         <disable_collisions link1="${tf_prefix}Bottom_Box" link2="${tf_prefix}link_2" reason="Never"/>
-        <disable_collisions link1="${tf_prefix}Chute_01" link2="${tf_prefix}Chute_02" reason="Adjacent"/>
-        <disable_collisions link1="${tf_prefix}Chute_01" link2="${tf_prefix}Chute_03" reason="Adjacent"/>
-        <disable_collisions link1="${tf_prefix}Chute_01" link2="${tf_prefix}Front_Weld_Plate" reason="Default"/>
-        <disable_collisions link1="${tf_prefix}Chute_01" link2="${tf_prefix}Letter_Trimmer_Holder" reason="Never"/>
-        <disable_collisions link1="${tf_prefix}Chute_01" link2="${tf_prefix}Mail_Spreader_Housing" reason="Adjacent"/>
-        <disable_collisions link1="${tf_prefix}Chute_01" link2="${tf_prefix}Mail_Top_Plate" reason="Never"/>
+        <disable_collisions link1="${tf_prefix}Custom_Mount" link2="${tf_prefix}Rear_Panel" reason="Never"/>
+        <disable_collisions link1="${tf_prefix}Custom_Mount" link2="${tf_prefix}Side_Plates_Right" reason="Never"/>
+        <disable_collisions link1="${tf_prefix}Custom_Mount" link2="${tf_prefix}Top_Weld_Plate" reason="Never"/>
+        <disable_collisions link1="${tf_prefix}Custom_Mount" link2="${tf_prefix}RealSense_Holder_01" reason="Never"/>
+        <disable_collisions link1="${tf_prefix}Chute_01" link2="${tf_prefix}light_1" reason="Never"/>
+        <disable_collisions link1="${tf_prefix}Chute_01" link2="${tf_prefix}light_2" reason="Never"/>
+        <disable_collisions link1="${tf_prefix}Chute_01" link2="${tf_prefix}Front_Weld_Plate" reason="Never"/>
+        <disable_collisions link1="${tf_prefix}Chute_01" link2="${tf_prefix}Mail_Trim_Cover" reason="Never"/>
+        <disable_collisions link1="${tf_prefix}Chute_01" link2="${tf_prefix}Mail_trimmer_Housing" reason="Adjacent"/>
         <disable_collisions link1="${tf_prefix}Chute_01" link2="${tf_prefix}Pedestal" reason="Never"/>
+        <disable_collisions link1="${tf_prefix}Chute_01" link2="${tf_prefix}RealSense_Holder_01" reason="Never"/>
+        <disable_collisions link1="${tf_prefix}Chute_01" link2="${tf_prefix}RealSense_Holder_02" reason="Never"/>
         <disable_collisions link1="${tf_prefix}Chute_01" link2="${tf_prefix}Rear_Panel" reason="Never"/>
         <disable_collisions link1="${tf_prefix}Chute_01" link2="${tf_prefix}Side_Plates_Left" reason="Never"/>
         <disable_collisions link1="${tf_prefix}Chute_01" link2="${tf_prefix}Side_Plates_Right" reason="Never"/>
-        <disable_collisions link1="${tf_prefix}Chute_01" link2="${tf_prefix}Top_Camera_frame" reason="Never"/>
         <disable_collisions link1="${tf_prefix}Chute_01" link2="${tf_prefix}Top_Panel" reason="Adjacent"/>
         <disable_collisions link1="${tf_prefix}Chute_01" link2="${tf_prefix}Top_Weld_Plate" reason="Never"/>
         <disable_collisions link1="${tf_prefix}Chute_01" link2="${tf_prefix}Vibration_Rack" reason="Never"/>
         <disable_collisions link1="${tf_prefix}Chute_01" link2="${tf_prefix}Vibration_Rack_Base" reason="Never"/>
         <disable_collisions link1="${tf_prefix}Chute_01" link2="${tf_prefix}Vibration_Rack_Baseplate" reason="Never"/>
-        <disable_collisions link1="${tf_prefix}Chute_01" link2="${tf_prefix}base_link" reason="Never"/>
-        <disable_collisions link1="${tf_prefix}Chute_01" link2="${tf_prefix}light_1" reason="Never"/>
-        <disable_collisions link1="${tf_prefix}Chute_01" link2="${tf_prefix}light_2" reason="Never"/>
-        <disable_collisions link1="${tf_prefix}Chute_01" link2="${tf_prefix}link_1" reason="Never"/>
-        <disable_collisions link1="${tf_prefix}Chute_01" link2="${tf_prefix}link_2" reason="Never"/>
-        <disable_collisions link1="${tf_prefix}Chute_02" link2="${tf_prefix}Chute_03" reason="Never"/>
-        <disable_collisions link1="${tf_prefix}Chute_02" link2="${tf_prefix}Front_Weld_Plate" reason="Never"/>
-        <disable_collisions link1="${tf_prefix}Chute_02" link2="${tf_prefix}Letter_Trimmer_Holder" reason="Never"/>
-        <disable_collisions link1="${tf_prefix}Chute_02" link2="${tf_prefix}Mail_Spreader_Housing" reason="Default"/>
-        <disable_collisions link1="${tf_prefix}Chute_02" link2="${tf_prefix}Mail_Top_Plate" reason="Never"/>
-        <disable_collisions link1="${tf_prefix}Chute_02" link2="${tf_prefix}Pedestal" reason="Never"/>
-        <disable_collisions link1="${tf_prefix}Chute_02" link2="${tf_prefix}Rear_Panel" reason="Never"/>
-        <disable_collisions link1="${tf_prefix}Chute_02" link2="${tf_prefix}Side_Plates_Left" reason="Never"/>
-        <disable_collisions link1="${tf_prefix}Chute_02" link2="${tf_prefix}Side_Plates_Right" reason="Never"/>
-        <disable_collisions link1="${tf_prefix}Chute_02" link2="${tf_prefix}Top_Camera_frame" reason="Never"/>
-        <disable_collisions link1="${tf_prefix}Chute_02" link2="${tf_prefix}Top_Panel" reason="Never"/>
-        <disable_collisions link1="${tf_prefix}Chute_02" link2="${tf_prefix}Top_Weld_Plate" reason="Never"/>
-        <disable_collisions link1="${tf_prefix}Chute_02" link2="${tf_prefix}Vibration_Rack" reason="Never"/>
-        <disable_collisions link1="${tf_prefix}Chute_02" link2="${tf_prefix}Vibration_Rack_Base" reason="Never"/>
-        <disable_collisions link1="${tf_prefix}Chute_02" link2="${tf_prefix}Vibration_Rack_Baseplate" reason="Never"/>
-        <disable_collisions link1="${tf_prefix}Chute_02" link2="${tf_prefix}base_link" reason="Never"/>
-        <disable_collisions link1="${tf_prefix}Chute_02" link2="${tf_prefix}light_1" reason="Never"/>
-        <disable_collisions link1="${tf_prefix}Chute_02" link2="${tf_prefix}light_2" reason="Never"/>
-        <disable_collisions link1="${tf_prefix}Chute_02" link2="${tf_prefix}link_1" reason="Never"/>
-        <disable_collisions link1="${tf_prefix}Chute_03" link2="${tf_prefix}Front_Weld_Plate" reason="Default"/>
-        <disable_collisions link1="${tf_prefix}Chute_03" link2="${tf_prefix}Letter_Trimmer_Holder" reason="Never"/>
-        <disable_collisions link1="${tf_prefix}Chute_03" link2="${tf_prefix}Mail_Spreader_Housing" reason="Never"/>
-        <disable_collisions link1="${tf_prefix}Chute_03" link2="${tf_prefix}Mail_Top_Plate" reason="Never"/>
-        <disable_collisions link1="${tf_prefix}Chute_03" link2="${tf_prefix}Pedestal" reason="Never"/>
-        <disable_collisions link1="${tf_prefix}Chute_03" link2="${tf_prefix}Rear_Panel" reason="Never"/>
-        <disable_collisions link1="${tf_prefix}Chute_03" link2="${tf_prefix}Side_Plates_Left" reason="Never"/>
-        <disable_collisions link1="${tf_prefix}Chute_03" link2="${tf_prefix}Side_Plates_Right" reason="Never"/>
-        <disable_collisions link1="${tf_prefix}Chute_03" link2="${tf_prefix}Top_Camera_frame" reason="Never"/>
-        <disable_collisions link1="${tf_prefix}Chute_03" link2="${tf_prefix}Top_Panel" reason="Never"/>
-        <disable_collisions link1="${tf_prefix}Chute_03" link2="${tf_prefix}Top_Weld_Plate" reason="Never"/>
-        <disable_collisions link1="${tf_prefix}Chute_03" link2="${tf_prefix}Vibration_Rack" reason="Never"/>
-        <disable_collisions link1="${tf_prefix}Chute_03" link2="${tf_prefix}Vibration_Rack_Base" reason="Never"/>
-        <disable_collisions link1="${tf_prefix}Chute_03" link2="${tf_prefix}Vibration_Rack_Baseplate" reason="Never"/>
-        <disable_collisions link1="${tf_prefix}Chute_03" link2="${tf_prefix}base_link" reason="Never"/>
-        <disable_collisions link1="${tf_prefix}Chute_03" link2="${tf_prefix}light_1" reason="Never"/>
-        <disable_collisions link1="${tf_prefix}Chute_03" link2="${tf_prefix}light_2" reason="Never"/>
-        <disable_collisions link1="${tf_prefix}Chute_03" link2="${tf_prefix}link_1" reason="Never"/>
-        <disable_collisions link1="${tf_prefix}Chute_03" link2="${tf_prefix}link_2" reason="Never"/>
-        <disable_collisions link1="${tf_prefix}Custom_Mount" link2="${tf_prefix}Rear_Panel" reason="Never"/>
-        <disable_collisions link1="${tf_prefix}Custom_Mount" link2="${tf_prefix}Side_Plates_Right" reason="Never"/>
-        <disable_collisions link1="${tf_prefix}Custom_Mount" link2="${tf_prefix}Top_Weld_Plate" reason="Never"/>
-        
         <disable_collisions link1="${tf_prefix}Custom_Mount" link2="${tf_prefix}light_1" reason="Never"/>
         <disable_collisions link1="${tf_prefix}Custom_Mount" link2="${tf_prefix}light_2" reason="Never"/>
-        <disable_collisions link1="${tf_prefix}Front_Weld_Plate" link2="${tf_prefix}Letter_Trimmer_Holder" reason="Never"/>
-        <disable_collisions link1="${tf_prefix}Front_Weld_Plate" link2="${tf_prefix}Mail_Spreader_Housing" reason="Default"/>
+        <disable_collisions link1="${tf_prefix}Front_Weld_Plate" link2="${tf_prefix}RealSense_Holder_01" reason="Never"/>
         <disable_collisions link1="${tf_prefix}Front_Weld_Plate" link2="${tf_prefix}Mail_Top_Plate" reason="Never"/>
         <disable_collisions link1="${tf_prefix}Front_Weld_Plate" link2="${tf_prefix}Pedestal" reason="Never"/>
         <disable_collisions link1="${tf_prefix}Front_Weld_Plate" link2="${tf_prefix}Rear_Panel" reason="Never"/>
@@ -398,41 +419,23 @@
         <disable_collisions link1="${tf_prefix}Front_Weld_Plate" link2="${tf_prefix}light_1" reason="Never"/>
         <disable_collisions link1="${tf_prefix}Front_Weld_Plate" link2="${tf_prefix}light_2" reason="Never"/>
         <disable_collisions link1="${tf_prefix}Front_Weld_Plate" link2="${tf_prefix}link_1" reason="Never"/>
-        <disable_collisions link1="${tf_prefix}Letter_Trimmer_Holder" link2="${tf_prefix}Mail_Spreader_Housing" reason="Adjacent"/>
-        <disable_collisions link1="${tf_prefix}Letter_Trimmer_Holder" link2="${tf_prefix}Mail_Top_Plate" reason="Never"/>
-        <disable_collisions link1="${tf_prefix}Letter_Trimmer_Holder" link2="${tf_prefix}Pedestal" reason="Never"/>
-        <disable_collisions link1="${tf_prefix}Letter_Trimmer_Holder" link2="${tf_prefix}Rear_Panel" reason="Never"/>
-        <disable_collisions link1="${tf_prefix}Letter_Trimmer_Holder" link2="${tf_prefix}Side_Plates_Left" reason="Never"/>
-        <disable_collisions link1="${tf_prefix}Letter_Trimmer_Holder" link2="${tf_prefix}Side_Plates_Right" reason="Never"/>
-        <disable_collisions link1="${tf_prefix}Letter_Trimmer_Holder" link2="${tf_prefix}Top_Camera_frame" reason="Never"/>
-        <disable_collisions link1="${tf_prefix}Letter_Trimmer_Holder" link2="${tf_prefix}Top_Panel" reason="Never"/>
-        <disable_collisions link1="${tf_prefix}Letter_Trimmer_Holder" link2="${tf_prefix}Top_Weld_Plate" reason="Never"/>
-        <disable_collisions link1="${tf_prefix}Letter_Trimmer_Holder" link2="${tf_prefix}Vibration_Rack" reason="Never"/>
-        <disable_collisions link1="${tf_prefix}Letter_Trimmer_Holder" link2="${tf_prefix}Vibration_Rack_Base" reason="Never"/>
-        <disable_collisions link1="${tf_prefix}Letter_Trimmer_Holder" link2="${tf_prefix}Vibration_Rack_Baseplate" reason="Never"/>
-        <disable_collisions link1="${tf_prefix}Letter_Trimmer_Holder" link2="${tf_prefix}base_link" reason="Never"/>
-        <disable_collisions link1="${tf_prefix}Letter_Trimmer_Holder" link2="${tf_prefix}light_1" reason="Never"/>
-        <disable_collisions link1="${tf_prefix}Letter_Trimmer_Holder" link2="${tf_prefix}light_2" reason="Never"/>
-        <disable_collisions link1="${tf_prefix}Letter_Trimmer_Holder" link2="${tf_prefix}link_1" reason="Never"/>
-        <disable_collisions link1="${tf_prefix}Mail_Spreader_Housing" link2="${tf_prefix}Mail_Top_Plate" reason="Adjacent"/>
-        <disable_collisions link1="${tf_prefix}Mail_Spreader_Housing" link2="${tf_prefix}Pedestal" reason="Never"/>
-        <disable_collisions link1="${tf_prefix}Mail_Spreader_Housing" link2="${tf_prefix}Rear_Panel" reason="Never"/>
-        <disable_collisions link1="${tf_prefix}Mail_Spreader_Housing" link2="${tf_prefix}Side_Plates_Left" reason="Never"/>
-        <disable_collisions link1="${tf_prefix}Mail_Spreader_Housing" link2="${tf_prefix}Side_Plates_Right" reason="Never"/>
-        <disable_collisions link1="${tf_prefix}Mail_Spreader_Housing" link2="${tf_prefix}Top_Camera_frame" reason="Never"/>
-        <disable_collisions link1="${tf_prefix}Mail_Spreader_Housing" link2="${tf_prefix}Top_Panel" reason="Never"/>
-        <disable_collisions link1="${tf_prefix}Mail_Spreader_Housing" link2="${tf_prefix}Top_Weld_Plate" reason="Never"/>
-        <disable_collisions link1="${tf_prefix}Mail_Spreader_Housing" link2="${tf_prefix}Vibration_Rack" reason="Never"/>
-        <disable_collisions link1="${tf_prefix}Mail_Spreader_Housing" link2="${tf_prefix}Vibration_Rack_Base" reason="Never"/>
-        <disable_collisions link1="${tf_prefix}Mail_Spreader_Housing" link2="${tf_prefix}Vibration_Rack_Baseplate" reason="Never"/>
-        <disable_collisions link1="${tf_prefix}Mail_Spreader_Housing" link2="${tf_prefix}base_link" reason="Never"/>
-        <disable_collisions link1="${tf_prefix}Mail_Spreader_Housing" link2="${tf_prefix}base_mount" reason="Default"/>
-        <disable_collisions link1="${tf_prefix}Mail_Spreader_Housing" link2="${tf_prefix}carriage_left" reason="Default"/>
-        <disable_collisions link1="${tf_prefix}Mail_Spreader_Housing" link2="${tf_prefix}gripper_left" reason="Default"/>
-        <disable_collisions link1="${tf_prefix}Mail_Spreader_Housing" link2="${tf_prefix}light_1" reason="Never"/>
-        <disable_collisions link1="${tf_prefix}Mail_Spreader_Housing" link2="${tf_prefix}light_2" reason="Never"/>
-        <disable_collisions link1="${tf_prefix}Mail_Spreader_Housing" link2="${tf_prefix}link_1" reason="Never"/>
-        <disable_collisions link1="${tf_prefix}Mail_Spreader_Housing" link2="${tf_prefix}link_6" reason="Default"/>
+        <disable_collisions link1="${tf_prefix}Front_Weld_Plate" link2="${tf_prefix}RealSense_Holder_02" reason="Never"/>
+        <disable_collisions link1="${tf_prefix}Front_Weld_Plate" link2="${tf_prefix}Mail_Trim_Cover" reason="Never"/>
+        <disable_collisions link1="${tf_prefix}Front_Weld_Plate" link2="${tf_prefix}Mail_trimmer_Housing" reason="Never"/>
+        <disable_collisions link1="${tf_prefix}Mail_Trim_Cover" link2="${tf_prefix}Mail_trimmer_Housing" reason="Adjacent"/>
+        <disable_collisions link1="${tf_prefix}Mail_trimmer_Housing" link2="${tf_prefix}Pedestal" reason="Never"/>
+        <disable_collisions link1="${tf_prefix}Mail_trimmer_Housing" link2="${tf_prefix}RealSense_Holder_01" reason="Never"/>
+        <disable_collisions link1="${tf_prefix}Mail_trimmer_Housing" link2="${tf_prefix}RealSense_Holder_02" reason="Never"/>
+        <disable_collisions link1="${tf_prefix}Mail_trimmer_Housing" link2="${tf_prefix}Rear_Panel" reason="Never"/>
+        <disable_collisions link1="${tf_prefix}Mail_trimmer_Housing" link2="${tf_prefix}Side_Plates_Left" reason="Never"/>
+        <disable_collisions link1="${tf_prefix}Mail_trimmer_Housing" link2="${tf_prefix}Side_Plates_Right" reason="Never"/>
+        <disable_collisions link1="${tf_prefix}Mail_trimmer_Housing" link2="${tf_prefix}Top_Panel" reason="Default"/>
+        <disable_collisions link1="${tf_prefix}Mail_trimmer_Housing" link2="${tf_prefix}Top_Weld_Plate" reason="Never"/>
+        <disable_collisions link1="${tf_prefix}Mail_trimmer_Housing" link2="${tf_prefix}Vibration_Rack" reason="Never"/>
+        <disable_collisions link1="${tf_prefix}Mail_trimmer_Housing" link2="${tf_prefix}Vibration_Rack_Base" reason="Never"/>
+        <disable_collisions link1="${tf_prefix}Mail_trimmer_Housing" link2="${tf_prefix}Vibration_Rack_Baseplate" reason="Never"/>
+        <disable_collisions link1="${tf_prefix}Mail_trimmer_Housing" link2="${tf_prefix}light_1" reason="Never"/>
+        <disable_collisions link1="${tf_prefix}Mail_trimmer_Housing" link2="${tf_prefix}light_2" reason="Never"/>
         <disable_collisions link1="${tf_prefix}Mail_Top_Plate" link2="${tf_prefix}Pedestal" reason="Never"/>
         <disable_collisions link1="${tf_prefix}Mail_Top_Plate" link2="${tf_prefix}Rear_Panel" reason="Never"/>
         <disable_collisions link1="${tf_prefix}Mail_Top_Plate" link2="${tf_prefix}Side_Plates_Left" reason="Never"/>
@@ -466,6 +469,19 @@
         <disable_collisions link1="${tf_prefix}Pedestal" link2="${tf_prefix}light_2" reason="Never"/>
         <disable_collisions link1="${tf_prefix}Pedestal" link2="${tf_prefix}link_1" reason="Never"/>
         <disable_collisions link1="${tf_prefix}Pedestal" link2="${tf_prefix}link_2" reason="Never"/>
+        <disable_collisions link1="${tf_prefix}Pedestal" link2="${tf_prefix}RealSense_Holder_02" reason="Never"/>
+        <disable_collisions link1="${tf_prefix}Pedestal" link2="${tf_prefix}RealSense_Holder_01" reason="Never"/>
+        <disable_collisions link1="${tf_prefix}RealSense_Holder_01" link2="${tf_prefix}RealSense_Holder_02" reason="Adjacent"/>
+        <disable_collisions link1="${tf_prefix}RealSense_Holder_01" link2="${tf_prefix}Rear_Panel" reason="Never"/>
+        <disable_collisions link1="${tf_prefix}RealSense_Holder_01" link2="${tf_prefix}Side_Plates_Left" reason="Never"/>
+        <disable_collisions link1="${tf_prefix}RealSense_Holder_01" link2="${tf_prefix}Side_Plates_Right" reason="Never"/>
+        <disable_collisions link1="${tf_prefix}RealSense_Holder_01" link2="${tf_prefix}Top_Panel" reason="Never"/>
+        <disable_collisions link1="${tf_prefix}RealSense_Holder_01" link2="${tf_prefix}Top_Weld_Plate" reason="Never"/>
+        <disable_collisions link1="${tf_prefix}RealSense_Holder_01" link2="${tf_prefix}Vibration_Rack" reason="Never"/>
+        <disable_collisions link1="${tf_prefix}RealSense_Holder_01" link2="${tf_prefix}Vibration_Rack_Base" reason="Never"/>
+        <disable_collisions link1="${tf_prefix}RealSense_Holder_01" link2="${tf_prefix}Vibration_Rack_Baseplate" reason="Never"/>
+        <disable_collisions link1="${tf_prefix}RealSense_Holder_01" link2="${tf_prefix}light_1" reason="Never"/>
+        <disable_collisions link1="${tf_prefix}RealSense_Holder_01" link2="${tf_prefix}light_2" reason="Never"/>
         <disable_collisions link1="${tf_prefix}Rear_Panel" link2="${tf_prefix}Side_Plates_Left" reason="Default"/>
         <disable_collisions link1="${tf_prefix}Rear_Panel" link2="${tf_prefix}Side_Plates_Right" reason="Never"/>
         <disable_collisions link1="${tf_prefix}Rear_Panel" link2="${tf_prefix}Top_Camera_frame" reason="Never"/>
@@ -585,8 +601,8 @@
     </xacro:if>
 
     <xacro:if value="${arm_variant == 'follower'}">
-        <disable_collisions link1="${tf_prefix}${tf_prefix}camera_link" link2="${tf_prefix}${tf_prefix}camera_mount_d405" reason="Adjacent"/>
-        <disable_collisions link1="${tf_prefix}${tf_prefix}camera_mount_d405" link2="${tf_prefix}${tf_prefix}link_6" reason="Adjacent"/>
+        <disable_collisions link1="${tf_prefix}${tf_prefix}camera_link" link2="${tf_prefix}camera_mount_d405" reason="Adjacent"/>
+        <disable_collisions link1="${tf_prefix}${tf_prefix}camera_mount_d405" link2="${tf_prefix}link_6" reason="Adjacent"/>
     </xacro:if>  <!-- variant == 'follower' -->
 
 </robot>
