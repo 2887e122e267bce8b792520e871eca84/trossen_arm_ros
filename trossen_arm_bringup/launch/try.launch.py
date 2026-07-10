@@ -36,16 +36,15 @@ from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.actions import (
     DeclareLaunchArgument,
     RegisterEventHandler,
-    OpaqueFunction, # Moveit
+    OpaqueFunction,  # Moveit
     TimerAction,
     ExecuteProcess,
-    OpaqueFunction, 
-    LogInfo
+    LogInfo,
 )
 from launch.conditions import IfCondition
 from launch.event_handlers import (
     OnProcessStart,
-    OnProcessExit
+    OnProcessExit,
 )
 from launch.substitutions import (
     Command,
@@ -56,10 +55,7 @@ from launch.substitutions import (
 
 import launch_ros.actions
 from launch_ros.actions import Node
-from launch_ros.parameter_descriptions import (
-    ParameterFile,
-)
-from launch_ros.parameter_descriptions import ParameterValue
+from launch_ros.parameter_descriptions import ParameterFile, ParameterValue
 from launch_ros.substitutions import FindPackageShare
 
 # Moveit Configs
@@ -67,7 +63,6 @@ from moveit_configs_utils import MoveItConfigsBuilder
 import Jetson.GPIO as GPIO
 import yaml
 import os
-
 
 
 GPIO.cleanup()
@@ -78,166 +73,81 @@ class ArmLaunchConfig:
     """Configuration for a single instance of a Trossen Arm in a multi-arm launch file."""
 
     robot_model: str
-    """Robot model codename, such as `wxai`"""
-
     robot_name: str
-    """Name of the robot, such as `trossen_arm_1`"""
-
     arm_variant: Literal['base', 'leader', 'follower']
-    """End effector variant of the Trossen Arm, such as `base`, `leader`, or `follower`"""
-
     arm_side: Literal['none', 'left', 'right']
-    """Side of the Trossen Arm, such as `none`, `left`, or `right`"""
-
     ip_address: str
-    """IP address of the robot"""
-
     ros2_control_hardware_type: Literal['real', 'mock_components']
-    """Type of ROS 2 control hardware interface, such as `real` or `mock_components`"""
-
     ros2_controllers_config_parameter_filename: str
-    """Name of the ROS 2 controllers configuration file, such as `controllers.yaml`"""
-
     x: float
-    """X coordinate of the robot base frame in meters measured in the world frame"""
-
     y: float
-    """Y coordinate of the robot base frame in meters measured in the world frame"""
-
     z: float
-    """Z coordinate of the robot base frame in meters measured in the world frame"""
-
     roll: float
-    """Roll angle of the robot base frame in radians measured in the world frame"""
-
     pitch: float
-    """Pitch angle of the robot base frame in radians measured in the world frame"""
-
     yaw: float
-    """Yaw angle of the robot base frame in radians measured in the world frame"""
-
     xyz: str
-    """Where the robot arm is located in the urdf"""
-
     rpy: str
-    """The rotation of the robot arm in the urdf"""
-
     use_downdraft: bool
-    """If the robot arm will use the dowdraft"""
-
     use_suction_cup: bool
-    """If there is a suction cup"""
 
-# cameras = dict(
-#     cam_left="419122270123",
-#     cam_right="409122272701",
-#     cam_chute="412622272151",
-#     cam_jogger="412622272127"
-# )
 
-# CAMERAS = [
-#     {
-#         'camera_name': 'cam_left',
-#         'serial_no': '_419122270123', 
-#         'stagger_delay': 5.0,
-#     },
-#     {
-#         'camera_name': 'cam_right',
-#         'serial_no': '_409122272701',
-#         'stagger_delay': 10.0,
-#     },
-#     {
-#         'camera_name': 'cam_chute',
-#         'serial_no': '_412622272151',
-#         'stagger_delay': 15.0,
-#     },
-#     {
-#         'camera_name': 'cam_jogger',
-#         'serial_no': '_412622272127',
-#         'stagger_delay': 20.0,
-#     },
-# ]
+# --- Camera rig configuration --------------------------------------------
+# Fill in real extrinsics (x, y, z, roll, pitch, yaw in the `world` frame)
+# for each camera once measured/calibrated. Until then these are placeholders
+# and the resulting point clouds will NOT be correctly positioned in world.
+#
+# stagger_delay is relative to CAMERA_BASE_DELAY (see below), not to launch
+# start -- this keeps cameras from racing the arm controller bringup while
+# still spacing out USB enumeration between the 4 devices.
+CAMERAS = [
+    {
+        'name': 'cam_left',
+        'serial_no': "'419122270123'",
+        'tf_prefix': 'cam_left_',
+        'stagger_delay': 0.0,
+        'x': 0.0, 'y': 0.0, 'z': 0.0,
+        'roll': 0.0, 'pitch': 0.0, 'yaw': 0.0,
+    },
+    {
+        'name': 'cam_right',
+        'serial_no': "'409122272701'",
+        'tf_prefix': 'cam_right_',
+        'stagger_delay': 3.0,
+        'x': 0.0, 'y': 0.0, 'z': 0.0,
+        'roll': 0.0, 'pitch': 0.0, 'yaw': 0.0,
+    },
+    {
+        'name': 'cam_chute',
+        'serial_no': "'412622272151'",
+        'tf_prefix': 'cam_chute_',
+        'stagger_delay': 6.0,
+        'x': 0.0, 'y': 0.0, 'z': 0.0,
+        'roll': 0.0, 'pitch': 0.0, 'yaw': 0.0,
+    },
+    {
+        'name': 'cam_jogger',  # on the USB 2.0 hub -- gets the most headroom
+        'serial_no': "'412622272127'",
+        'tf_prefix': 'cam_jogger_',
+        'stagger_delay': 10.0,
+        'x': 0.0, 'y': 0.0, 'z': 0.0,
+        'roll': 0.0, 'pitch': 0.0, 'yaw': 0.0,
+    },
+]
 
-# COMMON_ARGS = {
-#     # 'camera_namespace':'camera',
-#     # 'usb_port_id':"''",
-#     # 'device_type':"''",
-#     # 'config_file':"''",
-#     # 'json_file_path':"''",
-#     # 'initial_reset':'false',
-#     # 'accelerate_gpu_with_glsl':"false",
-#     # 'rosbag_filename':"''",
-#     # 'rosbag_loop':'false',
-#     # 'log_level':'info',
-#     # 'output':'screen',
-#     # 'enable_color':'true',
-#     # 'rgb_camera.color_profile':'0,0,0',
-#     # 'rgb_camera.color_format':'RGB8',
-#     # 'rgb_camera.enable_auto_exposure': 'true',
-#     # 'enable_depth':'true',
-#     # 'enable_infra':'false',
-#     # 'enable_infra1':'false',
-#     # 'enable_infra2':'false',
-#     # 'depth_module.depth_profile':'0,0,0',
-#     # 'depth_module.depth_format': 'Z16',
-#     # 'depth_module.infra_profile':'0,0,0',
-#     # 'depth_module.infra_format':'RGB8',
-#     # 'depth_module.infra1_format':'Y8',
-#     # 'depth_module.infra2_format':'Y8',
-#     # 'depth_module.color_profile':'0,0,0',
-#     # 'depth_module.color_format':'RGB8',
-#     # 'depth_module.exposure':'8500',
-#     # 'depth_module.gain':'16',
-#     # 'depth_module.hdr_enabled':'false',
-#     # 'depth_module.enable_auto_exposure':'true',
-#     # 'depth_module.exposure.1':'7500',
-#     # 'depth_module.gain.1':'16',
-#     # 'depth_module.exposure.2':'1',
-#     # 'depth_module.gain.2':'16',
-#     # 'enable_sync':'false',
-#     # 'depth_module.inter_cam_sync_mode':"0",
-#     # 'enable_rgbd':'false',
-#     # 'enable_gyro':'false',
-#     # 'enable_accel':'false',                         
-#     # 'enable_motion':'false',
-#     # 'gyro_fps':'0',
-#     # 'accel_fps':'0',
-#     # 'motion_fps':'0',
-#     # 'unite_imu_method':"0",
-#     # 'clip_distance':'-2.',
-#     # 'angular_velocity_cov':'0.01',
-#     # 'linear_accel_cov':'0.01',
-#     # 'diagnostics_period':'0.0',
-#     # 'publish_tf':'true',
-#     # 'tf_publish_rate':'0.0',
-#     # 'pointcloud.enable':'false',
-#     # 'pointcloud.stream_filter':'2',
-#     # 'pointcloud.stream_index_filter':'0',
-#     # 'pointcloud.ordered_pc':'false',
-#     # 'pointcloud.allow_no_texture_points':'false',
-#     # 'align_depth.enable':'false',
-#     # 'colorizer.enable':'false',
-#     # 'decimation_filter.enable':'false',
-#     # 'rotation_filter.enable':'false',
-#     # 'rotation_filter.rotation':'0.0',
-#     # 'spatial_filter.enable':'false',
-#     # 'temporal_filter.enable':'false',
-#     # 'disparity_filter.enable':'false',
-#     # 'hole_filling_filter.enable':'false',
-#     # 'hdr_merge.enable':'false',
-#     # 'wait_for_device_timeout':'-1.',
-#     # 'reconnect_timeout':'6.',
-#     # 'base_frame_id':'link',
-#     # 'tf_prefix':'world',
-#     # 'decimation_filter.filter_magnitude':'2',
-#     # 'enable_safety':'false',
-#     # 'safety_camera.safety_mode':'0',
-#     # 'enable_labeled_point_cloud':'false',
-#     # 'depth_mapping_camera.labeled_point_cloud_profile':'0,0,0',
-#     # 'enable_occupancy':'false',
-#     # 'depth_mapping_camera.occupancy_profile':'0,0,0',
-# }
+# Cameras start this many seconds after launch start, on top of their own
+# stagger_delay, so the arms + controller_manager are already up first.
+CAMERA_BASE_DELAY = 25.0
 
+COMMON_ARGS = {
+    'enable_color': 'true',
+    'enable_depth': 'true',
+    'depth_module.depth_profile': '640,480,30',
+    'rgb_camera.color_profile': '640,480,30',
+    'spatial_filter.enable': 'true',
+    'temporal_filter.enable': 'true',
+    'align_depth.enable': 'true',
+    'publish_tf': 'true',
+}
 
 
 ROBOTS = [
@@ -246,15 +156,11 @@ ROBOTS = [
         robot_name='trossen_arm_1',
         arm_variant='base',
         arm_side='none',
-        ip_address='192.168.1.2',
-        ros2_control_hardware_type='real',
+        ip_address='192.168.1.4',
+        ros2_control_hardware_type='mock_components',
         ros2_controllers_config_parameter_filename='dual_arm_controllers.yaml',
-        x=0.0,
-        y=-0.25,
-        z=0.0,
-        roll=0.0,
-        pitch=0.0,
-        yaw=0.0,    
+        x=0.0, y=-0.25, z=0.0,
+        roll=0.0, pitch=0.0, yaw=0.0,
         xyz="0.707 -0.1975 1.015",
         rpy="0 0 1.57",
         use_suction_cup=True,
@@ -266,20 +172,17 @@ ROBOTS = [
         arm_variant='base',
         arm_side='none',
         ip_address='192.168.1.5',
-        ros2_control_hardware_type='real',
+        ros2_control_hardware_type='mock_components',
         ros2_controllers_config_parameter_filename='dual_arm_controllers.yaml',
-        x=0.0, # x=0.405,
-        y=-0.25, # y=-0.384,
-        z=0.0, # z=0.97,
-        roll=0.0,
-        pitch=0.0,
-        yaw=0.0,
-        xyz="0.443 -0.1975 1.015", # 0.405 -0.134 0.97
+        x=0.0, y=-0.25, z=0.0,
+        roll=0.0, pitch=0.0, yaw=0.0,
+        xyz="0.443 -0.1975 1.015",
         rpy="0 0 1.57",
         use_suction_cup=False,
         use_downdraft=True,
     ),
 ]
+
 
 def generate_launch_description_for_robot(
     context, robot: ArmLaunchConfig, include_rviz: bool = False
@@ -332,9 +235,7 @@ def generate_launch_description_for_robot(
         )
         .planning_pipelines(
             default_planning_pipeline='ompl',
-            pipelines=[
-                'ompl',
-            ],
+            pipelines=['ompl'],
         )
         .robot_description_kinematics(
             file_path='config/kinematics.yaml',
@@ -343,7 +244,7 @@ def generate_launch_description_for_robot(
             file_path=f'config/{robot.robot_name}_joint_limits.yaml',
         )
         .sensors_3d(
-            file_path=f'config/sensors_3d.yaml',
+            file_path='config/sensors_3d.yaml',
         )
         .to_moveit_configs()
     )
@@ -352,9 +253,7 @@ def generate_launch_description_for_robot(
         package='moveit_ros_move_group',
         namespace=robot.robot_name,
         executable='move_group',
-        parameters=[
-            moveit_configs.to_dict(),
-        ],
+        parameters=[moveit_configs.to_dict()],
         remappings=[
             ('~/robot_description', f'/{robot.robot_name}/robot_description'),
         ],
@@ -366,12 +265,8 @@ def generate_launch_description_for_robot(
         package='rviz2',
         executable='rviz2',
         name='rviz2_dual',
-        arguments=[
-            '-d', rviz_config_file_launch_arg,
-        ],
-        parameters=[
-            moveit_configs.to_dict(),
-        ],
+        arguments=['-d', rviz_config_file_launch_arg],
+        parameters=[moveit_configs.to_dict()],
         output={'both': 'screen'},
     ) if include_rviz else None
 
@@ -405,9 +300,7 @@ def generate_launch_description_for_robot(
         package='controller_manager',
         executable='ros2_control_node',
         namespace=robot.robot_name,
-        parameters=[
-            ros2_control_controllers_config_parameter_file,
-        ],
+        parameters=[ros2_control_controllers_config_parameter_file],
         remappings=[
             ('~/robot_description', f'/{robot.robot_name}/robot_description'),
         ],
@@ -415,11 +308,7 @@ def generate_launch_description_for_robot(
     )
 
     controller_spawner_nodes: list[Node] = []
-    for controller_name in [
-        'arm_controller',
-        'gripper_controller',
-        'joint_state_broadcaster',
-    ]:
+    for controller_name in ['arm_controller', 'gripper_controller', 'joint_state_broadcaster']:
         controller_spawner_nodes.append(
             Node(
                 name=f'{controller_name}_spawner',
@@ -452,7 +341,7 @@ def generate_launch_description_for_robot(
         name='commander_server',
         namespace=robot.robot_name,
         parameters=[
-            moveit_configs.robot_description,  
+            moveit_configs.robot_description,
             moveit_configs.robot_description_semantic,
             moveit_configs.robot_description_kinematics,
         ],
@@ -479,21 +368,78 @@ def generate_launch_description_for_robot(
                     *([moveit_rviz_node] if moveit_rviz_node is not None else []),
                     TimerAction(
                         period=3.0,
-                        actions=[
-                            commander_server_node,
-                        ],
+                        actions=[commander_server_node],
                     ),
                 ],
             ),
         ),
     ]
 
+
+def build_camera_actions() -> list[Action]:
+    """Build staggered camera + world-TF actions for all entries in CAMERAS."""
+    rs_launch_path = os.path.join(
+        get_package_share_directory('realsense2_camera'),
+        'launch',
+        'rs_launch.py',
+    )
+
+    camera_actions: list[Action] = []
+
+    for cam in CAMERAS:
+        launch_args = dict(COMMON_ARGS)
+        launch_args.update({
+            'camera_name': cam['name'],
+            'camera_namespace': cam['name'],
+            'serial_no': cam['serial_no'],
+            'tf_prefix': cam['tf_prefix'],
+        })
+
+        include = IncludeLaunchDescription(
+            PythonLaunchDescriptionSource(rs_launch_path),
+            launch_arguments=launch_args.items(),
+        )
+
+        # Anchors this camera's frame tree into `world` -- without this the
+        # camera's TF subtree is disconnected and its depth/point cloud data
+        # can't be transformed into the world/robot frame.
+        cam_static_tf = Node(
+            package='tf2_ros',
+            executable='static_transform_publisher',
+            name=f"{cam['name']}_static_transform_publisher",
+            arguments=[
+                '--x', str(cam['x']),
+                '--y', str(cam['y']),
+                '--z', str(cam['z']),
+                '--roll', str(cam['roll']),
+                '--pitch', str(cam['pitch']),
+                '--yaw', str(cam['yaw']),
+                '--frame-id', 'world',
+                '--child-frame-id', f"{cam['tf_prefix']}link",
+            ],
+            output={'both': 'screen'},
+        )
+
+        camera_actions.append(
+            TimerAction(
+                period=CAMERA_BASE_DELAY + cam['stagger_delay'],
+                actions=[include, cam_static_tf],
+            )
+        )
+
+    return camera_actions
+
+
 def launch_setup(context, *args, **kwargs):
-    actions = []
+    actions: list[Action] = []
+
     for i, robot in enumerate(ROBOTS):
-        robot_actions = generate_launch_description_for_robot(context, robot, include_rviz=(i == 1))
-        actions.extend(robot_actions)
-    
+        actions.extend(
+            generate_launch_description_for_robot(context, robot, include_rviz=(i == 0))
+        )
+
+    actions.extend(build_camera_actions())
+
     shared_nodes = TimerAction(
         period=5.0,  # Give both arms time to finish spawning
         actions=[
@@ -503,46 +449,22 @@ def launch_setup(context, *args, **kwargs):
                 name='main_controller',
                 output={'both': 'screen'},
             ),
-            Node(
-                package='armor_control_py',
-                executable='ads48_bridge',
-                name='ads48_bridge',
-                output={'both': 'screen'},
-            ),
-            Node(
-                package='armor_control_py',
-                executable='ads49_bridge',
-                name='ads49_bridge',
-                output={'both': 'screen'},
-            ),
-            Node(
-                package='armor_control_py',
-                executable='monitor_ups',
-                name='ups_monitor',
-                output={'both': 'screen'},
-            ),
-            Node(
-                package='armor_control_py',
-                executable='pickup_action_server',
-                name='pick_up',
-                output={'both': 'screen'},
-            ),
-            Node(
-                package='armor_control_py',
-                executable='start_button',
-                name='start_button',
-                output={'both': 'screen'},
-            ),
-            Node(
-                package='armor_control_py',
-                executable='estop_button',
-                name='estop_button',
-                output={'both': 'screen'},
-            ),
             # Node(
             #     package='armor_control_py',
-            #     executable='vibration_rack',
-            #     name='vibration_rack',
+            #     executable='pickup_action_server',
+            #     name='pick_up',
+            #     output={'both': 'screen'},
+            # ),
+            # Node(
+            #     package='armor_control_py',
+            #     executable='start_button',
+            #     name='start_button',
+            #     output={'both': 'screen'},
+            # ),
+            # Node(
+            #     package='armor_control_py',
+            #     executable='estop_button',
+            #     name='estop_button',
             #     output={'both': 'screen'},
             # ),
             # Node(
@@ -553,83 +475,8 @@ def launch_setup(context, *args, **kwargs):
             # ),
         ]
     )
-
-    # cameras = dict(
-    #     cam_left='_419122270123',
-    #     cam_right='_409122272701',
-    #     cam_chute='_412622272151',
-    #     cam_jogger='_412622272127'
-    # )
-
-    # for i, camera in enumerate(cameras.keys()):
-    #     print(f"Cameras: {cameras[camera]}")
-    #     cam_node = Node(
-    #         package='realsense2_camera',
-    #         executable='realsense2_camera_node',
-    #         name=camera,
-    #         namespace='camera',
-    #         parameters=[{
-    #             # 'rgb_camera.color_profile': '640,480,30',
-    #             # 'depth_module.depth_profile': '640,480,30',
-    #             # 'spatial_filter.enable': True,
-    #             # 'temporal_filter.enable': True,
-    #             # 'colorizer.enable': False,
-    #             'serial_no': cameras[camera],
-    #             'enable_infra':'false',
-    #             'enable_infra1':'false',
-    #             'enable_infra2':'false',
-    #             # 'tf_prefix': f'{camera}_',
-    #         }],
-    #         output={'both': 'screen'},
-    #         arguments=['--ros-args', '--log-level', 'info'],
-    #         emulate_tty=True,
-    #     )
-
-    #     cam_static_tf = Node(
-    #         package='tf2_ros',
-    #         executable='static_transform_publisher',
-    #         name=f'{camera}_static_tf',
-    #         arguments=[
-    #             '--x', '0.0', '--y', '0.0', '--z', '0.0',
-    #             '--roll', '0.0', '--pitch', '0.0', '--yaw', '0.0',
-    #             '--frame-id', 'world',
-    #             '--child-frame-id', f'{camera}_camera_link',
-    #             '--ros-args', '--log-level', 'info'
-    #         ],
-    #         output={'both': 'screen'},
-    #     )
-
-    #     actions.append(TimerAction(period=(i * 3) + 25.0, actions=[cam_node, cam_static_tf]))
-
-    # rs_launch_path = os.path.join(
-    #     get_package_share_directory('realsense2_camera'),
-    #     'launch',
-    #     'rs_launch.py',
-    # )
- 
-    # for cam in CAMERAS:
-    #     launch_args = dict(COMMON_ARGS)
-    #     launch_args.update({
-    #         'camera_name': cam['camera_name'],
-    #         'serial_no': cam['serial_no']
-    #     })
- 
-    #     include = IncludeLaunchDescription(
-    #         PythonLaunchDescriptionSource(rs_launch_path),
-    #         launch_arguments=launch_args.items(),
-    #     )
- 
-    #     # Wrap in a TimerAction so each camera's include only fires
-    #     # after its stagger_delay has elapsed since launch start.
-    #     actions.append(
-    #         TimerAction(
-    #             period=cam['stagger_delay'],
-    #             actions=[include],
-    #         )
-    #     )
-
-
     actions.append(shared_nodes)
+
     return actions
 
 
