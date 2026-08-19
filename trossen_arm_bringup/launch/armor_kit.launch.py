@@ -128,117 +128,6 @@ class ArmLaunchConfig:
     use_suction_cup: bool
     """If there is a suction cup"""
 
-# cameras = dict(
-#     cam_left="419122270123",
-#     cam_right="409122272701",
-#     cam_chute="412622272151",
-#     cam_jogger="412622272127"
-# )
-
-# CAMERAS = [
-#     {
-#         'camera_name': 'cam_left',
-#         'serial_no': '_419122270123', 
-#         'stagger_delay': 5.0,
-#     },
-#     {
-#         'camera_name': 'cam_right',
-#         'serial_no': '_409122272701',
-#         'stagger_delay': 10.0,
-#     },
-#     {
-#         'camera_name': 'cam_chute',
-#         'serial_no': '_412622272151',
-#         'stagger_delay': 15.0,
-#     },
-#     {
-#         'camera_name': 'cam_jogger',
-#         'serial_no': '_412622272127',
-#         'stagger_delay': 20.0,
-#     },
-# ]
-
-# COMMON_ARGS = {
-#     # 'camera_namespace':'camera',
-#     # 'usb_port_id':"''",
-#     # 'device_type':"''",
-#     # 'config_file':"''",
-#     # 'json_file_path':"''",
-#     # 'initial_reset':'false',
-#     # 'accelerate_gpu_with_glsl':"false",
-#     # 'rosbag_filename':"''",
-#     # 'rosbag_loop':'false',
-#     # 'log_level':'info',
-#     # 'output':'screen',
-#     # 'enable_color':'true',
-#     # 'rgb_camera.color_profile':'0,0,0',
-#     # 'rgb_camera.color_format':'RGB8',
-#     # 'rgb_camera.enable_auto_exposure': 'true',
-#     # 'enable_depth':'true',
-#     # 'enable_infra':'false',
-#     # 'enable_infra1':'false',
-#     # 'enable_infra2':'false',
-#     # 'depth_module.depth_profile':'0,0,0',
-#     # 'depth_module.depth_format': 'Z16',
-#     # 'depth_module.infra_profile':'0,0,0',
-#     # 'depth_module.infra_format':'RGB8',
-#     # 'depth_module.infra1_format':'Y8',
-#     # 'depth_module.infra2_format':'Y8',
-#     # 'depth_module.color_profile':'0,0,0',
-#     # 'depth_module.color_format':'RGB8',
-#     # 'depth_module.exposure':'8500',
-#     # 'depth_module.gain':'16',
-#     # 'depth_module.hdr_enabled':'false',
-#     # 'depth_module.enable_auto_exposure':'true',
-#     # 'depth_module.exposure.1':'7500',
-#     # 'depth_module.gain.1':'16',
-#     # 'depth_module.exposure.2':'1',
-#     # 'depth_module.gain.2':'16',
-#     # 'enable_sync':'false',
-#     # 'depth_module.inter_cam_sync_mode':"0",
-#     # 'enable_rgbd':'false',
-#     # 'enable_gyro':'false',
-#     # 'enable_accel':'false',                         
-#     # 'enable_motion':'false',
-#     # 'gyro_fps':'0',
-#     # 'accel_fps':'0',
-#     # 'motion_fps':'0',
-#     # 'unite_imu_method':"0",
-#     # 'clip_distance':'-2.',
-#     # 'angular_velocity_cov':'0.01',
-#     # 'linear_accel_cov':'0.01',
-#     # 'diagnostics_period':'0.0',
-#     # 'publish_tf':'true',
-#     # 'tf_publish_rate':'0.0',
-#     # 'pointcloud.enable':'false',
-#     # 'pointcloud.stream_filter':'2',
-#     # 'pointcloud.stream_index_filter':'0',
-#     # 'pointcloud.ordered_pc':'false',
-#     # 'pointcloud.allow_no_texture_points':'false',
-#     # 'align_depth.enable':'false',
-#     # 'colorizer.enable':'false',
-#     # 'decimation_filter.enable':'false',
-#     # 'rotation_filter.enable':'false',
-#     # 'rotation_filter.rotation':'0.0',
-#     # 'spatial_filter.enable':'false',
-#     # 'temporal_filter.enable':'false',
-#     # 'disparity_filter.enable':'false',
-#     # 'hole_filling_filter.enable':'false',
-#     # 'hdr_merge.enable':'false',
-#     # 'wait_for_device_timeout':'-1.',
-#     # 'reconnect_timeout':'6.',
-#     # 'base_frame_id':'link',
-#     # 'tf_prefix':'world',
-#     # 'decimation_filter.filter_magnitude':'2',
-#     # 'enable_safety':'false',
-#     # 'safety_camera.safety_mode':'0',
-#     # 'enable_labeled_point_cloud':'false',
-#     # 'depth_mapping_camera.labeled_point_cloud_profile':'0,0,0',
-#     # 'enable_occupancy':'false',
-#     # 'depth_mapping_camera.occupancy_profile':'0,0,0',
-# }
-
-
 
 ROBOTS = [
     ArmLaunchConfig(
@@ -246,7 +135,7 @@ ROBOTS = [
         robot_name='trossen_arm_1',
         arm_variant='base',
         arm_side='none',
-        ip_address='192.168.1.2',
+        ip_address='192.168.1.4',
         ros2_control_hardware_type='real',
         ros2_controllers_config_parameter_filename='dual_arm_controllers.yaml',
         x=0.0,
@@ -539,95 +428,26 @@ def launch_setup(context, *args, **kwargs):
                 name='estop_button',
                 output={'both': 'screen'},
             ),
-            # Node(
-            #     package='armor_control_py',
-            #     executable='vibration_rack',
-            #     name='vibration_rack',
-            #     output={'both': 'screen'},
-            # ),
+            Node(
+                package='armor_control_py',
+                executable='vibration_rack',
+                name='vibration_rack',
+                output={'both': 'screen'},
+            ),
+            Node(
+                package='armor_control_py',
+                executable='pause_button',
+                name='pause_button',
+                output={'both': 'screen'},
+            ),
             # Node(
             #     package='armor_record',
-            #     executable='bag_recorder_node',
-            #     name='bag_recorder_node',
+            #     executable='recorder_node',
+            #     name='recorder_node',
             #     output={'both': 'screen'},
             # ),
         ]
     )
-
-    # cameras = dict(
-    #     cam_left='_419122270123',
-    #     cam_right='_409122272701',
-    #     cam_chute='_412622272151',
-    #     cam_jogger='_412622272127'
-    # )
-
-    # for i, camera in enumerate(cameras.keys()):
-    #     print(f"Cameras: {cameras[camera]}")
-    #     cam_node = Node(
-    #         package='realsense2_camera',
-    #         executable='realsense2_camera_node',
-    #         name=camera,
-    #         namespace='camera',
-    #         parameters=[{
-    #             # 'rgb_camera.color_profile': '640,480,30',
-    #             # 'depth_module.depth_profile': '640,480,30',
-    #             # 'spatial_filter.enable': True,
-    #             # 'temporal_filter.enable': True,
-    #             # 'colorizer.enable': False,
-    #             'serial_no': cameras[camera],
-    #             'enable_infra':'false',
-    #             'enable_infra1':'false',
-    #             'enable_infra2':'false',
-    #             # 'tf_prefix': f'{camera}_',
-    #         }],
-    #         output={'both': 'screen'},
-    #         arguments=['--ros-args', '--log-level', 'info'],
-    #         emulate_tty=True,
-    #     )
-
-    #     cam_static_tf = Node(
-    #         package='tf2_ros',
-    #         executable='static_transform_publisher',
-    #         name=f'{camera}_static_tf',
-    #         arguments=[
-    #             '--x', '0.0', '--y', '0.0', '--z', '0.0',
-    #             '--roll', '0.0', '--pitch', '0.0', '--yaw', '0.0',
-    #             '--frame-id', 'world',
-    #             '--child-frame-id', f'{camera}_camera_link',
-    #             '--ros-args', '--log-level', 'info'
-    #         ],
-    #         output={'both': 'screen'},
-    #     )
-
-    #     actions.append(TimerAction(period=(i * 3) + 25.0, actions=[cam_node, cam_static_tf]))
-
-    # rs_launch_path = os.path.join(
-    #     get_package_share_directory('realsense2_camera'),
-    #     'launch',
-    #     'rs_launch.py',
-    # )
- 
-    # for cam in CAMERAS:
-    #     launch_args = dict(COMMON_ARGS)
-    #     launch_args.update({
-    #         'camera_name': cam['camera_name'],
-    #         'serial_no': cam['serial_no']
-    #     })
- 
-    #     include = IncludeLaunchDescription(
-    #         PythonLaunchDescriptionSource(rs_launch_path),
-    #         launch_arguments=launch_args.items(),
-    #     )
- 
-    #     # Wrap in a TimerAction so each camera's include only fires
-    #     # after its stagger_delay has elapsed since launch start.
-    #     actions.append(
-    #         TimerAction(
-    #             period=cam['stagger_delay'],
-    #             actions=[include],
-    #         )
-    #     )
-
 
     actions.append(shared_nodes)
     return actions
