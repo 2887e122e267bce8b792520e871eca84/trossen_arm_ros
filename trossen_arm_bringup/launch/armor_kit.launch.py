@@ -31,16 +31,12 @@ from typing import Literal
 from ament_index_python.packages import get_package_share_directory
 
 from launch import Action, LaunchDescription
-from launch.actions import IncludeLaunchDescription
-from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.actions import (
     DeclareLaunchArgument,
     RegisterEventHandler,
     OpaqueFunction, # Moveit
     TimerAction,
-    ExecuteProcess,
     OpaqueFunction, 
-    LogInfo
 )
 from launch.conditions import IfCondition
 from launch.event_handlers import (
@@ -48,13 +44,10 @@ from launch.event_handlers import (
     OnProcessExit
 )
 from launch.substitutions import (
-    Command,
-    FindExecutable,
     LaunchConfiguration,
     PathJoinSubstitution,
 )
 
-import launch_ros.actions
 from launch_ros.actions import Node
 from launch_ros.parameter_descriptions import (
     ParameterFile,
@@ -64,13 +57,10 @@ from launch_ros.substitutions import FindPackageShare
 
 # Moveit Configs
 from moveit_configs_utils import MoveItConfigsBuilder
-import Jetson.GPIO as GPIO
-import yaml
-import os
+# import Jetson.GPIO as GPIO
 
-
-
-GPIO.cleanup()
+# GPIO.cleanup()
+ROBOT_TO_SIMULATE = 2  # 1 - left ; 2 - right
 
 
 @dataclass
@@ -116,57 +106,40 @@ class ArmLaunchConfig:
     yaw: float
     """Yaw angle of the robot base frame in radians measured in the world frame"""
 
-    xyz: str
-    """Where the robot arm is located in the urdf"""
-
-    rpy: str
-    """The rotation of the robot arm in the urdf"""
-
-    use_downdraft: bool
-    """If the robot arm will use the dowdraft"""
-
-    use_suction_cup: bool
-    """If there is a suction cup"""
 
 
 ROBOTS = [
+    # Left
     ArmLaunchConfig(
         robot_model='wxai',
         robot_name='trossen_arm_1',
         arm_variant='base',
         arm_side='none',
-        ip_address='192.168.1.4',
-        ros2_control_hardware_type='real',
+        ip_address='192.168.1.2',
+        ros2_control_hardware_type='mock_components',
         ros2_controllers_config_parameter_filename='dual_arm_controllers.yaml',
         x=0.0,
-        y=-0.25,
+        y=0.0 if ROBOT_TO_SIMULATE == 1 else 0.345,
         z=0.0,
         roll=0.0,
         pitch=0.0,
-        yaw=0.0,    
-        xyz="0.707 -0.1975 1.015",
-        rpy="0 0 1.57",
-        use_suction_cup=True,
-        use_downdraft=True,
+        yaw=0.0,
     ),
+    # Right
     ArmLaunchConfig(
         robot_model='wxai',
         robot_name='trossen_arm_2',
         arm_variant='base',
         arm_side='none',
-        ip_address='192.168.1.5',
-        ros2_control_hardware_type='real',
+        ip_address='192.168.1.3',
+        ros2_control_hardware_type='mock_components',
         ros2_controllers_config_parameter_filename='dual_arm_controllers.yaml',
-        x=0.0, # x=0.405,
-        y=-0.25, # y=-0.384,
-        z=0.0, # z=0.97,
+        x=0.0,
+        y=0.0 if ROBOT_TO_SIMULATE == 2 else -0.345,
+        z=0.0,
         roll=0.0,
         pitch=0.0,
         yaw=0.0,
-        xyz="0.443 -0.1975 1.015", # 0.405 -0.134 0.97
-        rpy="0 0 1.57",
-        use_suction_cup=False,
-        use_downdraft=True,
     ),
 ]
 
@@ -189,15 +162,9 @@ def generate_launch_description_for_robot(
             ]).perform(context),
             mappings={
                 'prefix': f'{robot.robot_name}/',
-                'arm_variant': robot.arm_variant,
-                'arm_side': robot.arm_side,
+                'variant': robot.arm_variant,
                 'ip_address': robot.ip_address,
                 'ros2_control_hardware_type': robot.ros2_control_hardware_type,
-                'xyz': robot.xyz,
-                'rpy': robot.rpy,
-                'use_suction_cup': 'true' if robot.use_suction_cup else 'false',
-                'use_downdraft': 'true' if robot.use_downdraft else 'false',
-                'use_world_frame': 'false',
             }
         )
         .robot_description_semantic(
@@ -205,8 +172,6 @@ def generate_launch_description_for_robot(
             mappings={
                 'prefix': f'{robot.robot_name}/',
                 'variant': robot.arm_variant,
-                'use_downdraft': 'true' if robot.use_downdraft else 'false',
-                'use_suction_cup': 'true' if robot.use_suction_cup else 'false',
             },
         )
         .planning_scene_monitor(
@@ -255,6 +220,7 @@ def generate_launch_description_for_robot(
         package='rviz2',
         executable='rviz2',
         name='rviz2_dual',
+        namespace=robot.robot_name,
         arguments=[
             '-d', rviz_config_file_launch_arg,
         ],
@@ -276,7 +242,7 @@ def generate_launch_description_for_robot(
             '--pitch', str(robot.pitch),
             '--yaw', str(robot.yaw),
             '--frame-id', 'world',
-            '--child-frame-id', f'/{robot.robot_name}/Bottom_Box' if robot.use_downdraft else f'/{robot.robot_name}/base_link',
+            '--child-frame-id', f'{robot.robot_name}/base_link',
         ],
         output={'both': 'screen'},
     )
@@ -331,6 +297,10 @@ def generate_launch_description_for_robot(
             moveit_configs.robot_description,
             moveit_configs.robot_description_semantic,
         ],
+        remappings=[
+            ('tf', '/tf'),
+            ('tf_static', '/tf_static'),
+        ],
         output={'both': 'screen'},
         arguments=['--ros-args', '--log-level', 'WARN'],
     )
@@ -380,66 +350,66 @@ def generate_launch_description_for_robot(
 def launch_setup(context, *args, **kwargs):
     actions = []
     for i, robot in enumerate(ROBOTS):
-        robot_actions = generate_launch_description_for_robot(context, robot, include_rviz=(i == 1))
+        robot_actions = generate_launch_description_for_robot(context, robot, include_rviz=(i == ROBOT_TO_SIMULATE-1))
         actions.extend(robot_actions)
     
     shared_nodes = TimerAction(
         period=5.0,  # Give both arms time to finish spawning
         actions=[
-            Node(
-                package='main_controller',
-                executable='main_controller',
-                name='main_controller',
-                output={'both': 'screen'},
-            ),
-            Node(
-                package='armor_control_py',
-                executable='ads48_bridge',
-                name='ads48_bridge',
-                output={'both': 'screen'},
-            ),
-            Node(
-                package='armor_control_py',
-                executable='ads49_bridge',
-                name='ads49_bridge',
-                output={'both': 'screen'},
-            ),
-            Node(
-                package='armor_control_py',
-                executable='monitor_ups',
-                name='ups_monitor',
-                output={'both': 'screen'},
-            ),
-            Node(
-                package='armor_control_py',
-                executable='pickup_action_server',
-                name='pick_up',
-                output={'both': 'screen'},
-            ),
-            Node(
-                package='armor_control_py',
-                executable='start_button',
-                name='start_button',
-                output={'both': 'screen'},
-            ),
-            Node(
-                package='armor_control_py',
-                executable='estop_button',
-                name='estop_button',
-                output={'both': 'screen'},
-            ),
-            Node(
-                package='armor_control_py',
-                executable='vibration_rack',
-                name='vibration_rack',
-                output={'both': 'screen'},
-            ),
-            Node(
-                package='armor_control_py',
-                executable='pause_button',
-                name='pause_button',
-                output={'both': 'screen'},
-            ),
+            # Node(
+            #     package='main_controller',
+            #     executable='main_controller',
+            #     name='main_controller',
+            #     output={'both': 'screen'},
+            # ),
+            # Node(
+            #     package='armor_control_py',
+            #     executable='ads48_bridge',
+            #     name='ads48_bridge',
+            #     output={'both': 'screen'},
+            # ),
+            # Node(
+            #     package='armor_control_py',
+            #     executable='ads49_bridge',
+            #     name='ads49_bridge',
+            #     output={'both': 'screen'},
+            # ),
+            # Node(
+            #     package='armor_control_py',
+            #     executable='monitor_ups',
+            #     name='ups_monitor',
+            #     output={'both': 'screen'},
+            # ),
+            # Node(
+            #     package='armor_control_py',
+            #     executable='pickup_action_server',
+            #     name='pick_up',
+            #     output={'both': 'screen'},
+            # ),
+            # Node(
+            #     package='armor_control_py',
+            #     executable='start_button',
+            #     name='start_button',
+            #     output={'both': 'screen'},
+            # ),
+            # Node(
+            #     package='armor_control_py',
+            #     executable='estop_button',
+            #     name='estop_button',
+            #     output={'both': 'screen'},
+            # ),
+            # Node(
+            #     package='armor_control_py',
+            #     executable='vibration_rack',
+            #     name='vibration_rack',
+            #     output={'both': 'screen'},
+            # ),
+            # Node(
+            #     package='armor_control_py',
+            #     executable='pause_button',
+            #     name='pause_button',
+            #     output={'both': 'screen'},
+            # ),
             # Node(
             #     package='armor_record',
             #     executable='recorder_node',

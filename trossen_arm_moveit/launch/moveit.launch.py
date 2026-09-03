@@ -109,6 +109,16 @@ def launch_setup(context, *args, **kwargs):
         output={'both': 'screen'},
     )
 
+    commander_server_node = Node(
+        package='armor_commander_cpp',
+        executable='commander_server',
+        name='commander_server',
+        parameters=[
+            moveit_configs.to_dict(),
+        ],
+        output={'both': 'screen'},
+    )
+
     moveit_rviz_node = Node(
         condition=IfCondition(use_moveit_rviz_launch_arg),
         package='rviz2',
@@ -181,6 +191,12 @@ def launch_setup(context, *args, **kwargs):
             OnProcessStart(
                 target_action=controller_manager_node,
                 on_start=controller_spawner_nodes,
+            )
+        ),
+        RegisterEventHandler(
+            OnProcessStart(
+                target_action=move_group_node,
+                on_start=[commander_server_node],
             )
         ),
     ]

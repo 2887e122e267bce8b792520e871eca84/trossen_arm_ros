@@ -1,17 +1,9 @@
 repositories:
   trossen_arm_description:
     type: git
-    url: https://github.com/2887e122e267bce8b792520e871eca84/trossen_arm_description.git
+    url: https://github.com/TrossenRobotics/trossen_arm_description.git
     version: jazzy
   trossen_arm:
     type: git
     url: https://github.com/TrossenRobotics/trossen_arm.git
     version: v1.9.0
-  armor_commander_cpp:
-    type: git
-    url: https://github.com/2887e122e267bce8b792520e871eca84/armor_commander_cpp.git
-    version: main
-  main_controller:
-    type: git
-    url: https://github.com/2887e122e267bce8b792520e871eca84/main_controller.git
-    version: main
