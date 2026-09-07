@@ -61,7 +61,15 @@ from moveit_configs_utils import MoveItConfigsBuilder
 
 # GPIO.cleanup()
 ROBOT_TO_SIMULATE = 2  # 1 - left ; 2 - right
+WORLD_Y_OFFSET = -0.1725 if ROBOT_TO_SIMULATE == 1 else 0.1725
 
+# Camera pose measured from the midpoint between the two arm mounts.
+CAM_X = 0.0
+CAM_Y = 0.0
+CAM_Z = 0.0
+CAM_ROLL = 0.0
+CAM_PITCH = 0.0 # 1.5708
+CAM_YAW = 0.0
 
 @dataclass
 class ArmLaunchConfig:
@@ -356,6 +364,28 @@ def launch_setup(context, *args, **kwargs):
     shared_nodes = TimerAction(
         period=5.0,  # Give both arms time to finish spawning
         actions=[
+            Node(
+                package='aruco_markers',
+                executable='detect_markers',
+                name='detect_markers',
+                output={'both': 'screen'},
+            ),
+            Node(
+                package='tf2_ros',
+                executable='static_transform_publisher',
+                name='world_to_camera',
+                arguments=[
+                    '--x', str(CAM_X),
+                    '--y', str(CAM_Y + WORLD_Y_OFFSET),
+                    '--z', str(CAM_Z),
+                    '--roll', str(CAM_ROLL),
+                    '--pitch', str(CAM_PITCH),
+                    '--yaw', str(CAM_YAW),
+                    '--frame-id', 'world',
+                    '--child-frame-id', 'camera_link',
+                ],
+                output={'both': 'screen'},
+            ),
             # Node(
             #     package='main_controller',
             #     executable='main_controller',
@@ -436,7 +466,7 @@ def generate_launch_description() -> LaunchDescription:
         default_value=PathJoinSubstitution([
             FindPackageShare('trossen_arm_bringup'),
             'rviz',
-            'armor_kit.rviz',
+            f'armor_kit{ROBOT_TO_SIMULATE}.rviz',
         ]),
         description='Full path to the RVIZ config file to use.',
     )
