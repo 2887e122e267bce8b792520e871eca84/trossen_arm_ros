@@ -7,8 +7,10 @@
 
     <xacro:arg name="variant" default="base"/>        <!-- 'base', 'follower' -->
     <xacro:arg name="prefix" default=""/>
+    <xacro:arg name="use_suction_cup" default="true"/>
     <xacro:property name="arm_variant" value="$(arg variant)"/>
     <xacro:property name="prefix" value="$(arg prefix)"/>
+    <xacro:property name="srdf_use_suction_cup" value="$(arg use_suction_cup)"/>
 
     <!--GROUPS: Representation of a set of joints and links. This can be useful for specifying DOF to plan for, defining arms, end effectors, etc-->
     <!--LINKS: When a link is specified, the parent joint of that link (if it exists) is automatically included-->
@@ -19,6 +21,17 @@
         <chain base_link="${prefix}base_link" tip_link="${prefix}ee_gripper_link"/>
     </group>
     <group name="gripper">
+        <xacro:if value="${srdf_use_suction_cup}">
+            <joint name="${prefix}robot_mount_and_link_6"/>
+            <joint name="${prefix}Pillar_1_and_Robot_Mount"/>
+            <joint name="${prefix}Suction_Mount_and_Pillar_1"/>
+            <joint name="${prefix}Pillar_2_and_Suction_Mount"/>
+            <joint name="${prefix}Pillar_4_and_Suction_Mount"/>
+            <joint name="${prefix}Tube_and_Suction_Mount"/>
+            <joint name="${prefix}Connector_and_Tube"/>
+            <joint name="${prefix}Suction_Cup_and_Connector"/>
+            <joint name="${prefix}Pillar_3_and_Robot_Mount"/>
+        </xacro:if>
         <link name="${prefix}carriage_left" />
         <link name="${prefix}carriage_right" />
         <link name="${prefix}gripper_left" />
@@ -35,19 +48,11 @@
         <joint name="${prefix}joint_4" value="0"/>
         <joint name="${prefix}joint_5" value="0"/>
     </group_state>
-    <group_state name="upright" group="arm">
-        <joint name="${prefix}joint_0" value="0"/>
-        <joint name="${prefix}joint_1" value="1.5708"/>
-        <joint name="${prefix}joint_2" value="1.5708"/>
-        <joint name="${prefix}joint_3" value="0"/>
-        <joint name="${prefix}joint_4" value="0"/>
-        <joint name="${prefix}joint_5" value="0"/>
-    </group_state>
     <group_state name="ready" group="arm">
         <joint name="${prefix}joint_0" value="0"/>
-        <joint name="${prefix}joint_1" value="1.04719755"/>  <!-- pi / 3-->
-        <joint name="${prefix}joint_2" value="0.523598776"/>  <!-- pi / 6-->
-        <joint name="${prefix}joint_3" value="0.628318531"/>  <!-- pi / 5-->
+        <joint name="${prefix}joint_1" value="0.8"/> 
+        <joint name="${prefix}joint_2" value="0.8"/>  
+        <joint name="${prefix}joint_3" value="0"/>
         <joint name="${prefix}joint_4" value="0"/>
         <joint name="${prefix}joint_5" value="0"/>
     </group_state>
@@ -58,6 +63,10 @@
     <group_state name="open" group="gripper">
         <joint name="${prefix}left_carriage_joint" value="0.044"/>
         <joint name="${prefix}right_carriage_joint" value="0.044"/>
+    </group_state>
+    <group_state name="half_open" group="gripper">
+        <joint name="${prefix}left_carriage_joint" value="0.022"/>
+        <joint name="${prefix}right_carriage_joint" value="0.022"/>
     </group_state>
     <!--END EFFECTOR: Purpose: Represent information about an end effector.-->
     <end_effector name="gripper" parent_link="${prefix}ee_gripper_link" group="gripper" parent_group="arm"/>
@@ -95,6 +104,116 @@
     <disable_collisions link1="${prefix}link_4" link2="${prefix}link_5" reason="Adjacent"/>
     <disable_collisions link1="${prefix}link_4" link2="${prefix}link_6" reason="Never"/>
     <disable_collisions link1="${prefix}link_5" link2="${prefix}link_6" reason="Adjacent"/>
+
+    <xacro:if value="${srdf_use_suction_cup}">
+        <disable_collisions link1="${prefix}Connector" link2="${prefix}Pillar_1" reason="Never"/>
+        <disable_collisions link1="${prefix}Connector" link2="${prefix}Pillar_2" reason="Never"/>
+        <disable_collisions link1="${prefix}Connector" link2="${prefix}Pillar_3" reason="Never"/>
+        <disable_collisions link1="${prefix}Connector" link2="${prefix}Pillar_4" reason="Never"/>
+        <disable_collisions link1="${prefix}Connector" link2="${prefix}Robot_Mount" reason="Never"/>
+        <disable_collisions link1="${prefix}Connector" link2="${prefix}Suction_Cup" reason="Adjacent"/>
+        <disable_collisions link1="${prefix}Connector" link2="${prefix}Suction_Mount" reason="Default"/>
+        <disable_collisions link1="${prefix}Connector" link2="${prefix}Tube" reason="Adjacent"/>
+        <disable_collisions link1="${prefix}Connector" link2="${prefix}carriage_left" reason="Never"/>
+        <disable_collisions link1="${prefix}Connector" link2="${prefix}carriage_right" reason="Never"/>
+        <disable_collisions link1="${prefix}Connector" link2="${prefix}gripper_left" reason="Never"/>
+        <disable_collisions link1="${prefix}Connector" link2="${prefix}gripper_right" reason="Never"/>
+        <disable_collisions link1="${prefix}Connector" link2="${prefix}link_3" reason="Never"/>
+        <disable_collisions link1="${prefix}Connector" link2="${prefix}link_4" reason="Never"/>
+        <disable_collisions link1="${prefix}Connector" link2="${prefix}link_5" reason="Never"/>
+        <disable_collisions link1="${prefix}Connector" link2="${prefix}link_6" reason="Never"/>
+        <disable_collisions link1="${prefix}Pillar_1" link2="${prefix}Pillar_2" reason="Never"/>
+        <disable_collisions link1="${prefix}Pillar_1" link2="${prefix}Pillar_3" reason="Never"/>
+        <disable_collisions link1="${prefix}Pillar_1" link2="${prefix}Pillar_4" reason="Never"/>
+        <disable_collisions link1="${prefix}Pillar_1" link2="${prefix}Robot_Mount" reason="Adjacent"/>
+        <disable_collisions link1="${prefix}Pillar_1" link2="${prefix}Suction_Cup" reason="Never"/>
+        <disable_collisions link1="${prefix}Pillar_1" link2="${prefix}Suction_Mount" reason="Adjacent"/>
+        <disable_collisions link1="${prefix}Pillar_1" link2="${prefix}Tube" reason="Never"/>
+        <disable_collisions link1="${prefix}Pillar_1" link2="${prefix}carriage_left" reason="Never"/>
+        <disable_collisions link1="${prefix}Pillar_1" link2="${prefix}carriage_right" reason="Never"/>
+        <disable_collisions link1="${prefix}Pillar_1" link2="${prefix}gripper_left" reason="Never"/>
+        <disable_collisions link1="${prefix}Pillar_1" link2="${prefix}gripper_right" reason="Never"/>
+        <disable_collisions link1="${prefix}Pillar_1" link2="${prefix}link_3" reason="Never"/>
+        <disable_collisions link1="${prefix}Pillar_1" link2="${prefix}link_4" reason="Never"/>
+        <disable_collisions link1="${prefix}Pillar_1" link2="${prefix}link_5" reason="Never"/>
+        <disable_collisions link1="${prefix}Pillar_1" link2="${prefix}link_6" reason="Never"/>
+        <disable_collisions link1="${prefix}Pillar_2" link2="${prefix}Pillar_3" reason="Never"/>
+        <disable_collisions link1="${prefix}Pillar_2" link2="${prefix}Pillar_4" reason="Never"/>
+        <disable_collisions link1="${prefix}Pillar_2" link2="${prefix}Robot_Mount" reason="Default"/>
+        <disable_collisions link1="${prefix}Pillar_2" link2="${prefix}Suction_Cup" reason="Never"/>
+        <disable_collisions link1="${prefix}Pillar_2" link2="${prefix}Suction_Mount" reason="Adjacent"/>
+        <disable_collisions link1="${prefix}Pillar_2" link2="${prefix}Tube" reason="Never"/>
+        <disable_collisions link1="${prefix}Pillar_2" link2="${prefix}carriage_left" reason="Never"/>
+        <disable_collisions link1="${prefix}Pillar_2" link2="${prefix}carriage_right" reason="Never"/>
+        <disable_collisions link1="${prefix}Pillar_2" link2="${prefix}gripper_left" reason="Never"/>
+        <disable_collisions link1="${prefix}Pillar_2" link2="${prefix}gripper_right" reason="Never"/>
+        <disable_collisions link1="${prefix}Pillar_2" link2="${prefix}link_3" reason="Never"/>
+        <disable_collisions link1="${prefix}Pillar_2" link2="${prefix}link_4" reason="Never"/>
+        <disable_collisions link1="${prefix}Pillar_2" link2="${prefix}link_5" reason="Never"/>
+        <disable_collisions link1="${prefix}Pillar_2" link2="${prefix}link_6" reason="Never"/>
+        <disable_collisions link1="${prefix}Pillar_3" link2="${prefix}Pillar_4" reason="Never"/>
+        <disable_collisions link1="${prefix}Pillar_3" link2="${prefix}Robot_Mount" reason="Adjacent"/>
+        <disable_collisions link1="${prefix}Pillar_3" link2="${prefix}Suction_Cup" reason="Never"/>
+        <disable_collisions link1="${prefix}Pillar_3" link2="${prefix}Suction_Mount" reason="Default"/>
+        <disable_collisions link1="${prefix}Pillar_3" link2="${prefix}Tube" reason="Never"/>
+        <disable_collisions link1="${prefix}Pillar_3" link2="${prefix}carriage_left" reason="Never"/>
+        <disable_collisions link1="${prefix}Pillar_3" link2="${prefix}carriage_right" reason="Never"/>
+        <disable_collisions link1="${prefix}Pillar_3" link2="${prefix}gripper_left" reason="Never"/>
+        <disable_collisions link1="${prefix}Pillar_3" link2="${prefix}gripper_right" reason="Never"/>
+        <disable_collisions link1="${prefix}Pillar_3" link2="${prefix}link_3" reason="Never"/>
+        <disable_collisions link1="${prefix}Pillar_3" link2="${prefix}link_4" reason="Never"/>
+        <disable_collisions link1="${prefix}Pillar_3" link2="${prefix}link_5" reason="Never"/>
+        <disable_collisions link1="${prefix}Pillar_3" link2="${prefix}link_6" reason="Never"/>
+        <disable_collisions link1="${prefix}Pillar_4" link2="${prefix}Suction_Cup" reason="Never"/>
+        <disable_collisions link1="${prefix}Pillar_4" link2="${prefix}Suction_Mount" reason="Adjacent"/>
+        <disable_collisions link1="${prefix}Pillar_4" link2="${prefix}Tube" reason="Never"/>
+        <disable_collisions link1="${prefix}Pillar_4" link2="${prefix}carriage_left" reason="Never"/>
+        <disable_collisions link1="${prefix}Pillar_4" link2="${prefix}carriage_right" reason="Never"/>
+        <disable_collisions link1="${prefix}Pillar_4" link2="${prefix}gripper_left" reason="Never"/>
+        <disable_collisions link1="${prefix}Pillar_4" link2="${prefix}gripper_right" reason="Never"/>
+        <disable_collisions link1="${prefix}Pillar_4" link2="${prefix}link_3" reason="Never"/>
+        <disable_collisions link1="${prefix}Pillar_4" link2="${prefix}link_4" reason="Never"/>
+        <disable_collisions link1="${prefix}Pillar_4" link2="${prefix}link_5" reason="Never"/>
+        <disable_collisions link1="${prefix}Pillar_4" link2="${prefix}link_6" reason="Never"/>
+        <disable_collisions link1="${prefix}Robot_Mount" link2="${prefix}Suction_Cup" reason="Never"/>
+        <disable_collisions link1="${prefix}Robot_Mount" link2="${prefix}Suction_Mount" reason="Never"/>
+        <disable_collisions link1="${prefix}Robot_Mount" link2="${prefix}Tube" reason="Never"/>
+        <disable_collisions link1="${prefix}Robot_Mount" link2="${prefix}carriage_left" reason="Never"/>
+        <disable_collisions link1="${prefix}Robot_Mount" link2="${prefix}carriage_right" reason="Never"/>
+        <disable_collisions link1="${prefix}Robot_Mount" link2="${prefix}gripper_left" reason="Never"/>
+        <disable_collisions link1="${prefix}Robot_Mount" link2="${prefix}gripper_right" reason="Never"/>
+        <disable_collisions link1="${prefix}Robot_Mount" link2="${prefix}link_3" reason="Never"/>
+        <disable_collisions link1="${prefix}Robot_Mount" link2="${prefix}link_4" reason="Never"/>
+        <disable_collisions link1="${prefix}Robot_Mount" link2="${prefix}link_5" reason="Never"/>
+        <disable_collisions link1="${prefix}Robot_Mount" link2="${prefix}link_6" reason="Adjacent"/>
+        <disable_collisions link1="${prefix}Suction_Cup" link2="${prefix}Suction_Mount" reason="Never"/>
+        <disable_collisions link1="${prefix}Suction_Cup" link2="${prefix}Tube" reason="Never"/>
+        <disable_collisions link1="${prefix}Suction_Cup" link2="${prefix}carriage_left" reason="Never"/>
+        <disable_collisions link1="${prefix}Suction_Cup" link2="${prefix}carriage_right" reason="Never"/>
+        <disable_collisions link1="${prefix}Suction_Cup" link2="${prefix}gripper_left" reason="Never"/>
+        <disable_collisions link1="${prefix}Suction_Cup" link2="${prefix}gripper_right" reason="Never"/>
+        <disable_collisions link1="${prefix}Suction_Cup" link2="${prefix}link_3" reason="Never"/>
+        <disable_collisions link1="${prefix}Suction_Cup" link2="${prefix}link_4" reason="Never"/>
+        <disable_collisions link1="${prefix}Suction_Cup" link2="${prefix}link_5" reason="Never"/>
+        <disable_collisions link1="${prefix}Suction_Cup" link2="${prefix}link_6" reason="Never"/>
+        <disable_collisions link1="${prefix}Suction_Mount" link2="${prefix}Tube" reason="Adjacent"/>
+        <disable_collisions link1="${prefix}Suction_Mount" link2="${prefix}carriage_left" reason="Never"/>
+        <disable_collisions link1="${prefix}Suction_Mount" link2="${prefix}carriage_right" reason="Never"/>
+        <disable_collisions link1="${prefix}Suction_Mount" link2="${prefix}gripper_left" reason="Never"/>
+        <disable_collisions link1="${prefix}Suction_Mount" link2="${prefix}gripper_right" reason="Never"/>
+        <disable_collisions link1="${prefix}Suction_Mount" link2="${prefix}link_3" reason="Never"/>
+        <disable_collisions link1="${prefix}Suction_Mount" link2="${prefix}link_4" reason="Never"/>
+        <disable_collisions link1="${prefix}Suction_Mount" link2="${prefix}link_5" reason="Never"/>
+        <disable_collisions link1="${prefix}Suction_Mount" link2="${prefix}link_6" reason="Never"/>
+        <disable_collisions link1="${prefix}Tube" link2="${prefix}carriage_left" reason="Never"/>
+        <disable_collisions link1="${prefix}Tube" link2="${prefix}carriage_right" reason="Never"/>
+        <disable_collisions link1="${prefix}Tube" link2="${prefix}gripper_left" reason="Never"/>
+        <disable_collisions link1="${prefix}Tube" link2="${prefix}gripper_right" reason="Never"/>
+        <disable_collisions link1="${prefix}Tube" link2="${prefix}link_3" reason="Never"/>
+        <disable_collisions link1="${prefix}Tube" link2="${prefix}link_4" reason="Never"/>
+        <disable_collisions link1="${prefix}Tube" link2="${prefix}link_5" reason="Never"/>
+        <disable_collisions link1="${prefix}Tube" link2="${prefix}link_6" reason="Never"/>
+    </xacro:if>
 
     <xacro:if value="${arm_variant == 'follower'}">
         <disable_collisions link1="${prefix}camera_link" link2="${prefix}camera_mount_d405" reason="Adjacent"/>

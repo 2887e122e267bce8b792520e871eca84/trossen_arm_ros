@@ -60,12 +60,12 @@ from moveit_configs_utils import MoveItConfigsBuilder
 # import Jetson.GPIO as GPIO
 
 # GPIO.cleanup()
-ROBOT_TO_SIMULATE = 2  # 1 - left ; 2 - right
+ROBOT_TO_SIMULATE = 1  # 1 - left ; 2 - right
 WORLD_Y_OFFSET = -0.1725 if ROBOT_TO_SIMULATE == 1 else 0.1725
 
 # Camera pose measured from the midpoint between the two arm mounts.
 CAM_X = 0.0
-CAM_Y = 0.0
+CAM_Y = 0.0 if ROBOT_TO_SIMULATE==1 else -0.345
 CAM_Z = 0.0
 CAM_ROLL = 0.0
 CAM_PITCH = 0.0 # 1.5708
@@ -114,6 +114,9 @@ class ArmLaunchConfig:
     yaw: float
     """Yaw angle of the robot base frame in radians measured in the world frame"""
 
+    use_suction_cup: bool
+    """A boolean that configures a suction cup in the URDF"""
+
 
 
 ROBOTS = [
@@ -123,15 +126,16 @@ ROBOTS = [
         robot_name='trossen_arm_1',
         arm_variant='base',
         arm_side='none',
-        ip_address='192.168.1.2',
+        ip_address='192.168.1.4',
         ros2_control_hardware_type='mock_components',
         ros2_controllers_config_parameter_filename='dual_arm_controllers.yaml',
         x=0.0,
-        y=0.0 if ROBOT_TO_SIMULATE == 1 else 0.345,
+        y=0.0,
         z=0.0,
         roll=0.0,
         pitch=0.0,
         yaw=0.0,
+        use_suction_cup=False
     ),
     # Right
     ArmLaunchConfig(
@@ -139,15 +143,16 @@ ROBOTS = [
         robot_name='trossen_arm_2',
         arm_variant='base',
         arm_side='none',
-        ip_address='192.168.1.3',
+        ip_address='192.168.1.5',
         ros2_control_hardware_type='mock_components',
         ros2_controllers_config_parameter_filename='dual_arm_controllers.yaml',
         x=0.0,
-        y=0.0 if ROBOT_TO_SIMULATE == 2 else -0.345,
+        y=-0.345,
         z=0.0,
         roll=0.0,
         pitch=0.0,
         yaw=0.0,
+        use_suction_cup=True
     ),
 ]
 
@@ -173,6 +178,7 @@ def generate_launch_description_for_robot(
                 'variant': robot.arm_variant,
                 'ip_address': robot.ip_address,
                 'ros2_control_hardware_type': robot.ros2_control_hardware_type,
+                'use_suction_cup': 'true' if robot.use_suction_cup else 'false',
             }
         )
         .robot_description_semantic(
@@ -180,6 +186,7 @@ def generate_launch_description_for_robot(
             mappings={
                 'prefix': f'{robot.robot_name}/',
                 'variant': robot.arm_variant,
+                'use_suction_cup': 'true' if robot.use_suction_cup else 'false',
             },
         )
         .planning_scene_monitor(
@@ -231,6 +238,9 @@ def generate_launch_description_for_robot(
         namespace=robot.robot_name,
         arguments=[
             '-d', rviz_config_file_launch_arg,
+            '--ros-args',
+            '--log-level', 'trossen_arm_1.rviz2_dual.moveit.ros.planning_scene_monitor:=ERROR',
+            '--log-level', 'trossen_arm_2.rviz2_dual.moveit.ros.planning_scene_monitor:=ERROR',
         ],
         parameters=[
             moveit_configs.to_dict(),
@@ -386,24 +396,24 @@ def launch_setup(context, *args, **kwargs):
                 ],
                 output={'both': 'screen'},
             ),
-            # Node(
-            #     package='main_controller',
-            #     executable='main_controller',
-            #     name='main_controller',
-            #     output={'both': 'screen'},
-            # ),
+            Node(
+                package='main_controller',
+                executable='main_controller',
+                name='main_controller',
+                output={'both': 'screen'},
+            ),
             # Node(
             #     package='armor_control_py',
             #     executable='ads48_bridge',
             #     name='ads48_bridge',
             #     output={'both': 'screen'},
             # ),
-            # Node(
-            #     package='armor_control_py',
-            #     executable='ads49_bridge',
-            #     name='ads49_bridge',
-            #     output={'both': 'screen'},
-            # ),
+            Node(
+                package='armor_control_py',
+                executable='ads49_bridge',
+                name='ads49_bridge',
+                output={'both': 'screen'},
+            ),
             # Node(
             #     package='armor_control_py',
             #     executable='monitor_ups',
@@ -416,12 +426,12 @@ def launch_setup(context, *args, **kwargs):
             #     name='pick_up',
             #     output={'both': 'screen'},
             # ),
-            # Node(
-            #     package='armor_control_py',
-            #     executable='start_button',
-            #     name='start_button',
-            #     output={'both': 'screen'},
-            # ),
+            Node(
+                package='armor_control_py',
+                executable='start_button',
+                name='start_button',
+                output={'both': 'screen'},
+            ),
             # Node(
             #     package='armor_control_py',
             #     executable='estop_button',

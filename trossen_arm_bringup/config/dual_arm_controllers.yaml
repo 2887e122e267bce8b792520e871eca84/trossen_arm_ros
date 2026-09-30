@@ -1,7 +1,7 @@
 trossen_arm_1/:
   controller_manager:
     ros__parameters:
-      update_rate: 100 # Hz
+      update_rate: 50 # Hz
       arm_controller:
         type: joint_trajectory_controller/JointTrajectoryController
 
@@ -48,7 +48,7 @@ trossen_arm_1/:
 trossen_arm_2/:
   controller_manager:
     ros__parameters:
-      update_rate: 100 # Hz
+      update_rate: 50 # Hz
       arm_controller:
         type: joint_trajectory_controller/JointTrajectoryController
 
