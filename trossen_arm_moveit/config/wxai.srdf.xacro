@@ -65,8 +65,8 @@
         <joint name="${prefix}right_carriage_joint" value="0.044"/>
     </group_state>
     <group_state name="half_open" group="gripper">
-        <joint name="${prefix}left_carriage_joint" value="0.022"/>
-        <joint name="${prefix}right_carriage_joint" value="0.022"/>
+        <joint name="${prefix}left_carriage_joint" value="0.0055"/>
+        <joint name="${prefix}right_carriage_joint" value="0.0055"/>
     </group_state>
     <!--END EFFECTOR: Purpose: Represent information about an end effector.-->
     <end_effector name="gripper" parent_link="${prefix}ee_gripper_link" group="gripper" parent_group="arm"/>

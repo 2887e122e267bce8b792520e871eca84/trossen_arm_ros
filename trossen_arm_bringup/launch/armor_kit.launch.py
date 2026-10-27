@@ -64,7 +64,7 @@ ROBOT_TO_SIMULATE = 1  # 1 - left ; 2 - right
 WORLD_Y_OFFSET = -0.1725 if ROBOT_TO_SIMULATE == 1 else 0.1725
 
 # Camera pose measured from the midpoint between the two arm mounts.
-CAM_X = 0.0
+CAM_X = 0.15
 CAM_Y = 0.0 if ROBOT_TO_SIMULATE==1 else -0.345
 CAM_Z = 0.0
 CAM_ROLL = 0.0
@@ -126,8 +126,8 @@ ROBOTS = [
         robot_name='trossen_arm_1',
         arm_variant='base',
         arm_side='none',
-        ip_address='192.168.1.4',
-        ros2_control_hardware_type='mock_components',
+        ip_address='192.168.1.5',
+        ros2_control_hardware_type='real',
         ros2_controllers_config_parameter_filename='dual_arm_controllers.yaml',
         x=0.0,
         y=0.0,
@@ -143,8 +143,8 @@ ROBOTS = [
         robot_name='trossen_arm_2',
         arm_variant='base',
         arm_side='none',
-        ip_address='192.168.1.5',
-        ros2_control_hardware_type='mock_components',
+        ip_address='192.168.1.4',
+        ros2_control_hardware_type='real',
         ros2_controllers_config_parameter_filename='dual_arm_controllers.yaml',
         x=0.0,
         y=-0.345,
@@ -402,12 +402,12 @@ def launch_setup(context, *args, **kwargs):
                 name='main_controller',
                 output={'both': 'screen'},
             ),
-            # Node(
-            #     package='armor_control_py',
-            #     executable='ads48_bridge',
-            #     name='ads48_bridge',
-            #     output={'both': 'screen'},
-            # ),
+            Node(
+                package='armor_control_py',
+                executable='ads48_bridge',
+                name='ads48_bridge',
+                output={'both': 'screen'},
+            ),
             Node(
                 package='armor_control_py',
                 executable='ads49_bridge',
@@ -420,12 +420,12 @@ def launch_setup(context, *args, **kwargs):
             #     name='ups_monitor',
             #     output={'both': 'screen'},
             # ),
-            # Node(
-            #     package='armor_control_py',
-            #     executable='pickup_action_server',
-            #     name='pick_up',
-            #     output={'both': 'screen'},
-            # ),
+            Node(
+                package='armor_control_py',
+                executable='pickup_action_server',
+                name='pick_up',
+                output={'both': 'screen'},
+            ),
             Node(
                 package='armor_control_py',
                 executable='start_button',
