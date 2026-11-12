@@ -60,7 +60,7 @@ from moveit_configs_utils import MoveItConfigsBuilder
 # import Jetson.GPIO as GPIO
 
 # GPIO.cleanup()
-ROBOT_TO_SIMULATE = 1  # 1 - left ; 2 - right
+ROBOT_TO_SIMULATE = 2  # 1 - left ; 2 - right
 WORLD_Y_OFFSET = -0.1725 if ROBOT_TO_SIMULATE == 1 else 0.1725
 
 # Camera pose measured from the midpoint between the two arm mounts.
@@ -227,7 +227,7 @@ def generate_launch_description_for_robot(
         remappings=[
             ('~/robot_description', f'/{robot.robot_name}/robot_description'),
         ],
-        output={'both': 'screen'},
+        output='log',
     )
 
     moveit_rviz_node = Node(
@@ -245,7 +245,7 @@ def generate_launch_description_for_robot(
         parameters=[
             moveit_configs.to_dict(),
         ],
-        output={'both': 'screen'},
+        output='log',
     ) if include_rviz else None
 
     static_transform_node = Node(
@@ -262,7 +262,7 @@ def generate_launch_description_for_robot(
             '--frame-id', 'world',
             '--child-frame-id', f'{robot.robot_name}/base_link',
         ],
-        output={'both': 'screen'},
+        output='log',
     )
 
     ros2_control_controllers_config_parameter_file = ParameterFile(
@@ -284,7 +284,7 @@ def generate_launch_description_for_robot(
         remappings=[
             ('~/robot_description', f'/{robot.robot_name}/robot_description'),
         ],
-        output={'both': 'screen'},
+        output='log',
     )
 
     controller_spawner_nodes: list[Node] = []
@@ -303,7 +303,7 @@ def generate_launch_description_for_robot(
                     controller_name,
                     '--controller-manager', f'/{robot.robot_name}/controller_manager',
                 ],
-                output={'both': 'screen'},
+                output='log',
             )
         )
 
@@ -319,7 +319,7 @@ def generate_launch_description_for_robot(
             ('tf', '/tf'),
             ('tf_static', '/tf_static'),
         ],
-        output={'both': 'screen'},
+        output='log',
         arguments=['--ros-args', '--log-level', 'WARN'],
     )
 
@@ -333,7 +333,7 @@ def generate_launch_description_for_robot(
             moveit_configs.robot_description_semantic,
             moveit_configs.robot_description_kinematics,
         ],
-        output={'both': 'screen'},
+        output='log',
     )
 
     last_spawner = controller_spawner_nodes[-1]
@@ -378,7 +378,7 @@ def launch_setup(context, *args, **kwargs):
                 package='aruco_markers',
                 executable='detect_markers',
                 name='detect_markers',
-                output={'both': 'screen'},
+                output='log',
             ),
             Node(
                 package='tf2_ros',
@@ -394,7 +394,7 @@ def launch_setup(context, *args, **kwargs):
                     '--frame-id', 'world',
                     '--child-frame-id', 'camera_link',
                 ],
-                output={'both': 'screen'},
+                output='log',
             ),
             Node(
                 package='main_controller',
@@ -406,13 +406,13 @@ def launch_setup(context, *args, **kwargs):
                 package='armor_control_py',
                 executable='ads48_bridge',
                 name='ads48_bridge',
-                output={'both': 'screen'},
+                output='log',
             ),
             Node(
                 package='armor_control_py',
                 executable='ads49_bridge',
                 name='ads49_bridge',
-                output={'both': 'screen'},
+                output='log',
             ),
             # Node(
             #     package='armor_control_py',
@@ -424,26 +424,32 @@ def launch_setup(context, *args, **kwargs):
                 package='armor_control_py',
                 executable='pickup_action_server',
                 name='pick_up',
-                output={'both': 'screen'},
+                output='log',
             ),
             Node(
                 package='armor_control_py',
                 executable='start_button',
                 name='start_button',
-                output={'both': 'screen'},
+                output='log',
             ),
-            # Node(
-            #     package='armor_control_py',
-            #     executable='estop_button',
-            #     name='estop_button',
-            #     output={'both': 'screen'},
-            # ),
-            # Node(
-            #     package='armor_control_py',
-            #     executable='vibration_rack',
-            #     name='vibration_rack',
-            #     output={'both': 'screen'},
-            # ),
+            Node(
+                package='armor_control_py',
+                executable='estop_button',
+                name='estop_button',
+                output={'both': 'log'},
+            ),
+            Node(
+                package='armor_control_py',
+                executable='vibration_rack',
+                name='vibration_rack',
+                output={'both': 'log'},
+            ),
+            Node(
+                package='armor_control_py',
+                executable='stop_button',
+                name='stop_button',
+                output={'both': 'log'},
+            ),
             # Node(
             #     package='armor_control_py',
             #     executable='pause_button',

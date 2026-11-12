@@ -1,12 +1,13 @@
 Panels:
   - Class: rviz_common/Displays
-    Help Height: 128
+    Help Height: 0
     Name: Displays
     Property Tree Widget:
       Expanded:
         - /MotionPlanning1
+        - /Image1
       Splitter Ratio: 0.6176470518112183
-    Tree Height: 254
+    Tree Height: 226
 Visualization Manager:
   Class: ""
   Displays:
@@ -46,112 +47,52 @@ Visualization Manager:
         Expand Link Details: false
         Expand Tree: false
         Link Tree Style: Links in Alphabetic Order
-        trossen_arm_2/Back_Plate_Exhaust:
+        trossen_arm_2/Connector:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        trossen_arm_2/Bottom_Box:
+        trossen_arm_2/Pillar_1:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        trossen_arm_2/Chute_01:
+        trossen_arm_2/Pillar_2:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        trossen_arm_2/Chute_02:
+        trossen_arm_2/Pillar_3:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        trossen_arm_2/Chute_03:
+        trossen_arm_2/Pillar_4:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        trossen_arm_2/Front_Weld_Plate:
+        trossen_arm_2/Robot_Mount:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        trossen_arm_2/Letter_Trimmer_Holder:
+        trossen_arm_2/Suction_Cup:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        trossen_arm_2/Mail_Spreader_Housing:
+        trossen_arm_2/Suction_Mount:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        trossen_arm_2/Mail_Top_Plate:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        trossen_arm_2/Pedestal:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        trossen_arm_2/RealSense_D405:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        trossen_arm_2/RealSense_Holder_01:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        trossen_arm_2/RealSense_Holder_02:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        trossen_arm_2/Rear_Panel:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        trossen_arm_2/Side_Plates_Left:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        trossen_arm_2/Side_Plates_Right:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        trossen_arm_2/Top_Panel:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        trossen_arm_2/Top_Weld_Plate:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        trossen_arm_2/Vibration_Table_Plate:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        trossen_arm_2/Vibration_Table_Top_Plate:
+        trossen_arm_2/Tube:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
         trossen_arm_2/base_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        trossen_arm_2/base_mount:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -176,16 +117,6 @@ Visualization Manager:
           Show Trail: false
           Value: true
         trossen_arm_2/gripper_right:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        trossen_arm_2/light_1:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        trossen_arm_2/light_2:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -216,41 +147,6 @@ Visualization Manager:
           Show Trail: false
           Value: true
         trossen_arm_2/link_6:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        trossen_arm_2/pillar_1:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        trossen_arm_2/pillar_2:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        trossen_arm_2/pillar_3:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        trossen_arm_2/pillar_4:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        trossen_arm_2/suction_cup:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        trossen_arm_2/suction_mount:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        trossen_arm_2/tube:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -281,6 +177,65 @@ Visualization Manager:
         Expand Link Details: false
         Expand Tree: false
         Link Tree Style: Links in Alphabetic Order
+        trossen_arm_1/base_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        trossen_arm_1/carriage_left:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        trossen_arm_1/carriage_right:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        trossen_arm_1/ee_gripper_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        trossen_arm_1/gripper_left:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        trossen_arm_1/gripper_right:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        trossen_arm_1/link_1:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        trossen_arm_1/link_2:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        trossen_arm_1/link_3:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        trossen_arm_1/link_4:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        trossen_arm_1/link_5:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        trossen_arm_1/link_6:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
       Mass Properties:
         Inertia: false
         Mass: false
@@ -296,49 +251,63 @@ Visualization Manager:
       Frame Timeout: 15
       Frames:
         All Enabled: true
-        trossen_arm_2/Back_Plate_Exhaust:
+        camera_color_frame:
           Value: true
-        trossen_arm_2/Bottom_Box:
+        camera_color_optical_frame:
           Value: true
-        trossen_arm_2/Chute_01:
+        camera_depth_frame:
           Value: true
-        trossen_arm_2/Chute_02:
+        camera_depth_optical_frame:
           Value: true
-        trossen_arm_2/Chute_03:
+        camera_link:
           Value: true
-        trossen_arm_2/Front_Weld_Plate:
+        chute_marker_43:
           Value: true
-        trossen_arm_2/Letter_Trimmer_Holder:
+        jogger_marker_42:
           Value: true
-        trossen_arm_2/Mail_Spreader_Housing:
+        trossen_arm_1/base_link:
           Value: true
-        trossen_arm_2/Mail_Top_Plate:
+        trossen_arm_1/carriage_left:
           Value: true
-        trossen_arm_2/Pedestal:
+        trossen_arm_1/carriage_right:
           Value: true
-        trossen_arm_2/RealSense_D405:
+        trossen_arm_1/ee_gripper_link:
           Value: true
-        trossen_arm_2/RealSense_Holder_01:
+        trossen_arm_1/gripper_left:
           Value: true
-        trossen_arm_2/RealSense_Holder_02:
+        trossen_arm_1/gripper_right:
           Value: true
-        trossen_arm_2/Rear_Panel:
+        trossen_arm_1/link_1:
           Value: true
-        trossen_arm_2/Side_Plates_Left:
+        trossen_arm_1/link_2:
           Value: true
-        trossen_arm_2/Side_Plates_Right:
+        trossen_arm_1/link_3:
           Value: true
-        trossen_arm_2/Top_Panel:
+        trossen_arm_1/link_4:
           Value: true
-        trossen_arm_2/Top_Weld_Plate:
+        trossen_arm_1/link_5:
           Value: true
-        trossen_arm_2/Vibration_Table_Plate:
+        trossen_arm_1/link_6:
           Value: true
-        trossen_arm_2/Vibration_Table_Top_Plate:
+        trossen_arm_2/Connector:
+          Value: true
+        trossen_arm_2/Pillar_1:
+          Value: true
+        trossen_arm_2/Pillar_2:
+          Value: true
+        trossen_arm_2/Pillar_3:
+          Value: true
+        trossen_arm_2/Pillar_4:
+          Value: true
+        trossen_arm_2/Robot_Mount:
+          Value: true
+        trossen_arm_2/Suction_Cup:
+          Value: true
+        trossen_arm_2/Suction_Mount:
+          Value: true
+        trossen_arm_2/Tube:
           Value: true
         trossen_arm_2/base_link:
-          Value: true
-        trossen_arm_2/base_mount:
           Value: true
         trossen_arm_2/carriage_left:
           Value: true
@@ -349,10 +318,6 @@ Visualization Manager:
         trossen_arm_2/gripper_left:
           Value: true
         trossen_arm_2/gripper_right:
-          Value: true
-        trossen_arm_2/light_1:
-          Value: true
-        trossen_arm_2/light_2:
           Value: true
         trossen_arm_2/link_1:
           Value: true
@@ -366,20 +331,6 @@ Visualization Manager:
           Value: true
         trossen_arm_2/link_6:
           Value: true
-        trossen_arm_2/pillar_1:
-          Value: true
-        trossen_arm_2/pillar_2:
-          Value: true
-        trossen_arm_2/pillar_3:
-          Value: true
-        trossen_arm_2/pillar_4:
-          Value: true
-        trossen_arm_2/suction_cup:
-          Value: true
-        trossen_arm_2/suction_mount:
-          Value: true
-        trossen_arm_2/tube:
-          Value: true
         world:
           Value: true
       Marker Scale: 0.15000000596046448
@@ -389,68 +340,59 @@ Visualization Manager:
       Show Names: true
       Tree:
         world:
-          trossen_arm_2/Bottom_Box:
-            trossen_arm_2/Pedestal:
-              {}
-            trossen_arm_2/Top_Panel:
-              trossen_arm_2/Back_Plate_Exhaust:
+          camera_link:
+            camera_color_frame:
+              camera_color_optical_frame:
+                chute_marker_43:
+                  {}
+                jogger_marker_42:
+                  {}
+            camera_depth_frame:
+              camera_depth_optical_frame:
                 {}
-              trossen_arm_2/Chute_01:
-                trossen_arm_2/Chute_02:
-                  {}
-                trossen_arm_2/Chute_03:
-                  {}
-              trossen_arm_2/Front_Weld_Plate:
-                {}
-              trossen_arm_2/Mail_Spreader_Housing:
-                trossen_arm_2/Letter_Trimmer_Holder:
-                  {}
-                trossen_arm_2/Mail_Top_Plate:
-                  {}
-              trossen_arm_2/Rear_Panel:
-                trossen_arm_2/Top_Weld_Plate:
-                  trossen_arm_2/RealSense_Holder_02:
-                    trossen_arm_2/RealSense_Holder_01:
-                      trossen_arm_2/RealSense_D405:
-                        {}
-                  trossen_arm_2/light_1:
-                    {}
-                  trossen_arm_2/light_2:
-                    {}
-              trossen_arm_2/Side_Plates_Left:
-                {}
-              trossen_arm_2/Side_Plates_Right:
-                {}
-              trossen_arm_2/Vibration_Table_Plate:
-                trossen_arm_2/Vibration_Table_Top_Plate:
-                  {}
-            trossen_arm_2/base_link:
-              trossen_arm_2/link_1:
-                trossen_arm_2/link_2:
-                  trossen_arm_2/link_3:
-                    trossen_arm_2/link_4:
-                      trossen_arm_2/link_5:
-                        trossen_arm_2/link_6:
-                          trossen_arm_2/base_mount:
-                            trossen_arm_2/pillar_1:
-                              trossen_arm_2/suction_mount:
-                                trossen_arm_2/pillar_2:
-                                  {}
-                                trossen_arm_2/pillar_3:
-                                  {}
-                                trossen_arm_2/suction_cup:
-                                  trossen_arm_2/tube:
-                                    {}
-                            trossen_arm_2/pillar_4:
-                              {}
-                          trossen_arm_2/carriage_left:
-                            trossen_arm_2/gripper_left:
-                              {}
-                          trossen_arm_2/carriage_right:
-                            trossen_arm_2/gripper_right:
-                              {}
-                          trossen_arm_2/ee_gripper_link:
+          trossen_arm_1/base_link:
+            trossen_arm_1/link_1:
+              trossen_arm_1/link_2:
+                trossen_arm_1/link_3:
+                  trossen_arm_1/link_4:
+                    trossen_arm_1/link_5:
+                      trossen_arm_1/link_6:
+                        trossen_arm_1/carriage_left:
+                          trossen_arm_1/gripper_left:
                             {}
+                        trossen_arm_1/carriage_right:
+                          trossen_arm_1/gripper_right:
+                            {}
+                        trossen_arm_1/ee_gripper_link:
+                          {}
+          trossen_arm_2/base_link:
+            trossen_arm_2/link_1:
+              trossen_arm_2/link_2:
+                trossen_arm_2/link_3:
+                  trossen_arm_2/link_4:
+                    trossen_arm_2/link_5:
+                      trossen_arm_2/link_6:
+                        trossen_arm_2/Robot_Mount:
+                          trossen_arm_2/Pillar_1:
+                            trossen_arm_2/Suction_Mount:
+                              trossen_arm_2/Pillar_2:
+                                {}
+                              trossen_arm_2/Pillar_4:
+                                {}
+                              trossen_arm_2/Tube:
+                                trossen_arm_2/Connector:
+                                  trossen_arm_2/Suction_Cup:
+                                    {}
+                          trossen_arm_2/Pillar_3:
+                            {}
+                        trossen_arm_2/carriage_left:
+                          trossen_arm_2/gripper_left:
+                            {}
+                        trossen_arm_2/carriage_right:
+                          trossen_arm_2/gripper_right:
+                            {}
+                        trossen_arm_2/ee_gripper_link:
+                          {}
       Update Interval: 0
       Value: true
     - Acceleration_Scaling_Factor: 0.1
@@ -484,112 +426,52 @@ Visualization Manager:
           Expand Link Details: false
           Expand Tree: false
           Link Tree Style: Links in Alphabetic Order
-          trossen_arm_2/Back_Plate_Exhaust:
+          trossen_arm_2/Connector:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
-          trossen_arm_2/Bottom_Box:
+          trossen_arm_2/Pillar_1:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
-          trossen_arm_2/Chute_01:
+          trossen_arm_2/Pillar_2:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
-          trossen_arm_2/Chute_02:
+          trossen_arm_2/Pillar_3:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
-          trossen_arm_2/Chute_03:
+          trossen_arm_2/Pillar_4:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
-          trossen_arm_2/Front_Weld_Plate:
+          trossen_arm_2/Robot_Mount:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
-          trossen_arm_2/Letter_Trimmer_Holder:
+          trossen_arm_2/Suction_Cup:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
-          trossen_arm_2/Mail_Spreader_Housing:
+          trossen_arm_2/Suction_Mount:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
-          trossen_arm_2/Mail_Top_Plate:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-            Value: true
-          trossen_arm_2/Pedestal:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-            Value: true
-          trossen_arm_2/RealSense_D405:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-            Value: true
-          trossen_arm_2/RealSense_Holder_01:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-            Value: true
-          trossen_arm_2/RealSense_Holder_02:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-            Value: true
-          trossen_arm_2/Rear_Panel:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-            Value: true
-          trossen_arm_2/Side_Plates_Left:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-            Value: true
-          trossen_arm_2/Side_Plates_Right:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-            Value: true
-          trossen_arm_2/Top_Panel:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-            Value: true
-          trossen_arm_2/Top_Weld_Plate:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-            Value: true
-          trossen_arm_2/Vibration_Table_Plate:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-            Value: true
-          trossen_arm_2/Vibration_Table_Top_Plate:
+          trossen_arm_2/Tube:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
           trossen_arm_2/base_link:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-            Value: true
-          trossen_arm_2/base_mount:
             Alpha: 1
             Show Axes: false
             Show Trail: false
@@ -614,16 +496,6 @@ Visualization Manager:
             Show Trail: false
             Value: true
           trossen_arm_2/gripper_right:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-            Value: true
-          trossen_arm_2/light_1:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-            Value: true
-          trossen_arm_2/light_2:
             Alpha: 1
             Show Axes: false
             Show Trail: false
@@ -654,41 +526,6 @@ Visualization Manager:
             Show Trail: false
             Value: true
           trossen_arm_2/link_6:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-            Value: true
-          trossen_arm_2/pillar_1:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-            Value: true
-          trossen_arm_2/pillar_2:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-            Value: true
-          trossen_arm_2/pillar_3:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-            Value: true
-          trossen_arm_2/pillar_4:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-            Value: true
-          trossen_arm_2/suction_cup:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-            Value: true
-          trossen_arm_2/suction_mount:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-            Value: true
-          trossen_arm_2/tube:
             Alpha: 1
             Show Axes: false
             Show Trail: false
@@ -739,112 +576,52 @@ Visualization Manager:
           Expand Link Details: false
           Expand Tree: false
           Link Tree Style: Links in Alphabetic Order
-          trossen_arm_2/Back_Plate_Exhaust:
+          trossen_arm_2/Connector:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
-          trossen_arm_2/Bottom_Box:
+          trossen_arm_2/Pillar_1:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
-          trossen_arm_2/Chute_01:
+          trossen_arm_2/Pillar_2:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
-          trossen_arm_2/Chute_02:
+          trossen_arm_2/Pillar_3:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
-          trossen_arm_2/Chute_03:
+          trossen_arm_2/Pillar_4:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
-          trossen_arm_2/Front_Weld_Plate:
+          trossen_arm_2/Robot_Mount:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
-          trossen_arm_2/Letter_Trimmer_Holder:
+          trossen_arm_2/Suction_Cup:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
-          trossen_arm_2/Mail_Spreader_Housing:
+          trossen_arm_2/Suction_Mount:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
-          trossen_arm_2/Mail_Top_Plate:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-            Value: true
-          trossen_arm_2/Pedestal:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-            Value: true
-          trossen_arm_2/RealSense_D405:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-            Value: true
-          trossen_arm_2/RealSense_Holder_01:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-            Value: true
-          trossen_arm_2/RealSense_Holder_02:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-            Value: true
-          trossen_arm_2/Rear_Panel:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-            Value: true
-          trossen_arm_2/Side_Plates_Left:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-            Value: true
-          trossen_arm_2/Side_Plates_Right:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-            Value: true
-          trossen_arm_2/Top_Panel:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-            Value: true
-          trossen_arm_2/Top_Weld_Plate:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-            Value: true
-          trossen_arm_2/Vibration_Table_Plate:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-            Value: true
-          trossen_arm_2/Vibration_Table_Top_Plate:
+          trossen_arm_2/Tube:
             Alpha: 1
             Show Axes: false
             Show Trail: false
             Value: true
           trossen_arm_2/base_link:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-            Value: true
-          trossen_arm_2/base_mount:
             Alpha: 1
             Show Axes: false
             Show Trail: false
@@ -869,16 +646,6 @@ Visualization Manager:
             Show Trail: false
             Value: true
           trossen_arm_2/gripper_right:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-            Value: true
-          trossen_arm_2/light_1:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-            Value: true
-          trossen_arm_2/light_2:
             Alpha: 1
             Show Axes: false
             Show Trail: false
@@ -913,46 +680,25 @@ Visualization Manager:
             Show Axes: false
             Show Trail: false
             Value: true
-          trossen_arm_2/pillar_1:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-            Value: true
-          trossen_arm_2/pillar_2:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-            Value: true
-          trossen_arm_2/pillar_3:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-            Value: true
-          trossen_arm_2/pillar_4:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-            Value: true
-          trossen_arm_2/suction_cup:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-            Value: true
-          trossen_arm_2/suction_mount:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-            Value: true
-          trossen_arm_2/tube:
-            Alpha: 1
-            Show Axes: false
-            Show Trail: false
-            Value: true
         Robot Alpha: 1
         Show Robot Collision: false
         Show Robot Visual: false
       Value: true
       Velocity_Scaling_Factor: 0.1
+    - Class: rviz_default_plugins/Image
+      Enabled: true
+      Max Value: 1
+      Median window: 5
+      Min Value: 0
+      Name: Image
+      Normalize Range: true
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /jogger_detection_img
+      Value: true
   Enabled: true
   Global Options:
     Background Color: 0; 176; 240
@@ -999,37 +745,39 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz_default_plugins/Orbit
-      Distance: 3.914346694946289
+      Distance: 1.089626431465149
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: 0.01708846166729927
-        Y: 0.17354729771614075
-        Z: 0.08038800209760666
+        X: 0.48697638511657715
+        Y: -0.1498918980360031
+        Z: 0.03286631032824516
       Focal Shape Fixed Size: false
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.6853974461555481
+      Pitch: 0.8297967910766602
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 5.798581600189209
+      Yaw: 4.997223854064941
     Saved: ~
 Window Geometry:
-  "":
-    collapsed: false
-  " - Trajectory Slider":
-    collapsed: false
   Displays:
     collapsed: false
   Height: 923
   Hide Left Dock: false
   Hide Right Dock: true
-  QMainWindow State: 000000ff00000000fd0000000400000000000001ee00000364fc020000000bfb0000001200530065006c0065006300740069006f006e00000001e10000009b0000000000000000fb0000001e0054006f006f006c002000500072006f007000650072007400690065007302000001ed000001df00000185000000a3fb000000120056006900650077007300200054006f006f02000001df000002110000018500000122fb000000200054006f006f006c002000500072006f0070006500720074006900650073003203000002880000011d000002210000017afb000000100044006900730070006c0061007900730100000018000001be000000cc00fffffffb0000002000730065006c0065006300740069006f006e00200062007500660066006500720200000138000000aa0000023a00000294fb00000014005700690064006500530074006500720065006f02000000e6000000d2000003ee0000030bfb0000000c004b0069006e0065006300740200000186000001060000030c00000261fb000000300049006e0074006500720062006f00740069007800200043006f006e00740072006f006c002000500061006e0065006c00000002430000013d0000000000000000fb000000280020002d0020005400720061006a006500630074006f0072007900200053006c00690064006500720000000000ffffffff0000004400fffffffbffffffff01000001dc000001a0000001a000ffffff0000000100000110000002a2fc0200000003fb0000001e0054006f006f006c002000500072006f00700065007200740069006500730100000041000000780000000000000000fb0000000a00560069006500770073000000003d000002a20000000000000000fb0000001200530065006c0065006300740069006f006e010000025a000000b200000000000000000000000200000490000000a9fc0100000001fb0000000a00560069006500770073030000004e00000080000002e10000019700000003000006080000004cfc0100000002fb0000000800540069006d00650100000000000006080000000000000000fb0000000800540069006d00650100000000000004500000000000000000000004140000036400000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730000000000ffffffff0000000000000000
+  Image:
+    collapsed: false
+  MotionPlanning:
+    collapsed: false
+  MotionPlanning - Trajectory Slider:
+    collapsed: false
+  QMainWindow State: 000000ff00000000fd0000000400000000000001ee00000368fc020000000dfb0000001200530065006c0065006300740069006f006e00000001e10000009b0000000000000000fb0000001e0054006f006f006c002000500072006f007000650072007400690065007302000001ed000001df00000185000000a3fb000000120056006900650077007300200054006f006f02000001df000002110000018500000122fb000000200054006f006f006c002000500072006f0070006500720074006900650073003203000002880000011d000002210000017afb000000100044006900730070006c00610079007301000000160000011f000000c900fffffffb0000002000730065006c0065006300740069006f006e00200062007500660066006500720200000138000000aa0000023a00000294fb00000014005700690064006500530074006500720065006f02000000e6000000d2000003ee0000030bfb0000000c004b0069006e0065006300740200000186000001060000030c00000261fb000000300049006e0074006500720062006f00740069007800200043006f006e00740072006f006c002000500061006e0065006c00000002430000013d0000000000000000fb000000280020002d0020005400720061006a006500630074006f0072007900200053006c00690064006500720000000000ffffffff0000000000000000fb00000044004d006f00740069006f006e0050006c0061006e006e0069006e00670020002d0020005400720061006a006500630074006f0072007900200053006c00690064006500720000000000ffffffff0000001600000016fb0000001c004d006f00740069006f006e0050006c0061006e006e0069006e0067010000013b0000017d0000017d00fffffffb0000000a0049006d00610067006501000002be000000c00000001600ffffff0000000100000110000002a2fc0200000003fb0000001e0054006f006f006c002000500072006f00700065007200740069006500730100000041000000780000000000000000fb0000000a00560069006500770073000000003d000002a20000000000000000fb0000001200530065006c0065006300740069006f006e010000025a000000b200000000000000000000000200000490000000a9fc0100000001fb0000000a00560069006500770073030000004e00000080000002e10000019700000003000006080000004cfc0100000002fb0000000800540069006d00650100000000000006080000000000000000fb0000000800540069006d00650100000000000004500000000000000000000004140000036800000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730000000000ffffffff0000000000000000
   Width: 1544
   X: 72
   Y: 32
